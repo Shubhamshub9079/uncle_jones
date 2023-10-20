@@ -281,9 +281,9 @@ class _AddressState extends State<Address> {
 
     var addressAddResponse = await AddressRepository().getAddressAddResponse(
         address: address,
-        country_id: 656565,
-        state_id: 255,
-        city_id: 2525555,
+        country_id: 101,
+        state_id: 33,
+        city_id: 3378,
         postal_code: postal_code,
         phone: phone);
 

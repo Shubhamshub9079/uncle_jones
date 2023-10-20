@@ -106,7 +106,6 @@ class HomePresenter extends ChangeNotifier {
     notifyListeners();
   }
 
-
   fetchBannerOneImages() async {
     var bannerOneResponse = await SlidersRepository().getBannerOneImages();
     bannerOneResponse.sliders!.forEach((slider) {
@@ -117,7 +116,8 @@ class HomePresenter extends ChangeNotifier {
   }
 
   fetchDairyBeverages() async {
-    var homeOneResponse = await CategoryRepository().getHomeCategoryDairyBeverage();
+    var homeOneResponse =
+        await CategoryRepository().getHomeCategoryDairyBeverage();
     homeOneResponse.data!.forEach((item) {
       HomeOneCategoryList.add(item);
     });
@@ -125,17 +125,14 @@ class HomePresenter extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
   fetchHomeKitchen() async {
     var homeOneResponse = await CategoryRepository().getHomeHomeKitchen();
     homeOneResponse.data!.forEach((item) {
       HomeTwoCategoryList.add(item);
     });
-    isTwoInitial= false;
+    isTwoInitial = false;
     notifyListeners();
   }
-
 
   fetchCake() async {
     var homeOneResponse = await CategoryRepository().getHomeCake();
@@ -146,7 +143,6 @@ class HomePresenter extends ChangeNotifier {
     notifyListeners();
   }
 
-
   fetchPersonalCare() async {
     var homeOneResponse = await CategoryRepository().getHomePersonalCare();
     homeOneResponse.data!.forEach((item) {
@@ -155,7 +151,6 @@ class HomePresenter extends ChangeNotifier {
     isFourInitial = false;
     notifyListeners();
   }
-
 
   fetchBannerTwoImages() async {
     var bannerTwoResponse = await SlidersRepository().getBannerTwoImages();

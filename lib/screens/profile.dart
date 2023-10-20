@@ -970,7 +970,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Terms Conditions",
-                  url: "${AppConfig.RAW_BASE_URL}/terms",
+                  url: "https://unclejons.in/terms",
                 ),
               ),
             ),
@@ -987,7 +987,41 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Privacy Policy",
-                  url: "${AppConfig.RAW_BASE_URL}/privacy-policy",
+                  url: "https://unclejons.in/privacy-policy",
+                ),
+              ),
+            ),
+          ),
+          Divider(
+            thickness: 1,
+            color: MyTheme.light_grey,
+          ),
+          buildSettingAndAddonsHorizontalMenuItem(
+            "assets/ship.png",
+            'Shipping Policy',
+                () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CommonWebviewScreen(
+                  page_name: "Shipping Policy",
+                  url: "https://unclejons.in/support-policy",
+                ),
+              ),
+            ),
+          ),
+          Divider(
+            thickness: 1,
+            color: MyTheme.light_grey,
+          ),
+          buildSettingAndAddonsHorizontalMenuItem(
+            "assets/return.png",
+            'Return Policy',
+                () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CommonWebviewScreen(
+                  page_name: "Return Policy",
+                  url: "https://unclejons.in/return-policy",
                 ),
               ),
             ),

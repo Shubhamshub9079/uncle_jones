@@ -330,10 +330,29 @@ class _CategoryProductsState extends State<CategoryProducts> {
           controller: _xcrollController,
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
-          child: MasonryGridView.count(
-            crossAxisCount: 3,
-            mainAxisSpacing: 14,
-            crossAxisSpacing: 14,
+          child:
+          // ListView.builder(
+          //   scrollDirection: Axis.vertical,
+          //   itemCount: _productList.length,
+          //   itemBuilder: (context, index) {
+          //     return Padding(
+          //       padding: EdgeInsets.only(top: 10.0, bottom: 10, left: 18, right: 18),
+          //       child: ProductCard(
+          //         id: _productList[index].id,
+          //         image: _productList[index].thumbnail_image,
+          //         name: _productList[index].name,
+          //         main_price: _productList[index].main_price,
+          //         stroked_price: _productList[index].stroked_price,
+          //         discount: _productList[index].discount,
+          //         is_wholesale: _productList[index].isWholesale,
+          //         has_discount: _productList[index].has_discount,
+          //       ),
+          //     );
+          //   },
+          // )
+
+          ListView.builder(
+            scrollDirection: Axis.vertical,
             itemCount: _productList.length,
             shrinkWrap: true,
             padding:

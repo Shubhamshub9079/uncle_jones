@@ -1,12 +1,10 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class ItemImageUpload extends StatefulWidget {
   ItemImageUpload({
@@ -15,7 +13,7 @@ class ItemImageUpload extends StatefulWidget {
 
   @override
   State<ItemImageUpload> createState() => _ItemImageUploadState();
-}
+ }
 
 class _ItemImageUploadState extends State<ItemImageUpload> {
   final ImageUploadController controller = Get.put(ImageUploadController());
@@ -39,7 +37,9 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                     ),
             ),
             ElevatedButton(
-              onPressed: controller.pickImageFromGallery,
+              onPressed: () {
+                controller.uploadSingleImageGallery();
+              },
               child: Text('Select Image from Gallery'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.pink,
@@ -82,25 +82,48 @@ class ImageUploadController extends GetxController {
     }
   }
 
-  Future<void> uploadImageToServer() async {
-    if (selectedImage.value == null) {
-      return;
-    }
+  Future<File> pickImageGallery() async {
+    var picker = ImagePicker();
+    var image = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 80,
+        requestFullMetadata: false);
+    var imageFile = File(image!.path);
+    return imageFile;
+  }
+
+  Future<void> uploadSingleImageGallery() async {
+    var image = await pickImageGallery();
 
     try {
-      Dio dio = Dio();
-      FormData formData = FormData.fromMap({
-        'file': await MultipartFile.fromFile(selectedImage.value!.path),
+      var request = http.MultipartRequest(
+          "POST", Uri.parse("http://143.198.151.57/api/upload-single-image"))
+        ..fields["image"]
+        ..files.add(
+          http.MultipartFile(
+            "image",
+            image.readAsBytes().asStream(),
+            image.lengthSync(),
+            filename: "profile.png",
+          ),
+        );
+      var response = await request.send();
+      //json response
+      var jsonResponse = await response.stream.bytesToString().then((value) {
+        return value;
       });
-
-      // Replace with your API endpoint
-      Response response = await dio.post('https://your-api-endpoint.com/upload',
-          data: formData);
-
-      // Handle the response as needed
-      print('Response: ${response.data}');
+      Map responseMap = jsonDecode(jsonResponse);
+      log(responseMap.toString());
+      if (responseMap["status"]) {
+        var imageUrl = responseMap["imageUrl"];
+        Get.rawSnackbar(message: "Profile image upload successful");
+      } else {
+        Get.rawSnackbar(message: responseMap["message"],);
+        // showErrorMessage(responseMap["message"]);
+      }
     } catch (e) {
-      print('Error uploading image: $e');
+      log(e.toString());
+      Get.rawSnackbar(message: "Something went wrong");
     }
   }
 }

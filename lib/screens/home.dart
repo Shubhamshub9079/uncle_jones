@@ -27,7 +27,6 @@ class Home extends StatefulWidget {
     this.show_back_button = false,
     go_back = true,
   }) : super(key: key);
-
   final String? title;
   bool show_back_button;
   late bool go_back;
@@ -42,11 +41,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light
-        //color set to transperent or set your own color
-        ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light
+          //color set to transperent or set your own color
+          ),
+    );
 
     Future.delayed(Duration.zero).then((value) {
       change();
@@ -76,9 +77,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       appBar: PreferredSize(
         child: GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Filter();
-            }));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return Filter();
+              }),
+            );
           },
           child: buildAppBar(context),
         ),
@@ -101,7 +105,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   child: CustomScrollView(
                     controller: homeData.mainScrollController,
                     physics: const BouncingScrollPhysics(
-                        parent: AlwaysScrollableScrollPhysics()),
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
                     slivers: <Widget>[
                       SliverToBoxAdapter(
                         child: SizedBox(
@@ -171,25 +176,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       SizedBox(
                                         width: 110,
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          // Handle the click action here, for example, navigate to a new screen.
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  buildHomeFeaturedCategories(
-                                                      context, homeData),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          "View all ",
-                                          style: TextStyle(
-                                              color: Colors.pink,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600),
-                                        ),
+                                      Text(
+                                        "View all ",
+                                        style: TextStyle(
+                                            color: Colors.pink,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600),
                                       ),
                                       Icon(
                                         Icons.arrow_forward,
@@ -240,25 +232,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   SizedBox(
                                     width: 100,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      // Handle the click action here, for example, navigate to a new screen.
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              buildHomeFeatureProductHorizontalList(
-                                                  homeData),
-                                        ),
-                                      );
-                                    },
-                                    child: Text(
-                                      'View all',
-                                      style: TextStyle(
-                                          color: Colors.pink,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600),
-                                    ),
+                                  Text(
+                                    'View all',
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
                                   ),
                                   SizedBox(
                                     width: 3,
@@ -659,12 +638,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (!homeData.isCategoryInitial &&
         homeData.featuredCategoryList.length == 0) {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_category_found,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     } else {
       // should not be happening
       return Container(
@@ -739,7 +720,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         image:
                             homeData.featuredProductList[index].thumbnail_image,
                         name: homeData.featuredProductList[index].name,
-
                         main_price:
                             homeData.featuredProductList[index].main_price,
                         stroked_price:
@@ -757,12 +737,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -772,26 +754,29 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       return Row(
         children: [
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 160) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
         ],
       );
     } else if (homeData.HomeOneCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
-          height: 200,
+          height: 210,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
@@ -809,7 +794,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               itemBuilder: (context, index) {
                 return MiniProductCard(
                   id: homeData.HomeOneCategoryList[index].id,
@@ -847,20 +833,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       return Row(
         children: [
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 160) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
         ],
       );
     } else if (homeData.homeBrandList.length > 0) {
@@ -878,18 +867,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               childAspectRatio: 1.4),
           itemBuilder: (BuildContext context, int index) {
             return Container(
-                width: 80,
-                height: 80,
-                padding: EdgeInsets.all(20),
-                color: Colors.white,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(6), bottom: Radius.zero),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/placeholder.png',
-                      image: homeData.homeBrandList[index].logo,
-                      fit: BoxFit.cover,
-                    )));
+              width: 80,
+              height: 80,
+              padding: EdgeInsets.all(20),
+              color: Colors.white,
+              child: ClipRRect(
+                borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(6), bottom: Radius.zero),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/placeholder.png',
+                  image: homeData.homeBrandList[index].logo,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
           });
     } else {
       return Container(
@@ -910,20 +901,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       return Row(
         children: [
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 160) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
         ],
       );
     } else if (homeData.HomeTwoCategoryList.length > 0) {
@@ -947,7 +941,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               itemBuilder: (context, index) {
                 return MiniProductCard(
                   id: homeData.HomeTwoCategoryList[index].id,
@@ -967,12 +962,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -1041,12 +1038,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -1056,20 +1055,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       return Row(
         children: [
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 64) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
           Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ShimmerHelper().buildBasicShimmer(
-                  height: 120.0,
-                  width: (MediaQuery.of(context).size.width - 160) / 3)),
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
         ],
       );
     } else if (homeData.HomeFourCategoryList.length > 0) {
@@ -1133,9 +1135,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             fit: FlexFit.tight,
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TodaysDealProducts();
-                }));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return TodaysDealProducts();
+                  }),
+                );
               },
               child: Container(
                 height: 90,
@@ -1182,11 +1187,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           width: 20,
                           child: Image.asset("assets/flash_deal.png")),
                     ),
-                    Text(AppLocalizations.of(context)!.flash_deal_ucf,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color.fromRGBO(132, 132, 132, 1),
-                            fontWeight: FontWeight.w300)),
+                    Text(
+                      AppLocalizations.of(context)!.flash_deal_ucf,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Color.fromRGBO(132, 132, 132, 1),
+                          fontWeight: FontWeight.w300),
+                    ),
                   ],
                 ),
               ),
@@ -1261,11 +1268,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       child: Image.asset("assets/brands.png"),
                     ),
                   ),
-                  Text(AppLocalizations.of(context)!.brands_ucf,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Color.fromRGBO(132, 132, 132, 1),
-                          fontWeight: FontWeight.w300)),
+                  Text(
+                    AppLocalizations.of(context)!.brands_ucf,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color.fromRGBO(132, 132, 132, 1),
+                        fontWeight: FontWeight.w300),
+                  ),
                 ],
               ),
             ),
@@ -1281,9 +1290,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             fit: FlexFit.tight,
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TopSellingProducts();
-                }));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return TopSellingProducts();
+                  }),
+                );
               },
               child: Container(
                 height: 90,
