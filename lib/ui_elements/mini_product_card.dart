@@ -39,14 +39,17 @@ class _MiniProductCardState extends State<MiniProductCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return ProductDetails(
-            id: widget.id,
-          );
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return ProductDetails(
+              id: widget.id,
+            );
+          }),
+        );
       },
       child: Container(
-       width: 170,
+        width: 170,
         decoration: BoxDecorations.buildBoxDecoration_1(),
         child: Stack(children: [
           Padding(
@@ -56,77 +59,84 @@ class _MiniProductCardState extends State<MiniProductCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                      width: 80,
-                      height: 80,
-                      padding: EdgeInsets.all(5),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(6), bottom: Radius.zero),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder.png',
-                            image: widget.image!,
-                            fit: BoxFit.cover,
-                          ),),),
-                   Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(8, 4, 8, 6),
-                          child: Text(
-                            widget.name!,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                color: Color(0XFF464646),
-                                fontSize: 12,
-                                height: 1.2,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                          child: Row(
-                            children: [
-                              Text('UJ Price : ',style: TextStyle(color: Colors.pink,fontSize: 13),),
-                              widget.has_discount!
-                                  ? Text(
-                                SystemConfig.systemCurrency != null
-                                    ? widget.stroked_price!.replaceAll(
-                                    SystemConfig.systemCurrency!.code!,
-                                    SystemConfig.systemCurrency!.symbol!)
-                                    : widget.stroked_price!,
-                                maxLines: 3,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    decoration: TextDecoration.lineThrough,
-                                    color: MyTheme.medium_grey,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600),
-                              )
-                                  : Container(),
-                              SizedBox(width: 5,),
-                              Text(
-                                SystemConfig.systemCurrency != null
-                                    ? widget.main_price!.replaceAll(
-                                    SystemConfig.systemCurrency!.code!,
-                                    SystemConfig.systemCurrency!.symbol!)
-                                    : widget.main_price!,
-                                maxLines: 3,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    color: MyTheme.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      ],
+                    width: 80,
+                    height: 80,
+                    padding: EdgeInsets.all(5),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(6), bottom: Radius.zero),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: 'assets/placeholder.png',
+                        image: widget.image!,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(8, 4, 8, 6),
+                        child: Text(
+                          widget.name!,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              color: Color(0XFF464646),
+                              fontSize: 12,
+                              height: 1.2,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'UJ Price : ',
+                              style:
+                                  TextStyle(color: Colors.pink, fontSize: 13),
+                            ),
+                            widget.has_discount!
+                                ? Text(
+                                    SystemConfig.systemCurrency != null
+                                        ? widget.stroked_price!.replaceAll(
+                                            SystemConfig.systemCurrency!.code!,
+                                            SystemConfig
+                                                .systemCurrency!.symbol!)
+                                        : widget.stroked_price!,
+                                    maxLines: 3,
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        decoration: TextDecoration.lineThrough,
+                                        color: MyTheme.medium_grey,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                : Container(),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              SystemConfig.systemCurrency != null
+                                  ? widget.main_price!.replaceAll(
+                                      SystemConfig.systemCurrency!.code!,
+                                      SystemConfig.systemCurrency!.symbol!)
+                                  : widget.main_price!,
+                              maxLines: 3,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: MyTheme.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ]),
           ),
 

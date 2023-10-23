@@ -153,7 +153,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Text.rich(
                                         TextSpan(
@@ -209,6 +212,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               padding: const EdgeInsets.only(
                                   top: 10.0, right: 18.0, left: 18.0),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text.rich(
@@ -266,6 +272,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               padding: const EdgeInsets.only(
                                   top: 10.0, right: 18.0, left: 18.0),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text.rich(
@@ -317,6 +326,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             padding: const EdgeInsets.only(
                                 top: 10.0, right: 18.0, left: 18.0),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   "Home & Kitchen",
@@ -394,7 +405,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                         fontWeight: FontWeight.w700),
                                   ),
                                   SizedBox(
-                                    width: 180,
+                                    width: 200,
                                   ),
                                   Text(
                                     'View all',
@@ -424,6 +435,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text.rich(
                                     TextSpan(
@@ -444,7 +456,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 110,
+                                    width: 130,
                                   ),
                                   Text(
                                     'View all',
