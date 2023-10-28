@@ -335,7 +335,7 @@ class _CartState extends State<Cart> {
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6.0),
-                  color: MyTheme.soft_accent_color),
+                  color: MyTheme.light_grey),
               child: Row(
                 children: [
                   Padding(
@@ -364,7 +364,7 @@ class _CartState extends State<Cart> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Container(
                     width: (MediaQuery.of(context).size.width - 48) * (1 / 3),
-                    height: 58,
+                    height: 50,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         // border:
@@ -384,7 +384,7 @@ class _CartState extends State<Cart> {
                               )),
                     child: Btn.basic(
                       minWidth: MediaQuery.of(context).size.width,
-                      color: MyTheme.soft_accent_color,
+                      color: MyTheme.light_grey,
                       shape: app_language_rtl.$!
                           ? RoundedRectangleBorder(
                               borderRadius: const BorderRadius.only(
@@ -416,7 +416,7 @@ class _CartState extends State<Cart> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Container(
-                    height: 58,
+                    height: 50,
                     width: (MediaQuery.of(context).size.width - 48) * (2 / 3),
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -580,14 +580,14 @@ class _CartState extends State<Cart> {
 
   buildCartSellerItemCard(seller_index, item_index) {
     return Container(
-      height: 120,
+      height: 100,
       decoration: BoxDecorations.buildBoxDecoration_1(),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-                width: DeviceInfo(context).width!/4,
-                height: 120,
+                width: DeviceInfo(context).width!/4.7,
+                height: 80,
                 child: ClipRRect(
                     borderRadius: BorderRadius.horizontal(
                         left: Radius.circular(6), right: Radius.zero),
@@ -600,7 +600,7 @@ class _CartState extends State<Cart> {
                     ))),
             Container(
               //color: Colors.red,
-              width: DeviceInfo(context).width!/3,
+              width: DeviceInfo(context).width!/2.7,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
@@ -613,13 +613,16 @@ class _CartState extends State<Cart> {
                           .product_name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
+
                       style: TextStyle(
-                          color: MyTheme.font_grey,
+                          color: MyTheme.black,
                           fontSize: 12,
-                          fontWeight: FontWeight.w400),
+                          height: 1.5,
+
+                          fontWeight: FontWeight.w700),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 23.0),
+                      padding: const EdgeInsets.only(top: 15.0),
                       child: Row(
                         children: [
                           Text(
@@ -659,7 +662,7 @@ class _CartState extends State<Cart> {
                     },
                     child: Container(
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 14.0),
+                        padding: const EdgeInsets.only(bottom: 30.0),
                         child: Image.asset(
                           'assets/trash.png',
                           height: 16,
@@ -693,14 +696,14 @@ class _CartState extends State<Cart> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    padding: const EdgeInsets.only(top: 2.0, bottom: 0.0),
                     child: Text(
                       _shopList[seller_index]
                           .cart_items[item_index]
                           .quantity
                           .toString(),
                       style:
-                          TextStyle(color: MyTheme.accent_color, fontSize: 16),
+                          TextStyle(color: MyTheme.accent_color, fontSize: 12),
                     ),
                   ),
                   GestureDetector(

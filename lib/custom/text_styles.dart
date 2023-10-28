@@ -14,7 +14,7 @@ class TextStyles {
   }
 
   static TextStyle smallTitleTexStyle() {
-    return TextStyle(fontSize: 13, color: MyTheme.dark_font_grey,fontWeight: FontWeight.w700);
+    return TextStyle(fontSize: 15, color: MyTheme.dark_font_grey,fontWeight: FontWeight.w700,letterSpacing: 1.2);
   }
 
   static TextStyle verySmallTitleTexStyle() {

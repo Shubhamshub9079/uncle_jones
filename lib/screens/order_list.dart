@@ -452,29 +452,19 @@ class _OrderListState extends State<OrderList> {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(
-                _orderList[index].code,
-                style: TextStyle(
-                    color: MyTheme.accent_color,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
-                  Text(_orderList[index].date,
-                      style: TextStyle(color: MyTheme.dark_font_grey, fontSize: 12)),
-                  Spacer(),
                   Text(
-                    _orderList[index].grand_total,
+                    _orderList[index].code,
                     style: TextStyle(
                         color: MyTheme.accent_color,
-                        fontSize: 16,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600),
-                  )
+                  ),
+
+                  Text(_orderList[index].date,
+                      style: TextStyle(color: MyTheme.black, fontSize: 12,fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -483,28 +473,82 @@ class _OrderListState extends State<OrderList> {
               child: Row(
                 children: [
 
+                  // Text(_orderList[index].date,
+                  //     style: TextStyle(color: MyTheme.black, fontSize: 12,fontWeight: FontWeight.bold)),
+                  // // Spacer(),
+                  // Text(
+                  //   _orderList[index].grand_total,
+                  //   style: TextStyle(
+                  //       color: MyTheme.accent_color,
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.bold),
+                  // )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
                   Text(
                     "${AppLocalizations.of(context)!.payment_status_ucf} - ",
-                    style: TextStyle(color: MyTheme.dark_font_grey, fontSize: 12),
+                    style: TextStyle(color: MyTheme.black, fontSize: 12,fontWeight: FontWeight.bold),
                   ),
                   Text(
                     _orderList[index].payment_status_string,
                     style: TextStyle(color:_orderList[index].payment_status=="paid"? Colors.green:Colors.red, fontSize: 12,fontWeight: FontWeight.w500),
                   ),
+                  SizedBox(width: 70,),
+                  Text(
+                    "${AppLocalizations.of(context)!.delivery_status_ucf} -",
+                    style: TextStyle(color: MyTheme.black, fontSize: 12,fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    _orderList[index].delivery_status_string,
+                    style: TextStyle(color: MyTheme.green, fontSize: 12,fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  "${AppLocalizations.of(context)!.delivery_status_ucf} -",
-                  style: TextStyle(color: MyTheme.dark_font_grey, fontSize: 12),
-                ),
-                Text(
-                  _orderList[index].delivery_status_string,
-                  style: TextStyle(color: MyTheme.dark_font_grey, fontSize: 12,fontWeight: FontWeight.w500),
-                ),
-              ],
+            // Row(
+            //   children: [
+            //     Text(
+            //       "${AppLocalizations.of(context)!.delivery_status_ucf} -",
+            //       style: TextStyle(color: MyTheme.black, fontSize: 12,fontWeight: FontWeight.bold),
+            //     ),
+            //     Text(
+            //       _orderList[index].delivery_status_string,
+            //       style: TextStyle(color: MyTheme.green, fontSize: 12,fontWeight: FontWeight.bold),
+            //     ),
+            //   ],
+            // )
+            SizedBox(height: 5,),
+            Text.rich(
+              TextSpan(
+                text: 'Total Amount : ',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+                children: <InlineSpan>[
+                  TextSpan(
+                    text: _orderList[index].grand_total,
+                    style: TextStyle(
+                        color: MyTheme.accent_color,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            // ), Text(
+            //     _orderList[index].grand_total,
+            //     style: TextStyle(
+            //         color: MyTheme.accent_color,
+            //         fontSize: 16,
+            //         fontWeight: FontWeight.bold),
+            //   ),
             )
           ],
         ),

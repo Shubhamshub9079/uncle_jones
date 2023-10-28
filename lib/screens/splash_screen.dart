@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
       height: DeviceInfo(context).height,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/splashlatest.png"),
+          image: AssetImage("assets/splashadd.jpg"),
           fit: BoxFit.fill,
         ),
       ),
@@ -79,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //     "assets/splash_screen_logo.png",
       //     height: 100,
       //     width: 100,
-      //   ),
+      //   ),`
       // ),
     );
   }

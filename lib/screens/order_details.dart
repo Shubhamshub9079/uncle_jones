@@ -468,7 +468,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                     child: Text(
                       AppLocalizations.of(context)!.ordered_product_ucf,
                       style: TextStyle(
-                          color: MyTheme.font_grey,
+                          color: MyTheme.accent_color,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
@@ -531,7 +531,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AppLocalizations.of(context)!.sub_total_all_capital,
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                                color: MyTheme.font_grey,
+                                color: MyTheme.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -540,7 +540,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Text(
                           _orderDetails!.subtotal!,
                           style: TextStyle(
-                              color: MyTheme.font_grey,
+                              color: MyTheme.black,
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
                         ),
@@ -556,7 +556,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AppLocalizations.of(context)!.tax_all_capital,
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                                color: MyTheme.font_grey,
+                                color: MyTheme.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -565,7 +565,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Text(
                           _orderDetails!.tax!,
                           style: TextStyle(
-                              color: MyTheme.font_grey,
+                              color: MyTheme.black,
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
                         ),
@@ -582,7 +582,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 .shipping_cost_all_capital,
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                                color: MyTheme.font_grey,
+                                color: MyTheme.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -591,7 +591,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Text(
                           _orderDetails!.shipping_cost!,
                           style: TextStyle(
-                              color: MyTheme.font_grey,
+                              color: MyTheme.black,
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
                         ),
@@ -607,7 +607,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AppLocalizations.of(context)!.discount_all_capital,
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                                color: MyTheme.font_grey,
+                                color: MyTheme.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -616,7 +616,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Text(
                           _orderDetails!.coupon_discount!,
                           style: TextStyle(
-                              color: MyTheme.font_grey,
+                              color: MyTheme.black,
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
                         ),
@@ -634,7 +634,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 .grand_total_all_capital,
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                                color: MyTheme.font_grey,
+                                color: MyTheme.accent_color,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -981,29 +981,20 @@ class _OrderDetailsState extends State<OrderDetails> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.order_code_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-                Spacer(),
-                Text(
-                  AppLocalizations.of(context)!.shipping_method_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Row(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
+              child:
+              Row(
                 children: [
+                  Text(
+                    AppLocalizations.of(context)!.order_code_ucf,
+                    style: TextStyle(
+                        color: MyTheme.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Spacer(),
                   Text(
                     _orderDetails!.code!,
                     style: TextStyle(
@@ -1011,126 +1002,177 @@ class _OrderDetailsState extends State<OrderDetails> {
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
                   ),
+                  // Text(
+                  //   AppLocalizations.of(context)!.shipping_method_ucf,
+                  //   style: TextStyle(
+                  //       color: MyTheme.black,
+                  //       fontSize: 13,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+                ],
+              ),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
+              child: Row(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.order_date_ucf,
+                    style: TextStyle(
+                        color: MyTheme.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Spacer(),
+                  Text(
+                    _orderDetails!.date!,
+                    style: TextStyle(
+                      color: MyTheme.black,
+
+                    ),
+                  ),
+                  // Text(
+                  //   AppLocalizations.of(context)!.payment_method_ucf,
+                  //   style: TextStyle(
+                  //       color: MyTheme.black,
+                  //       fontSize: 13,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+                ],
+              ),
+            ),
+
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
+              child: Row(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.shipping_method_ucf,
+                    style: TextStyle(
+                        color: MyTheme.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
+                  ),
                   Spacer(),
                   Text(
                     _orderDetails!.shipping_type_string!,
                     style: TextStyle(
-                      color: MyTheme.grey_153,
-                    ),
+                        color: MyTheme.black, fontWeight: FontWeight.w300),
                   ),
                 ],
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.order_date_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-                Spacer(),
-                Text(
-                  AppLocalizations.of(context)!.payment_method_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            Divider(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
               child: Row(
                 children: [
                   Text(
-                    _orderDetails!.date!,
+                    AppLocalizations.of(context)!.payment_method_ucf,
                     style: TextStyle(
-                      color: MyTheme.grey_153,
-                    ),
+                        color: MyTheme.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
                   ),
                   Spacer(),
                   Text(
                     _orderDetails!.payment_type!,
                     style: TextStyle(
-                      color: MyTheme.grey_153,
+                      color: MyTheme.black,
                     ),
                   ),
                 ],
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.payment_status_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-                Spacer(),
-                Text(
-                  AppLocalizations.of(context)!.delivery_status_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            Divider(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
               child: Row(
                 children: [
+                  Text(
+                    AppLocalizations.of(context)!.payment_status_ucf,
+                    style: TextStyle(
+                        color: MyTheme.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Text(
                       _orderDetails!.payment_status_string!,
                       style: TextStyle(
-                        color: MyTheme.grey_153,
+                        color: MyTheme.black,
                       ),
                     ),
                   ),
-                  buildPaymentStatusCheckContainer(
-                      _orderDetails!.payment_status),
+                  buildPaymentStatusCheckContainer(_orderDetails!.payment_status),
+                  // Text(
+                  //   AppLocalizations.of(context)!.delivery_status_ucf,
+                  //   style: TextStyle(
+                  //       color: MyTheme.black,
+                  //       fontSize: 13,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+                ],
+              ),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
+              child: Row(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.delivery_status_ucf,
+                    style: TextStyle(
+                        color: MyTheme.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
+                  ),
                   Spacer(),
                   Text(
                     _orderDetails!.delivery_status_string!,
                     style: TextStyle(
-                      color: MyTheme.grey_153,
+                      color: MyTheme.black,
                     ),
                   ),
                 ],
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  _orderDetails!.shipping_address != null
-                      ? AppLocalizations.of(context)!.shipping_address_ucf
-                      : AppLocalizations.of(context)!.pickup_point_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-                Spacer(),
-                Text(
-                  AppLocalizations.of(context)!.total_amount_ucf,
-                  style: TextStyle(
-                      color: MyTheme.font_grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            Divider(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
+              child: Row(
+                children: [
+                  Text(
+                    _orderDetails!.shipping_address != null
+                        ? AppLocalizations.of(context)!.shipping_address_ucf
+                        : AppLocalizations.of(context)!.pickup_point_ucf,
+                    style: TextStyle(
+                        color: MyTheme.accent_color,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  // Spacer(),
+                  // Text(
+                  //   AppLocalizations.of(context)!.total_amount_ucf,
+                  //   style: TextStyle(
+                  //       color: MyTheme.black,
+                  //       fontSize: 13,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+                ],
+              ),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
               child: Row(
                 children: [
                   Container(
-                    width: (MediaQuery.of(context).size.width - (32.0)) / 2,
+                    width: (MediaQuery.of(context).size.width - (70.0)) ,
                     // (total_screen_width - padding)/2
                     child: _orderDetails!.shipping_address != null
                         ? Column(
@@ -1138,62 +1180,78 @@ class _OrderDetailsState extends State<OrderDetails> {
                             children: [
                               _orderDetails!.shipping_address!.name != null
                                   ? Text(
-                                      "${AppLocalizations.of(context)!.name_ucf}: ${_orderDetails!.shipping_address!.name}",
+                                      "${AppLocalizations.of(context)!.name_ucf} : ${_orderDetails!.shipping_address!.name}",
                                       maxLines: 3,
                                       style: TextStyle(
-                                        color: MyTheme.grey_153,
+                                        color: MyTheme.black,fontWeight: FontWeight.w500,
+                                        fontSize: 14
                                       ),
                                     )
+
                                   : Container(),
+                              Divider(),
                               _orderDetails!.shipping_address!.email != null
                                   ? Text(
-                                      "${AppLocalizations.of(context)!.email_ucf}: ${_orderDetails!.shipping_address!.email}",
+                                      "${AppLocalizations.of(context)!.email_ucf} : ${_orderDetails!.shipping_address!.email}",
                                       maxLines: 3,
-                                      style: TextStyle(
-                                        color: MyTheme.grey_153,
-                                      ),
+                                style: TextStyle(
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
+                                ),
                                     )
                                   : Container(),
+                              Divider(),
                               Text(
-                                "${AppLocalizations.of(context)!.address_ucf}: ${_orderDetails!.shipping_address!.address}",
+                                "${AppLocalizations.of(context)!.address_ucf} : ${_orderDetails!.shipping_address!.address}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                  color: MyTheme.grey_153,
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
                                 ),
                               ),
+                              Divider(),
                               Text(
-                                "${AppLocalizations.of(context)!.city_ucf}: ${_orderDetails!.shipping_address!.city}",
+                                "${AppLocalizations.of(context)!.city_ucf} : ${_orderDetails!.shipping_address!.city}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                  color: MyTheme.grey_153,
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
                                 ),
                               ),
+                              Divider(),
                               Text(
-                                "${AppLocalizations.of(context)!.country_ucf}: ${_orderDetails!.shipping_address!.country}",
+                                "${AppLocalizations.of(context)!.country_ucf} : ${_orderDetails!.shipping_address!.country}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                  color: MyTheme.grey_153,
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
                                 ),
                               ),
+                              Divider(),
                               Text(
-                                "${AppLocalizations.of(context)!.state_ucf}: ${_orderDetails!.shipping_address!.state}",
+                                "${AppLocalizations.of(context)!.state_ucf} : ${_orderDetails!.shipping_address!.state}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                  color: MyTheme.grey_153,
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
                                 ),
                               ),
+                              Divider(),
                               Text(
-                                "${AppLocalizations.of(context)!.phone_ucf}: ${_orderDetails!.shipping_address!.phone ?? ''}",
+                                "${AppLocalizations.of(context)!.phone_ucf} : ${_orderDetails!.shipping_address!.phone ?? ''}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                  color: MyTheme.grey_153,
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
                                 ),
                               ),
+                              Divider(),
                               Text(
-                                "${AppLocalizations.of(context)!.postal_code}: ${_orderDetails!.shipping_address!.postal_code ?? ''}",
+                                "${AppLocalizations.of(context)!.postal_code} : ${_orderDetails!.shipping_address!.postal_code ?? ''}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                  color: MyTheme.grey_153,
+                                    color: MyTheme.black,fontWeight: FontWeight.w500,
+                                    fontSize: 14
                                 ),
                               ),
                             ],
@@ -1203,7 +1261,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             children: [
                               _orderDetails!.pickupPoint!.name != null
                                   ? Text(
-                                      "${AppLocalizations.of(context)!.name_ucf}: ${_orderDetails!.pickupPoint!.name}",
+                                      "${AppLocalizations.of(context)!.name_ucf} : ${_orderDetails!.pickupPoint!.name}",
                                       maxLines: 3,
                                       style: TextStyle(
                                         color: MyTheme.grey_153,
@@ -1211,14 +1269,14 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     )
                                   : Container(),
                               Text(
-                                "${AppLocalizations.of(context)!.address_ucf}: ${_orderDetails!.pickupPoint!.address}",
+                                "${AppLocalizations.of(context)!.address_ucf} : ${_orderDetails!.pickupPoint!.address}",
                                 maxLines: 3,
                                 style: TextStyle(
                                   color: MyTheme.grey_153,
                                 ),
                               ),
                               Text(
-                                "${AppLocalizations.of(context)!.phone_ucf}: ${_orderDetails!.pickupPoint!.phone}",
+                                "${AppLocalizations.of(context)!.phone_ucf} : ${_orderDetails!.pickupPoint!.phone}",
                                 maxLines: 3,
                                 style: TextStyle(
                                   color: MyTheme.grey_153,
@@ -1228,13 +1286,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                           ),
                   ),
                   Spacer(),
-                  Text(
-                    _orderDetails!.grand_total!,
-                    style: TextStyle(
-                        color: MyTheme.accent_color,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
+                  // Text(
+                  //   _orderDetails!.grand_total!,
+                  //   style: TextStyle(
+                  //       color: MyTheme.accent_color,
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
                 ],
               ),
             ),

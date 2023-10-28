@@ -31,6 +31,7 @@ import 'package:toast/toast.dart';
 class Checkout extends StatefulWidget {
   int? order_id; // only need when making manual payment from order details
   String list;
+
   //final OffLinePaymentFor offLinePaymentFor;
   final PaymentFor? paymentFor;
   final double rechargeAmount;
@@ -466,34 +467,35 @@ class _CheckoutState extends State<Checkout> {
             child: Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 120,
-                          child: Text(
-                            AppLocalizations.of(context)!.subtotal_all_capital,
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                                color: MyTheme.font_grey,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          SystemConfig.systemCurrency != null
-                              ? _subTotalString!.replaceAll(
-                                  SystemConfig.systemCurrency!.code!,
-                                  SystemConfig.systemCurrency!.symbol!)
-                              : _subTotalString!,
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 120,
+                        child: Text(
+                          AppLocalizations.of(context)!.subtotal_all_capital,
+                          textAlign: TextAlign.end,
                           style: TextStyle(
                               color: MyTheme.font_grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
                         ),
-                      ],
-                    )),
+                      ),
+                      Spacer(),
+                      Text(
+                        SystemConfig.systemCurrency != null
+                            ? _subTotalString!.replaceAll(
+                                SystemConfig.systemCurrency!.code!,
+                                SystemConfig.systemCurrency!.symbol!)
+                            : _subTotalString!,
+                        style: TextStyle(
+                            color: MyTheme.font_grey,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Row(
@@ -662,7 +664,7 @@ class _CheckoutState extends State<Checkout> {
                         Container(
                           height: 140,
                         )
-                      ]),
+                      ],),
                     )
                   ],
                 ),
@@ -871,7 +873,7 @@ class _CheckoutState extends State<Checkout> {
                 children: <Widget>[
                   Container(
                       width: 100,
-                      height: 100,
+                      height: 80,
                       child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child:
@@ -900,10 +902,10 @@ class _CheckoutState extends State<Checkout> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
-                                color: MyTheme.font_grey,
-                                fontSize: 14,
+                                color: MyTheme.black,
+                                fontSize: 18,
                                 height: 1.6,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -927,14 +929,17 @@ class _CheckoutState extends State<Checkout> {
     return AnimatedOpacity(
       duration: Duration(milliseconds: 400),
       opacity: check ? 1 : 0,
-      child: Container(
-        height: 16,
-        width: 16,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.0), color: Colors.green),
-        child: Padding(
-          padding: const EdgeInsets.all(3),
-          child: Icon(Icons.check, color: Colors.white, size: 10),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(2, 15, 2, 10),
+        child: Container(
+          height: 25,
+          width: 25,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0), color: Colors.green),
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: Icon(Icons.check, color: Colors.white, size: 15),
+          ),
         ),
       ),
     );
@@ -998,7 +1003,7 @@ class _CheckoutState extends State<Checkout> {
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
-          color: MyTheme.soft_accent_color),
+          color: MyTheme.light_grey),
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Row(

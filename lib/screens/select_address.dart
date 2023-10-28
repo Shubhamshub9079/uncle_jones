@@ -1,5 +1,4 @@
 import 'package:UncleJons/custom/btn.dart';
-import 'package:UncleJons/custom/device_info.dart';
 import 'package:UncleJons/custom/lang_text.dart';
 import 'package:UncleJons/custom/toast_component.dart';
 import 'package:UncleJons/custom/useful_elements.dart';

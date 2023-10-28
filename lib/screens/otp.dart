@@ -207,7 +207,7 @@ class _OtpState extends State<Otp> {
                           style: TextStyle(
                               color: MyTheme.accent_color,
                               decoration: TextDecoration.underline,
-                              fontSize: 13)),
+                              fontSize: 13),),
                     ),
                   ),
                 ],

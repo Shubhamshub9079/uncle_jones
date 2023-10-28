@@ -1,13 +1,14 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:UncleJons/app_config.dart';
 import 'package:UncleJons/data_model/HomeCategoryResponse.dart';
 import 'package:UncleJons/data_model/sub_category_response.dart';
 import 'package:UncleJons/repositories/api-request.dart';
-import 'package:http/http.dart' as http;
 import 'package:UncleJons/data_model/category_response.dart';
 import 'package:UncleJons/helpers/shared_value_helper.dart';
+
+import '../data_model/PatanjaliModel.dart';
+import '../data_model/customer_package_response.dart';
+import '../data_model/kitchenModel.dart';
 
 class CategoryRepository {
   Future<CategoryResponse> getCategories({parent_id = 0}) async {
@@ -44,11 +45,16 @@ class CategoryRepository {
     return homeCategoryFromJson(response.body);
   }
 
-  Future<HomeCategoryResponse> getHomeHomeKitchen() async {
-    String url = ("${AppConfig.BASE_URL}/products/category/14");
-    final response = await ApiRequest.get(url: url, headers: {
-      "App-Language": app_language.$!,
-    });
+
+  Future<HomeCategoryResponse> getHomeGrocery() async {
+    String url = ("${AppConfig.BASE_URL}/products/category/6");
+    final response = await ApiRequest.get(url: url);
+    return homeCategoryFromJson(response.body);
+  }
+
+  Future<HomeCategoryResponse> getHomePersonal() async {
+    String url = ("${AppConfig.BASE_URL}/products/category/8");
+    final response = await ApiRequest.get(url: url);
     return homeCategoryFromJson(response.body);
   }
 
@@ -60,13 +66,47 @@ class CategoryRepository {
     return homeCategoryFromJson(response.body);
   }
 
-  Future<HomeCategoryResponse> getHomePersonalCare() async {
-    String url = ("${AppConfig.BASE_URL}/products/category/8");
+
+
+
+
+
+  Future<HomeCategoryResponse> getHomePackageFood() async {
+    String url = ("${AppConfig.BASE_URL}/products/category/15");
     final response = await ApiRequest.get(url: url, headers: {
       "App-Language": app_language.$!,
     });
     return homeCategoryFromJson(response.body);
   }
+
+  Future<HomeCategoryResponse> getHomeStationary() async {
+    String url = ("${AppConfig.BASE_URL}/products/category/16");
+    final response = await ApiRequest.get(url: url, headers: {
+      "App-Language": app_language.$!,
+    });
+    return homeCategoryFromJson(response.body);
+  }
+
+
+
+  Future<PatanjaliModel> getHomePatanjali() async {
+    String url = ("${AppConfig.BASE_URL}/products/category/273");
+    final response = await ApiRequest.get(url: url, headers: {
+      "App-Language": app_language.$!,
+    });
+    return  PatanjaliModel.fromJson(json.decode(response.body));
+  }
+
+
+  Future<HomeCategoryResponse> getHomeNewKitchen() async {
+    String url = ("${AppConfig.BASE_URL}/products/category/14");
+    final response = await ApiRequest.get(url: url, headers: {
+      "App-Language": app_language.$!,
+    });
+    return homeCategoryFromJson(response.body);
+  }
+
+
 
   Future<SubCategory> getSubCategories(id) async {
     String url = ("${AppConfig.BASE_URL}/sub-categories/$id");

@@ -30,9 +30,12 @@ class WhichFilter {
 
   static List<WhichFilter> getWhichFilterList() {
     return <WhichFilter>[
-      WhichFilter('product', AppLocalizations.of(OneContext().context!)!.product_ucf),
-      WhichFilter('sellers', AppLocalizations.of(OneContext().context!)!.sellers_ucf),
-      WhichFilter('brands', AppLocalizations.of(OneContext().context!)!.brands_ucf),
+      WhichFilter(
+          'product', AppLocalizations.of(OneContext().context!)!.product_ucf),
+      WhichFilter(
+          'sellers', AppLocalizations.of(OneContext().context!)!.sellers_ucf),
+      WhichFilter(
+          'brands', AppLocalizations.of(OneContext().context!)!.brands_ucf),
     ];
   }
 }
@@ -74,12 +77,12 @@ class _FilterState extends State<Filter> {
   final TextEditingController _maxPriceController = new TextEditingController();
 
   //--------------------
-  List<dynamic> _filterBrandList =[];
+  List<dynamic> _filterBrandList = [];
   bool _filteredBrandsCalled = false;
-  List<dynamic> _filterCategoryList =[];
+  List<dynamic> _filterCategoryList = [];
   bool _filteredCategoriesCalled = false;
 
-  List<dynamic> _searchSuggestionList =[];
+  List<dynamic> _searchSuggestionList = [];
 
   //----------------------------------------
   String? _searchKey = "";
@@ -327,8 +330,9 @@ class _FilterState extends State<Filter> {
 
   List<DropdownMenuItem<WhichFilter>> buildDropdownWhichFilterItems(
       List which_filter_list) {
-    List<DropdownMenuItem<WhichFilter>> items =[];
-    for (WhichFilter which_filter_item in which_filter_list as Iterable<WhichFilter>) {
+    List<DropdownMenuItem<WhichFilter>> items = [];
+    for (WhichFilter which_filter_item
+        in which_filter_list as Iterable<WhichFilter>) {
       items.add(
         DropdownMenuItem(
           value: which_filter_item,
@@ -338,8 +342,6 @@ class _FilterState extends State<Filter> {
     }
     return items;
   }
-
-
 
   Container buildProductLoadingContainer() {
     return Container(
@@ -384,9 +386,9 @@ class _FilterState extends State<Filter> {
 
   @override
   Widget build(BuildContext context) {
-
     return Directionality(
-      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+      textDirection:
+          app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         endDrawer: buildFilterDrawer(),
         key: _scaffoldKey,
@@ -417,18 +419,19 @@ class _FilterState extends State<Filter> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-        backgroundColor: Colors.white.withOpacity(0.95),
-        automaticallyImplyLeading: false,
-        actions: [
-          new Container(),
-        ],
-        centerTitle: false,
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
-          child: Column(
-            children: [buildTopAppbar(context), buildBottomAppBar(context)],
-          ),
-        ));
+      backgroundColor: Colors.white.withOpacity(0.95),
+      automaticallyImplyLeading: false,
+      actions: [
+        new Container(),
+      ],
+      centerTitle: false,
+      flexibleSpace: Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+        child: Column(
+          children: [buildTopAppbar(context), buildBottomAppBar(context)],
+        ),
+      ),
+    );
   }
 
   Row buildBottomAppBar(BuildContext context) {
@@ -437,16 +440,20 @@ class _FilterState extends State<Filter> {
       children: [
         Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.symmetric(
-                  vertical: BorderSide(color: MyTheme.light_grey, width: .5),
-                  horizontal: BorderSide(color: MyTheme.light_grey, width: 1))),
+            color: Colors.white,
+            border: Border.symmetric(
+              vertical: BorderSide(color: MyTheme.light_grey, width: .5),
+              horizontal: BorderSide(color: MyTheme.light_grey, width: 1),
+            ),
+          ),
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           height: 36,
           width: MediaQuery.of(context).size.width * .33,
           child: new DropdownButton<WhichFilter>(
             icon: Padding(
-              padding: app_language_rtl.$! ? const EdgeInsets.only(right: 18.0) :  const EdgeInsets.only(left: 18.0),
+              padding: app_language_rtl.$!
+                  ? const EdgeInsets.only(right: 18.0)
+                  : const EdgeInsets.only(left: 18.0),
               child: Icon(Icons.expand_more, color: Colors.black54),
             ),
             hint: Text(
@@ -456,9 +463,7 @@ class _FilterState extends State<Filter> {
                 fontSize: 13,
               ),
             ),
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 13),
+            style: TextStyle(color: Colors.black, fontSize: 13),
             iconSize: 13,
             underline: SizedBox(),
             value: _selectedFilter,
@@ -468,7 +473,7 @@ class _FilterState extends State<Filter> {
                 _selectedFilter = selectedFilter;
               });
 
-              _onWhichFilterChange();
+              // _onWhichFilterChange();
             },
           ),
         ),
@@ -477,40 +482,43 @@ class _FilterState extends State<Filter> {
             _selectedFilter!.option_key == "product"
                 ? _scaffoldKey.currentState!.openEndDrawer()
                 : ToastComponent.showDialog(
-                AppLocalizations.of(context)!.you_can_use_sorting_while_searching_for_products,
+                    AppLocalizations.of(context)!
+                        .you_can_use_sorting_while_searching_for_products,
                     gravity: Toast.center,
                     duration: Toast.lengthLong);
             ;
           },
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.symmetric(
-                    vertical: BorderSide(color: MyTheme.light_grey, width: .5),
-                    horizontal:
-                        BorderSide(color: MyTheme.light_grey, width: 1))),
+              color: Colors.white,
+              border: Border.symmetric(
+                vertical: BorderSide(color: MyTheme.light_grey, width: .5),
+                horizontal: BorderSide(color: MyTheme.light_grey, width: 1),
+              ),
+            ),
             height: 36,
             width: MediaQuery.of(context).size.width * .33,
             child: Center(
-                child: Container(
-              width: 50,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.filter_alt_outlined,
-                    size: 13,
-                  ),
-                  SizedBox(width: 2),
-                  Text(
-                    AppLocalizations.of(context)!.filter_ucf,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13,
+              child: Container(
+                width: 50,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.filter_alt_outlined,
+                      size: 13,
                     ),
-                  ),
-                ],
+                    SizedBox(width: 2),
+                    Text(
+                      AppLocalizations.of(context)!.filter_ucf,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ),
           ),
         ),
         GestureDetector(
@@ -519,8 +527,10 @@ class _FilterState extends State<Filter> {
                 ? showDialog(
                     context: context,
                     builder: (_) => Directionality(
-                      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
-                      child: AlertDialog(
+                          textDirection: app_language_rtl.$!
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          child: AlertDialog(
                             contentPadding: EdgeInsets.only(
                                 top: 16.0, left: 2.0, right: 2.0, bottom: 2.0),
                             content: StatefulBuilder(builder:
@@ -530,9 +540,11 @@ class _FilterState extends State<Filter> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24.0),
                                       child: Text(
-                                        AppLocalizations.of(context)!.sort_products_by_ucf,
+                                        AppLocalizations.of(context)!
+                                            .sort_products_by_ucf,
                                       )),
                                   RadioListTile(
                                     dense: true,
@@ -541,7 +553,8 @@ class _FilterState extends State<Filter> {
                                     activeColor: MyTheme.font_grey,
                                     controlAffinity:
                                         ListTileControlAffinity.leading,
-                                    title:  Text(AppLocalizations.of(context)!.default_ucf),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .default_ucf),
                                     onChanged: (dynamic value) {
                                       setState(() {
                                         _selectedSort = value;
@@ -557,7 +570,8 @@ class _FilterState extends State<Filter> {
                                     activeColor: MyTheme.font_grey,
                                     controlAffinity:
                                         ListTileControlAffinity.leading,
-                                    title:  Text(AppLocalizations.of(context)!.price_high_to_low),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .price_high_to_low),
                                     onChanged: (dynamic value) {
                                       setState(() {
                                         _selectedSort = value;
@@ -573,7 +587,8 @@ class _FilterState extends State<Filter> {
                                     activeColor: MyTheme.font_grey,
                                     controlAffinity:
                                         ListTileControlAffinity.leading,
-                                    title:  Text(AppLocalizations.of(context)!.price_low_to_high),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .price_low_to_high),
                                     onChanged: (dynamic value) {
                                       setState(() {
                                         _selectedSort = value;
@@ -589,7 +604,8 @@ class _FilterState extends State<Filter> {
                                     activeColor: MyTheme.font_grey,
                                     controlAffinity:
                                         ListTileControlAffinity.leading,
-                                    title:  Text(AppLocalizations.of(context)!.new_arrival_ucf),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .new_arrival_ucf),
                                     onChanged: (dynamic value) {
                                       setState(() {
                                         _selectedSort = value;
@@ -605,7 +621,8 @@ class _FilterState extends State<Filter> {
                                     activeColor: MyTheme.font_grey,
                                     controlAffinity:
                                         ListTileControlAffinity.leading,
-                                    title:  Text(AppLocalizations.of(context)!.popularity_ucf),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .popularity_ucf),
                                     onChanged: (dynamic value) {
                                       setState(() {
                                         _selectedSort = value;
@@ -621,7 +638,8 @@ class _FilterState extends State<Filter> {
                                     activeColor: MyTheme.font_grey,
                                     controlAffinity:
                                         ListTileControlAffinity.leading,
-                                    title: Text(AppLocalizations.of(context)!.top_rated_ucf),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .top_rated_ucf),
                                     onChanged: (dynamic value) {
                                       setState(() {
                                         _selectedSort = value;
@@ -636,7 +654,8 @@ class _FilterState extends State<Filter> {
                             actions: [
                               Btn.basic(
                                 child: Text(
-                                  AppLocalizations.of(context)!.close_all_capital,
+                                  AppLocalizations.of(context)!
+                                      .close_all_capital,
                                   style: TextStyle(color: MyTheme.medium_grey),
                                 ),
                                 onPressed: () {
@@ -646,9 +665,10 @@ class _FilterState extends State<Filter> {
                               ),
                             ],
                           ),
-                    ))
+                        ))
                 : ToastComponent.showDialog(
-                AppLocalizations.of(context)!.you_can_use_filters_while_searching_for_products,
+                    AppLocalizations.of(context)!
+                        .you_can_use_filters_while_searching_for_products,
                     gravity: Toast.center,
                     duration: Toast.lengthLong);
           },
@@ -688,98 +708,125 @@ class _FilterState extends State<Filter> {
   }
 
   Row buildTopAppbar(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <
-        Widget>[
-      IconButton(
-        padding: EdgeInsets.zero,
-        icon:UsefulElements.backButton(context),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width * .6,
-        child: Container(
-          child: Padding(
-              padding: MediaQuery.of(context).viewPadding.top >
-                      30 //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
-                  ? const EdgeInsets.symmetric(vertical: 36.0, horizontal: 0.0)
-                  : const EdgeInsets.symmetric(vertical: 14.0, horizontal: 0.0),
-              child: TypeAheadField(
-                suggestionsCallback: (pattern) async {
-                  //return await BackendService.getSuggestions(pattern);
-                  var suggestions =  await SearchRepository()
-                      .getSearchSuggestionListResponse(query_key: pattern,type: _selectedFilter!.option_key);
-                  //print(suggestions.toString());
-                  return suggestions;
-                },
-                loadingBuilder: (context){
-                  return Container(
-                    height: 50,
-                    child: Center(child: Text(AppLocalizations.of(context)!.loading_suggestions,style:TextStyle(color: MyTheme.medium_grey))),
-                  );
-                },
-                itemBuilder: (context, dynamic suggestion) {
-                  //print(suggestion.toString());
-                  var subtitle = "${AppLocalizations.of(context)!.searched_for_all_lower} ${suggestion.count} ${AppLocalizations.of(context)!.times_all_lower}";
-                  if(suggestion.type != "search"){
-                    subtitle = "${suggestion.type_string} ${AppLocalizations.of(context)!.found_all_lower}";
-                  }
-                  return ListTile(
-                    dense: true,
-                    title: Text(suggestion.query,style: TextStyle(color:  suggestion.type != "search" ? MyTheme.accent_color : MyTheme.font_grey),),
-                    subtitle: Text(subtitle,style:TextStyle(color: suggestion.type != "search" ? MyTheme.font_grey: MyTheme.medium_grey)),
-                  );
-                },
-                noItemsFoundBuilder: (context){
-                  return Container(
-                    height: 50,
-                    child: Center(child: Text(AppLocalizations.of(context)!.no_suggestion_available,style:TextStyle(color: MyTheme.medium_grey))),
-                  );
-                },
-                onSuggestionSelected: (dynamic suggestion) {
-                  _searchController.text = suggestion.query;
-                  _searchKey = suggestion.query;
-                  setState(() {});
-                  _onSearchSubmit();
-                },
-                textFieldConfiguration: TextFieldConfiguration(
-                  onTap: () {},
-                  //autofocus: true,
-                  controller: _searchController,
-                  onSubmitted: (txt) {
-                    _searchKey = txt;
-                    setState(() {});
-                    _onSearchSubmit();
-                  },
-                  decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.search_here_ucf,
-                      hintStyle: TextStyle(
-                          fontSize: 12.0, color: MyTheme.textfield_grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: MyTheme.white, width: 0.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: MyTheme.white, width: 0.0),
-                      ),
-                      contentPadding: EdgeInsets.all(0.0)),
-                ),
-              )),
-        ),
-      ),
-      IconButton(
-          icon: Icon(Icons.search, color: MyTheme.dark_grey),
-          onPressed: () {
-            _searchKey = _searchController.text.toString();
-            setState(() {});
-            _onSearchSubmit();
-          }),
-    ]);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          IconButton(
+            padding: EdgeInsets.zero,
+            icon: UsefulElements.backButton(context),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * .6,
+            child: Container(
+              child: Padding(
+                  padding: MediaQuery.of(context).viewPadding.top >
+                          30 //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
+                      ? const EdgeInsets.symmetric(
+                          vertical: 36.0, horizontal: 0.0)
+                      : const EdgeInsets.symmetric(
+                          vertical: 14.0, horizontal: 0.0),
+                  child: TypeAheadField(
+                    suggestionsCallback: (pattern) async {
+                      //return await BackendService.getSuggestions(pattern);
+                      var suggestions = await SearchRepository()
+                          .getSearchSuggestionListResponse(
+                              query_key: pattern,
+                              type: _selectedFilter!.option_key);
+                      //print(suggestions.toString());
+                      return suggestions;
+                    },
+                    loadingBuilder: (context) {
+                      return Container(
+                        height: 50,
+                        child: Center(
+                            child: Text(
+                                AppLocalizations.of(context)!
+                                    .loading_suggestions,
+                                style: TextStyle(color: MyTheme.medium_grey))),
+                      );
+                    },
+                    itemBuilder: (context, dynamic suggestion) {
+                      //print(suggestion.toString());
+                      var subtitle =
+                          "${AppLocalizations.of(context)!.searched_for_all_lower} ${suggestion.count} ${AppLocalizations.of(context)!.times_all_lower}";
+                      if (suggestion.type != "search") {
+                        subtitle =
+                            "${suggestion.type_string} ${AppLocalizations.of(context)!.found_all_lower}";
+                      }
+                      return ListTile(
+                        dense: true,
+                        title: Text(
+                          suggestion.query,
+                          style: TextStyle(
+                              color: suggestion.type != "search"
+                                  ? MyTheme.accent_color
+                                  : MyTheme.font_grey),
+                        ),
+                        subtitle: Text(subtitle,
+                            style: TextStyle(
+                                color: suggestion.type != "search"
+                                    ? MyTheme.font_grey
+                                    : MyTheme.medium_grey)),
+                      );
+                    },
+                    noItemsFoundBuilder: (context) {
+                      return Container(
+                        height: 50,
+                        child: Center(
+                            child: Text(
+                                AppLocalizations.of(context)!
+                                    .no_suggestion_available,
+                                style: TextStyle(color: MyTheme.medium_grey))),
+                      );
+                    },
+                    onSuggestionSelected: (dynamic suggestion) {
+                      _searchController.text = suggestion.query;
+                      _searchKey = suggestion.query;
+                      setState(() {});
+                      _onSearchSubmit();
+                    },
+                    textFieldConfiguration: TextFieldConfiguration(
+                      onTap: () {},
+                      //autofocus: true,
+                      controller: _searchController,
+                      onSubmitted: (txt) {
+                        _searchKey = txt;
+                        setState(() {});
+                        _onSearchSubmit();
+                      },
+                      decoration: InputDecoration(
+                          hintText:
+                              AppLocalizations.of(context)!.search_here_ucf,
+                          hintStyle: TextStyle(
+                              fontSize: 12.0, color: MyTheme.textfield_grey),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: MyTheme.white, width: 0.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: MyTheme.white, width: 0.0),
+                          ),
+                          contentPadding: EdgeInsets.all(0.0)),
+                    ),
+                  )),
+            ),
+          ),
+          IconButton(
+              icon: Icon(Icons.search, color: MyTheme.dark_grey),
+              onPressed: () {
+                _searchKey = _searchController.text.toString();
+                setState(() {});
+                _onSearchSubmit();
+              }),
+        ]);
   }
 
-   buildFilterDrawer() {
+  buildFilterDrawer() {
     return Directionality(
-      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+      textDirection:
+          app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: Drawer(
         child: Container(
           padding: EdgeInsets.only(top: 50),
@@ -813,7 +860,8 @@ class _FilterState extends State<Filter> {
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [_amountValidator],
                                 decoration: InputDecoration(
-                                    hintText: AppLocalizations.of(context)!.minimum_ucf,
+                                    hintText: AppLocalizations.of(context)!
+                                        .minimum_ucf,
                                     hintStyle: TextStyle(
                                         fontSize: 12.0,
                                         color: MyTheme.textfield_grey),
@@ -848,7 +896,8 @@ class _FilterState extends State<Filter> {
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [_amountValidator],
                                 decoration: InputDecoration(
-                                    hintText: AppLocalizations.of(context)!.maximum_ucf,
+                                    hintText: AppLocalizations.of(context)!
+                                        .maximum_ucf,
                                     hintStyle: TextStyle(
                                         fontSize: 12.0,
                                         color: MyTheme.textfield_grey),
@@ -879,54 +928,63 @@ class _FilterState extends State<Filter> {
                 ),
               ),
               Expanded(
-                child: CustomScrollView(slivers: [
-                  SliverList(
-                    delegate: SliverChildListDelegate([
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          AppLocalizations.of(context)!.categories_ucf,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      _filterCategoryList.length == 0
-                          ? Container(
-                              height: 100,
-                              child: Center(
-                                child: Text(
-                                  AppLocalizations.of(context)!.no_category_is_available,
-                                  style: TextStyle(color: MyTheme.font_grey),
-                                ),
-                              ),
-                            )
-                          : SingleChildScrollView(
-                              child: buildFilterCategoryList(),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverList(
+                      delegate: SliverChildListDelegate(
+                        [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text(
+                              AppLocalizations.of(context)!.categories_ucf,
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
                             ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Text(
-                          AppLocalizations.of(context)!.brands_ucf,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      _filterBrandList.length == 0
-                          ? Container(
-                              height: 100,
-                              child: Center(
-                                child: Text(
-                                  AppLocalizations.of(context)!.no_brand_is_available,
-                                  style: TextStyle(color: MyTheme.font_grey),
+                          ),
+                          _filterCategoryList.length == 0
+                              ? Container(
+                                  height: 100,
+                                  child: Center(
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .no_category_is_available,
+                                      style:
+                                          TextStyle(color: MyTheme.font_grey),
+                                    ),
+                                  ),
+                                )
+                              : SingleChildScrollView(
+                                  child: buildFilterCategoryList(),
                                 ),
-                              ),
-                            )
-                          : SingleChildScrollView(
-                              child: buildFilterBrandsList(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Text(
+                              AppLocalizations.of(context)!.brands_ucf,
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
                             ),
-                    ]),
-                  )
-                ]),
+                          ),
+                          _filterBrandList.length == 0
+                              ? Container(
+                                  height: 100,
+                                  child: Center(
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .no_brand_is_available,
+                                      style:
+                                          TextStyle(color: MyTheme.font_grey),
+                                    ),
+                                  ),
+                                )
+                              : SingleChildScrollView(
+                                  child: buildFilterBrandsList(),
+                                ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Container(
                 height: 70,
@@ -936,8 +994,8 @@ class _FilterState extends State<Filter> {
                     Btn.basic(
                       color: Color.fromRGBO(234, 67, 53, 1),
                       shape: RoundedRectangleBorder(
-                        side:
-                            new BorderSide(color: MyTheme.light_grey, width: 2.0),
+                        side: new BorderSide(
+                            color: MyTheme.light_grey, width: 2.0),
                         borderRadius: BorderRadius.circular(4.0),
                       ),
                       child: Text(
@@ -966,7 +1024,8 @@ class _FilterState extends State<Filter> {
                         if (min != "" && max != "") {
                           if (max.compareTo(min) < 0) {
                             ToastComponent.showDialog(
-                                AppLocalizations.of(context)!.filter_screen_min_max_warning,
+                                AppLocalizations.of(context)!
+                                    .filter_screen_min_max_warning,
                                 gravity: Toast.center,
                                 duration: Toast.lengthLong);
                             apply = false;
@@ -1069,52 +1128,40 @@ class _FilterState extends State<Filter> {
           child: ShimmerHelper()
               .buildProductGridShimmer(scontroller: _scrollController));
     } else if (_productList.length > 0) {
-      return RefreshIndicator(
-        color: Colors.white,
-        backgroundColor: MyTheme.accent_color,
-        onRefresh: _onProductListRefresh,
-        child: SingleChildScrollView(
-          controller: _productScrollController,
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
-          child: Column(
-            children: [
-              SizedBox(
-                  height:
-                      MediaQuery.of(context).viewPadding.top > 40 ? 180 : 135
-                  //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
-                  ),
-              MasonryGridView.count(
-                // 2
-                //addAutomaticKeepAlives: true,
-                itemCount: _productList.length,
-                controller: _scrollController,
-                crossAxisCount: 2,
-                mainAxisSpacing: 14,
-                crossAxisSpacing: 14,
-                padding: EdgeInsets.only(top:10,bottom: 10,left: 18,right: 18),
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  // 3
-                  return ProductCard(
-                      id: _productList[index].id,
-                      image: _productList[index].thumbnail_image,
-                      name: _productList[index].name,
-                      main_price: _productList[index].main_price,
-                      stroked_price: _productList[index].stroked_price,
-                      has_discount: _productList[index].has_discount,
-                      discount: _productList[index].discount,
-                    is_wholesale: _productList[index].isWholesale,
-                  );
-                },
-              )
-            ],
-          ),
+      return SingleChildScrollView(
+        controller: _productScrollController,
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        child: Column(
+          children: [
+            SizedBox(
+                height: MediaQuery.of(context).viewPadding.top > 40 ? 160 : 135
+                //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
+                ),
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: _productList.length,
+              controller: _scrollController,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  id: _productList[index].id,
+                  image: _productList[index].thumbnail_image,
+                  name: _productList[index].name,
+                  main_price: _productList[index].main_price,
+                  stroked_price: _productList[index].stroked_price,
+                  has_discount: _productList[index].has_discount,
+                  discount: _productList[index].discount,
+                  is_wholesale: _productList[index].isWholesale,
+                );
+              },
+            )
+          ],
         ),
       );
     } else if (_totalProductData == 0) {
-      return Center(child: Text( AppLocalizations.of(context)!.no_product_is_available));
+      return Center(
+          child: Text(AppLocalizations.of(context)!.no_product_is_available));
     } else {
       return Container(); // should never be happening
     }
@@ -1163,7 +1210,8 @@ class _FilterState extends State<Filter> {
                     crossAxisSpacing: 14,
                     mainAxisSpacing: 14,
                     childAspectRatio: 1),
-                padding: EdgeInsets.only(top:20,bottom:10,left:18,right:18),
+                padding:
+                    EdgeInsets.only(top: 20, bottom: 10, left: 18, right: 18),
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -1180,7 +1228,8 @@ class _FilterState extends State<Filter> {
         ),
       );
     } else if (_totalBrandData == 0) {
-      return Center(child: Text(AppLocalizations.of(context)!.no_brand_is_available));
+      return Center(
+          child: Text(AppLocalizations.of(context)!.no_brand_is_available));
     } else {
       return Container(); // should never be happening
     }
@@ -1230,7 +1279,8 @@ class _FilterState extends State<Filter> {
                     crossAxisSpacing: 14,
                     mainAxisSpacing: 14,
                     childAspectRatio: 0.7),
-                padding: EdgeInsets.only(top:20,bottom:10,left:18,right:18),
+                padding:
+                    EdgeInsets.only(top: 20, bottom: 10, left: 18, right: 18),
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -1246,7 +1296,7 @@ class _FilterState extends State<Filter> {
                       id: _shopList[index].id,
                       image: _shopList[index].logo,
                       name: _shopList[index].name,
-                      stars: double.parse(_shopList[index].rating.toString()) ,
+                      stars: double.parse(_shopList[index].rating.toString()),
                     ),
                   );
                 },
@@ -1256,7 +1306,8 @@ class _FilterState extends State<Filter> {
         ),
       );
     } else if (_totalShopData == 0) {
-      return Center(child: Text(AppLocalizations.of(context)!.no_shop_is_available));
+      return Center(
+          child: Text(AppLocalizations.of(context)!.no_shop_is_available));
     } else {
       return Container(); // should never be happening
     }

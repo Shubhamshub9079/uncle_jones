@@ -57,7 +57,7 @@ class _ClassifiedAdsCardState extends State<ClassifiedAdsCard> with SingleTicker
             Column(
                 children: <Widget>[
                   AspectRatio(
-                    aspectRatio: 1,
+                    aspectRatio: 4,
                     child: Container(
                         width: double.infinity,
                         child: ClipRRect(
@@ -68,7 +68,7 @@ class _ClassifiedAdsCardState extends State<ClassifiedAdsCard> with SingleTicker
                               placeholder: 'assets/placeholder.png',
                               image:  widget.image!,
                               fit: BoxFit.cover,
-                            ))),
+                            ),),),
                   ),
                   Container(
                     width: double.infinity,

@@ -49,7 +49,8 @@ class _MiniProductCardState extends State<MiniProductCard> {
         );
       },
       child: Container(
-        width: 170,
+
+        width: 180,
         decoration: BoxDecorations.buildBoxDecoration_1(),
         child: Stack(children: [
           Padding(
@@ -60,7 +61,7 @@ class _MiniProductCardState extends State<MiniProductCard> {
                 children: <Widget>[
                   Container(
                     width: 80,
-                    height: 80,
+                    height: 90,
                     padding: EdgeInsets.all(5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.vertical(

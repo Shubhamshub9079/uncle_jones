@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:UncleJons/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,45 +17,97 @@ class ItemImageUpload extends StatefulWidget {
  }
 
 class _ItemImageUploadState extends State<ItemImageUpload> {
+
+
+
   final ImageUploadController controller = Get.put(ImageUploadController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: Text('Item Image Upload'),
+        backgroundColor: MyTheme.accent_color,
+        title: Text('Item Image Upload Detail',style: TextStyle(fontWeight: FontWeight.bold),),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Obx(
-              () => controller.selectedImage.value == null
-                  ? Text('No Image Selected')
-                  : Image.file(
-                      File(controller.selectedImage.value!.path),
-                    ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                controller.uploadSingleImageGallery();
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Name',
+              ),
+             // onSaved: (){},
+              autovalidateMode:
+              AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your user name.';
+                } else if (value.contains('@')) {
+                  return 'Please don\'t use the @ char.';
+                }
+                return null;
               },
-              child: Text('Select Image from Gallery'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.pink,
+              textInputAction: TextInputAction.next,
+            ),
+            SizedBox(height: 10,),
+            TextFormField(
+              decoration: const InputDecoration(
+
+                labelText: 'Mobile No.',
+              ),
+              // onSaved: (){},
+              autovalidateMode:
+              AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your mobile number name.';
+                } else if (value.contains('@')) {
+                  return 'Please don\'t use the @ char.';
+                }
+                return null;
+              },
+              textInputAction: TextInputAction.next,
+            ),
+
+            SizedBox(height: 30,),
+
+            // Obx(
+            //   () => controller.selectedImage.value == null
+            //       ? Text('No Image Selected')
+            //       : Image.file(
+            //           File(controller.selectedImage.value!.path),
+            //         ),
+            // ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ElevatedButton(
+                onPressed: () {
+                  controller.uploadSingleImageGallery();
+                },
+                child: Text('Select Image from Gallery'),
+                style: ElevatedButton.styleFrom(
+                  primary: MyTheme.accent_color,
+                ),
               ),
             ),
-            ElevatedButton(
-              onPressed: controller.takePicture,
-              child: Text('Take Picture'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.pink,
+            Align(
+              alignment: Alignment.topLeft,
+              child: ElevatedButton(
+
+                onPressed: controller.takePicture,
+                child: Text('Take Picture'),
+                style: ElevatedButton.styleFrom(
+
+                  primary: MyTheme.accent_color,
+                ),
+                // ElevatedButton(
+                //   onPressed: controller.uploadImageToServer,
+                //   child: Text('Upload Image'),
+                // ),
               ),
-              // ElevatedButton(
-              //   onPressed: controller.uploadImageToServer,
-              //   child: Text('Upload Image'),
-              // ),
             )
           ],
         ),

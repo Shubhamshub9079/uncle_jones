@@ -26,16 +26,28 @@ class HomePresenter extends ChangeNotifier {
   var HomeTwoCategoryList = [];
   var HomeThreeCategoryList = [];
   var HomeFourCategoryList = [];
+
+  var HomeFiveCategoryList = [];
+  var HomeSixCategoryList = [];
+  var HomeSevenCategoryList = [];
+  var HomeEightCategoryList = [];
+
   var homeBrandList = [];
 
   bool isBrandInitial = true;
   bool isCategoryInitial = true;
   bool isCarouselInitial = true;
   bool isBannerOneInitial = true;
+
   bool isOneInitial = true;
   bool isTwoInitial = true;
   bool isThereInitial = true;
   bool isFourInitial = true;
+  bool isFiveInitial = true;
+  bool isSixInitial = true;
+  bool isSevenInitial = true;
+  bool isEightInitial = true;
+
   bool isBannerTwoInitial = true;
 
   var featuredProductList = [];
@@ -63,11 +75,17 @@ class HomePresenter extends ChangeNotifier {
     fetchAllProducts();
     fetchTodayDealData();
     fetchFlashDealData();
-    fetchDairyBeverages();
-    fetchCake();
-    fetchPersonalCare();
-    fetchHomeKitchen();
     fetchBrandData();
+
+    fetchDairyBeverages();
+    fetchGrocery();
+    fetchPersonal();
+    fetchCake();
+
+    fetchPackageFood();
+    fetchStationary();
+    fetchPatanjali();
+    fetchHomeKitchen();
   }
 
   fetchTodayDealData() async {
@@ -125,32 +143,74 @@ class HomePresenter extends ChangeNotifier {
     notifyListeners();
   }
 
-  fetchHomeKitchen() async {
-    var homeOneResponse = await CategoryRepository().getHomeHomeKitchen();
-    homeOneResponse.data!.forEach((item) {
+  fetchGrocery() async {
+    var homeTwoResponse = await CategoryRepository().getHomeGrocery();
+    homeTwoResponse.data!.forEach((item) {
       HomeTwoCategoryList.add(item);
     });
     isTwoInitial = false;
     notifyListeners();
   }
 
-  fetchCake() async {
-    var homeOneResponse = await CategoryRepository().getHomeCake();
-    homeOneResponse.data!.forEach((item) {
+  fetchPersonal() async {
+    var homeThreeResponse = await CategoryRepository().getHomePersonal();
+    homeThreeResponse.data!.forEach((item) {
       HomeThreeCategoryList.add(item);
     });
     isThereInitial = false;
     notifyListeners();
   }
 
-  fetchPersonalCare() async {
-    var homeOneResponse = await CategoryRepository().getHomePersonalCare();
-    homeOneResponse.data!.forEach((item) {
+  fetchCake() async {
+    var homeFourResponse = await CategoryRepository().getHomeCake();
+    homeFourResponse.data!.forEach((item) {
       HomeFourCategoryList.add(item);
     });
     isFourInitial = false;
     notifyListeners();
   }
+
+
+
+  fetchPackageFood() async {
+    var homeFiveResponse = await CategoryRepository().getHomePackageFood();
+    homeFiveResponse.data!.forEach((item) {
+      HomeFiveCategoryList.add(item);
+    });
+    isFiveInitial = false;
+    notifyListeners();
+  }
+
+  fetchStationary() async {
+    var homeSixResponse = await CategoryRepository().getHomeStationary();
+    homeSixResponse.data!.forEach((item) {
+      HomeSixCategoryList.add(item);
+    });
+    isSixInitial = false;
+    notifyListeners();
+  }
+
+  fetchPatanjali() async {
+    var homeSevenResponse = await CategoryRepository().getHomePatanjali();
+    homeSevenResponse.data!.forEach((item) {
+      HomeSevenCategoryList.add(item);
+    });
+    isSevenInitial = false;
+    notifyListeners();
+  }
+
+  //
+  fetchHomeKitchen() async {
+    var homeEightResponse = await CategoryRepository().getHomeNewKitchen();
+    homeEightResponse.data!.forEach((item) {
+      HomeEightCategoryList.add(item);
+    });
+    isEightInitial = false;
+    notifyListeners();
+  }
+
+
+
 
   fetchBannerTwoImages() async {
     var bannerTwoResponse = await SlidersRepository().getBannerTwoImages();
@@ -204,6 +264,10 @@ class HomePresenter extends ChangeNotifier {
     HomeTwoCategoryList.clear();
     HomeThreeCategoryList.clear();
     HomeFourCategoryList.clear();
+    HomeFiveCategoryList.clear();
+    HomeSixCategoryList.clear();
+    HomeSevenCategoryList.clear();
+    HomeEightCategoryList.clear();
     homeBrandList.clear();
     isCarouselInitial = true;
     isBrandInitial = true;
@@ -214,6 +278,11 @@ class HomePresenter extends ChangeNotifier {
     isFourInitial = true;
     isTwoInitial = true;
     isThereInitial = true;
+    isFiveInitial = true;
+    isSixInitial = true;
+    isSevenInitial = true;
+    isEightInitial = true;
+    isFiveInitial = true;
     cartCount = 0;
 
     resetFeaturedProductList();

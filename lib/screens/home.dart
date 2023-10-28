@@ -19,6 +19,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../custom/device_info.dart';
+import 'itemlist_uploadimage.dart';
 
 class Home extends StatefulWidget {
   Home({
@@ -145,6 +146,49 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(
                                 18.0,
+                                0.0,
+                                22.0,
+                                0.0,
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ItemImageUpload()),
+                                  );
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  margin: const EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(3.0),
+                                  decoration:
+                                      BoxDecoration(color: MyTheme.light_grey,border: Border.all(width: 2,color: MyTheme.accent_color)),
+
+                                  child: Center(
+                                      child: Text(
+                                    'Manual Order',
+                                    style: TextStyle(
+                                        color: MyTheme.accent_color,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      //shop by category//
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                18.0,
                                 20.0,
                                 22.0,
                                 0.0,
@@ -205,6 +249,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           child: buildHomeFeaturedCategories(context, homeData),
                         ),
                       ),
+                      //Top selling product//
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
@@ -265,7 +310,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           children: [],
                         ),
                       ),
+                      //Daily Beverages//
                       SliverList(
+                        // Categories wise products
                         delegate: SliverChildListDelegate(
                           [
                             Padding(
@@ -320,6 +367,63 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
+                      //Bakery//
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, right: 18.0, left: 18.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text.rich(
+                                    TextSpan(
+                                      text: 'Grocery',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                      children: <InlineSpan>[
+                                        TextSpan(
+                                          text: '',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 190,
+                                  ),
+                                  Text(
+                                    'View all',
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.pink,
+                                    size: 18,
+                                  )
+                                ],
+                              ),
+                            ),
+                            buildTwoCategoryData(homeData)
+                          ],
+                        ),
+                      ),
+                      //Home Kitchen//
                       SliverList(
                         delegate: SliverChildListDelegate([
                           Padding(
@@ -330,7 +434,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Home & Kitchen",
+                                  "Personal & Care",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15,
@@ -339,10 +443,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               ],
                             ),
                           ),
-                          buildTwoCategoryData(homeData)
+                          buildThreeCategoryData(homeData)
                         ]),
                       ),
-
+                      //Shop By Brand//
                       SliverList(
                         delegate: SliverChildListDelegate([
                           Container(
@@ -387,6 +491,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       SliverToBoxAdapter(
                         child: buildHomeBannerOne(context, homeData),
                       ),
+
+                      ////
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
@@ -422,10 +528,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
-                            buildThreeCategoryData(homeData)
+                            buildFourCategoryData(homeData)
                           ],
                         ),
                       ),
+
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
@@ -439,14 +546,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 children: [
                                   Text.rich(
                                     TextSpan(
-                                      text: 'Personal &',
+                                      text: 'Package',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 15,
-                                          fontWeight: FontWeight.w900),
+                                          fontWeight: FontWeight.w300),
                                       children: <InlineSpan>[
                                         TextSpan(
-                                          text: ' Care',
+                                          text: ' Food',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 15,
@@ -473,7 +580,163 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
-                            buildFourCategoryData(homeData)
+                            buildFiveCategoryData(homeData)
+                          ],
+                        ),
+                      ),
+
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, right: 18.0, left: 18.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text.rich(
+                                    TextSpan(
+                                      text: 'Stationary',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                      children: <InlineSpan>[
+                                        TextSpan(
+                                          text: '',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                  ),
+                                  Text(
+                                    'View all',
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.pink,
+                                    size: 18,
+                                  )
+                                ],
+                              ),
+                            ),
+                            buildSixCategoryData(homeData)
+                          ],
+                        ),
+                      ),
+
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, right: 18.0, left: 18.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text.rich(
+                                    TextSpan(
+                                      text: 'Patanjali',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                      children: <InlineSpan>[
+                                        TextSpan(
+                                          text: '',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                  ),
+                                  Text(
+                                    'View all',
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.pink,
+                                    size: 18,
+                                  )
+                                ],
+                              ),
+                            ),
+                            buildSevenCategoryData(homeData)
+                          ],
+                        ),
+                      ),
+
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, right: 18.0, left: 18.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text.rich(
+                                    TextSpan(
+                                      text: 'Home &',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                      children: <InlineSpan>[
+                                        TextSpan(
+                                          text: ' Kitchen',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                  ),
+                                  Text(
+                                    'View all',
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.pink,
+                                    size: 18,
+                                  )
+                                ],
+                              ),
+                            ),
+                            buildEightCategoryData(homeData)
                           ],
                         ),
                       ),
@@ -760,84 +1023,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
-  Widget buildOneCategoryData(HomePresenter homeData) {
-    if (homeData.isOneInitial == true &&
-        homeData.HomeOneCategoryList.length == 0) {
-      return Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ShimmerHelper().buildBasicShimmer(
-                height: 120.0,
-                width: (MediaQuery.of(context).size.width - 64) / 3),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ShimmerHelper().buildBasicShimmer(
-                height: 120.0,
-                width: (MediaQuery.of(context).size.width - 64) / 3),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ShimmerHelper().buildBasicShimmer(
-                height: 120.0,
-                width: (MediaQuery.of(context).size.width - 160) / 3),
-          ),
-        ],
-      );
-    } else if (homeData.HomeOneCategoryList.length > 0) {
-      return SingleChildScrollView(
-        child: SizedBox(
-          height: 210,
-          child: NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification scrollInfo) {
-              if (scrollInfo.metrics.pixels ==
-                  scrollInfo.metrics.maxScrollExtent) {
-                homeData.fetchFeaturedProducts();
-              }
-              return true;
-            },
-            child: ListView.separated(
-              padding: const EdgeInsets.all(18.0),
-              separatorBuilder: (context, index) => SizedBox(
-                width: 14,
-              ),
-              itemCount: homeData.HomeOneCategoryList.length,
-              scrollDirection: Axis.horizontal,
-              //itemExtent: 135,
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              itemBuilder: (context, index) {
-                return MiniProductCard(
-                  id: homeData.HomeOneCategoryList[index].id,
-                  image: homeData.HomeOneCategoryList[index].thumbnailImage,
-                  name: homeData.HomeOneCategoryList[index].name,
-                  main_price: homeData.HomeOneCategoryList[index].mainPrice,
-                  stroked_price:
-                      homeData.HomeOneCategoryList[index].strokedPrice,
-                  has_discount: homeData.HomeOneCategoryList[index].hasDiscount,
-                  is_wholesale: homeData.HomeOneCategoryList[index].isWholesale,
-                  discount: homeData.HomeOneCategoryList[index].discount,
-                );
-              },
-            ),
-          ),
-        ),
-      );
-    } else {
-      return Container(
-        height: 100,
-        child: Center(
-          child: Text(
-            AppLocalizations.of(context)!.no_related_product,
-            style: TextStyle(color: MyTheme.font_grey),
-          ),
-        ),
-      );
-    }
-  }
-
   Widget buildBrandData(HomePresenter homeData) {
     print("homeData.homeBrandList.length - " +
         jsonEncode(homeData.homeBrandList));
@@ -907,6 +1092,84 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
+  Widget buildOneCategoryData(HomePresenter homeData) {
+    if (homeData.isOneInitial == true &&
+        homeData.HomeOneCategoryList.length == 0) {
+      return Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
+        ],
+      );
+    } else if (homeData.HomeOneCategoryList.length > 0) {
+      return SingleChildScrollView(
+        child: SizedBox(
+          height: 210,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo.metrics.pixels ==
+                  scrollInfo.metrics.maxScrollExtent) {
+                homeData.fetchDairyBeverages();
+              }
+              return true;
+            },
+            child: ListView.separated(
+              padding: const EdgeInsets.all(18.0),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 14,
+              ),
+              itemCount: homeData.HomeOneCategoryList.length,
+              scrollDirection: Axis.horizontal,
+              //itemExtent: 135,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              itemBuilder: (context, index) {
+                return MiniProductCard(
+                  id: homeData.HomeOneCategoryList[index].id,
+                  image: homeData.HomeOneCategoryList[index].thumbnailImage,
+                  name: homeData.HomeOneCategoryList[index].name,
+                  main_price: homeData.HomeOneCategoryList[index].mainPrice,
+                  stroked_price:
+                      homeData.HomeOneCategoryList[index].strokedPrice,
+                  has_discount: homeData.HomeOneCategoryList[index].hasDiscount,
+                  is_wholesale: homeData.HomeOneCategoryList[index].isWholesale,
+                  discount: homeData.HomeOneCategoryList[index].discount,
+                );
+              },
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container(
+        height: 100,
+        child: Center(
+          child: Text(
+            AppLocalizations.of(context)!.no_related_product,
+            style: TextStyle(color: MyTheme.font_grey),
+          ),
+        ),
+      );
+    }
+  }
+
   Widget buildTwoCategoryData(HomePresenter homeData) {
     if (homeData.isTwoInitial == true &&
         homeData.HomeTwoCategoryList.length == 0) {
@@ -935,7 +1198,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (homeData.HomeTwoCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
-          height: 200,
+          height: 220,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
@@ -1089,12 +1352,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (homeData.HomeFourCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
-          height: 200,
+          height: 220,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
-                homeData.fetchFeaturedProducts();
+                homeData.fetchCake();
               }
               return true;
             },
@@ -1121,6 +1384,314 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   is_wholesale:
                       homeData.HomeFourCategoryList[index].isWholesale,
                   discount: homeData.HomeFourCategoryList[index].discount,
+                );
+              },
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container(
+          height: 100,
+          child: Center(
+              child: Text(
+            AppLocalizations.of(context)!.no_related_product,
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
+    }
+  }
+
+  Widget buildFiveCategoryData(HomePresenter homeData) {
+    if (homeData.isFiveInitial == true &&
+        homeData.HomeFiveCategoryList.length == 0) {
+      return Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
+        ],
+      );
+    } else if (homeData.HomeFiveCategoryList.length > 0) {
+      return SingleChildScrollView(
+        child: SizedBox(
+          height: 220,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo.metrics.pixels ==
+                  scrollInfo.metrics.maxScrollExtent) {
+                homeData.fetchPackageFood();
+              }
+              return true;
+            },
+            child: ListView.separated(
+              padding: const EdgeInsets.all(18.0),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 14,
+              ),
+              itemCount: homeData.HomeFiveCategoryList.length,
+              scrollDirection: Axis.horizontal,
+              //itemExtent: 135,
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemBuilder: (context, index) {
+                return MiniProductCard(
+                  id: homeData.HomeFiveCategoryList[index].id,
+                  image: homeData.HomeFiveCategoryList[index].thumbnailImage,
+                  name: homeData.HomeFiveCategoryList[index].name,
+                  main_price: homeData.HomeFiveCategoryList[index].mainPrice,
+                  stroked_price:
+                      homeData.HomeFiveCategoryList[index].strokedPrice,
+                  has_discount:
+                      homeData.HomeFiveCategoryList[index].hasDiscount,
+                  is_wholesale:
+                      homeData.HomeFiveCategoryList[index].isWholesale,
+                  discount: homeData.HomeFiveCategoryList[index].discount,
+                );
+              },
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container(
+        height: 100,
+        child: Center(
+          child: Text(
+            AppLocalizations.of(context)!.no_related_product,
+            style: TextStyle(color: MyTheme.font_grey),
+          ),
+        ),
+      );
+    }
+  }
+
+  Widget buildSixCategoryData(HomePresenter homeData) {
+    if (homeData.isSixInitial == true &&
+        homeData.HomeSixCategoryList.length == 0) {
+      return Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
+        ],
+      );
+    } else if (homeData.HomeSixCategoryList.length > 0) {
+      return SingleChildScrollView(
+        child: SizedBox(
+          height: 220,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo.metrics.pixels ==
+                  scrollInfo.metrics.maxScrollExtent) {
+                homeData.fetchStationary();
+              }
+              return true;
+            },
+            child: ListView.separated(
+              padding: const EdgeInsets.all(18.0),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 14,
+              ),
+              itemCount: homeData.HomeSixCategoryList.length,
+              scrollDirection: Axis.horizontal,
+              //itemExtent: 135,
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemBuilder: (context, index) {
+                return MiniProductCard(
+                  id: homeData.HomeSixCategoryList[index].id,
+                  image: homeData.HomeSixCategoryList[index].thumbnailImage,
+                  name: homeData.HomeSixCategoryList[index].name,
+                  main_price: homeData.HomeSixCategoryList[index].mainPrice,
+                  stroked_price:
+                      homeData.HomeSixCategoryList[index].strokedPrice,
+                  has_discount: homeData.HomeSixCategoryList[index].hasDiscount,
+                  is_wholesale: homeData.HomeSixCategoryList[index].isWholesale,
+                  discount: homeData.HomeSixCategoryList[index].discount,
+                );
+              },
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container(
+          height: 100,
+          child: Center(
+              child: Text(
+            AppLocalizations.of(context)!.no_related_product,
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
+    }
+  }
+
+  Widget buildSevenCategoryData(HomePresenter homeData) {
+    if (homeData.isSevenInitial == true &&
+        homeData.HomeSevenCategoryList.length == 0) {
+      return Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
+        ],
+      );
+    } else if (homeData.HomeSevenCategoryList.length > 0) {
+      return SingleChildScrollView(
+        child: SizedBox(
+          height: 220,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo.metrics.pixels ==
+                  scrollInfo.metrics.maxScrollExtent) {
+                homeData.fetchPatanjali();
+              }
+              return true;
+            },
+            child: ListView.separated(
+              padding: const EdgeInsets.all(18.0),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 14,
+              ),
+              itemCount: homeData.HomeSevenCategoryList.length,
+              scrollDirection: Axis.horizontal,
+              //itemExtent: 135,
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemBuilder: (context, index) {
+                return MiniProductCard(
+                  id: homeData.HomeSevenCategoryList[index].id,
+                  image: homeData.HomeSevenCategoryList[index].thumbnailImage,
+                  name: homeData.HomeSevenCategoryList[index].name,
+                  main_price: homeData.HomeSevenCategoryList[index].mainPrice,
+                  stroked_price:
+                      homeData.HomeSevenCategoryList[index].strokedPrice,
+                  has_discount:
+                      homeData.HomeSevenCategoryList[index].hasDiscount,
+                  is_wholesale:
+                      homeData.HomeSevenCategoryList[index].isWholesale,
+                  discount: homeData.HomeSevenCategoryList[index].discount,
+                );
+              },
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container(
+          height: 100,
+          child: Center(
+              child: Text(
+            AppLocalizations.of(context)!.no_related_product,
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
+    }
+  }
+
+  Widget buildEightCategoryData(HomePresenter homeData) {
+    if (homeData.isEightInitial == true &&
+        homeData.HomeEightCategoryList.length == 0) {
+      return Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 64) / 3),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ShimmerHelper().buildBasicShimmer(
+                height: 120.0,
+                width: (MediaQuery.of(context).size.width - 160) / 3),
+          ),
+        ],
+      );
+    } else if (homeData.HomeEightCategoryList.length > 0) {
+      return SingleChildScrollView(
+        child: SizedBox(
+          height: 220,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo.metrics.pixels ==
+                  scrollInfo.metrics.maxScrollExtent) {
+                homeData.fetchHomeKitchen();
+              }
+              return true;
+            },
+            child: ListView.separated(
+              padding: const EdgeInsets.all(18.0),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 14,
+              ),
+              itemCount: homeData.HomeEightCategoryList.length,
+              scrollDirection: Axis.horizontal,
+              //itemExtent: 135,
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemBuilder: (context, index) {
+                return MiniProductCard(
+                  id: homeData.HomeEightCategoryList[index].id,
+                  image: homeData.HomeEightCategoryList[index].thumbnailImage,
+                  name: homeData.HomeEightCategoryList[index].name,
+                  main_price: homeData.HomeEightCategoryList[index].mainPrice,
+                  stroked_price:
+                      homeData.HomeEightCategoryList[index].strokedPrice,
+                  has_discount:
+                      homeData.HomeEightCategoryList[index].hasDiscount,
+                  is_wholesale:
+                      homeData.HomeEightCategoryList[index].isWholesale,
+                  discount: homeData.HomeEightCategoryList[index].discount,
                 );
               },
             ),
