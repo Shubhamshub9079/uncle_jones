@@ -15,6 +15,7 @@ class ProductCard extends StatefulWidget {
   bool? is_wholesale;
   var discount;
 
+
   ProductCard({
     Key? key,
     this.identifier,
@@ -33,8 +34,13 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     print((MediaQuery.of(context).size.width - 48) / 1);
     return InkWell(
       onTap: () {
@@ -303,32 +309,31 @@ class _ProductCardState extends State<ProductCard> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Container(
-                                width: 125,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
+                          Container(
+                            width: 125,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
 
-                                child: Center(
-                                  child: Text(
-                                    "Add to Cart",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ), //BoxDecoration
+                            child: Center(
+                              child: Text(
+                                "Add to Cart",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ],
+                            ), //BoxDecoration
+                          )],
                           ),
                         ),
                       ),
                     ],
                   ),
                   // discount and wholesale
-                )
+                ),
               ],
             ),
           ),
@@ -337,3 +342,5 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+
+

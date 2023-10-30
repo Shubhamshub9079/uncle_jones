@@ -22,15 +22,15 @@ class HomePresenter extends ChangeNotifier {
   var bannerOneImageList = [];
   var bannerTwoImageList = [];
   var featuredCategoryList = [];
-  var HomeOneCategoryList = [];
-  var HomeTwoCategoryList = [];
-  var HomeThreeCategoryList = [];
-  var HomeFourCategoryList = [];
+  var homeOneCategoryList = [];
+  var homeTwoCategoryList = [];
+  var homeThreeCategoryList = [];
+  var homeFourCategoryList = [];
 
-  var HomeFiveCategoryList = [];
-  var HomeSixCategoryList = [];
-  var HomeSevenCategoryList = [];
-  var HomeEightCategoryList = [];
+  var homeFiveCategoryList = [];
+  var homeSixCategoryList = [];
+  var homeSevenCategoryList = [];
+  var homeEightCategoryList = [];
 
   var homeBrandList = [];
 
@@ -76,12 +76,10 @@ class HomePresenter extends ChangeNotifier {
     fetchTodayDealData();
     fetchFlashDealData();
     fetchBrandData();
-
     fetchDairyBeverages();
     fetchGrocery();
     fetchPersonal();
     fetchCake();
-
     fetchPackageFood();
     fetchStationary();
     fetchPatanjali();
@@ -99,7 +97,6 @@ class HomePresenter extends ChangeNotifier {
 
   fetchFlashDealData() async {
     var deal = await FlashDealRepository().getFlashDeals();
-
     if (deal.success! && deal.flashDeals!.isNotEmpty) {
       isFlashDeal = true;
       notifyListeners();
@@ -137,7 +134,7 @@ class HomePresenter extends ChangeNotifier {
     var homeOneResponse =
         await CategoryRepository().getHomeCategoryDairyBeverage();
     homeOneResponse.data!.forEach((item) {
-      HomeOneCategoryList.add(item);
+      homeOneCategoryList.add(item);
     });
     isOneInitial = false;
     notifyListeners();
@@ -146,7 +143,7 @@ class HomePresenter extends ChangeNotifier {
   fetchGrocery() async {
     var homeTwoResponse = await CategoryRepository().getHomeGrocery();
     homeTwoResponse.data!.forEach((item) {
-      HomeTwoCategoryList.add(item);
+      homeTwoCategoryList.add(item);
     });
     isTwoInitial = false;
     notifyListeners();
@@ -155,7 +152,7 @@ class HomePresenter extends ChangeNotifier {
   fetchPersonal() async {
     var homeThreeResponse = await CategoryRepository().getHomePersonal();
     homeThreeResponse.data!.forEach((item) {
-      HomeThreeCategoryList.add(item);
+      homeThreeCategoryList.add(item);
     });
     isThereInitial = false;
     notifyListeners();
@@ -164,18 +161,16 @@ class HomePresenter extends ChangeNotifier {
   fetchCake() async {
     var homeFourResponse = await CategoryRepository().getHomeCake();
     homeFourResponse.data!.forEach((item) {
-      HomeFourCategoryList.add(item);
+      homeFourCategoryList.add(item);
     });
     isFourInitial = false;
     notifyListeners();
   }
 
-
-
   fetchPackageFood() async {
     var homeFiveResponse = await CategoryRepository().getHomePackageFood();
     homeFiveResponse.data!.forEach((item) {
-      HomeFiveCategoryList.add(item);
+      homeFiveCategoryList.add(item);
     });
     isFiveInitial = false;
     notifyListeners();
@@ -184,7 +179,7 @@ class HomePresenter extends ChangeNotifier {
   fetchStationary() async {
     var homeSixResponse = await CategoryRepository().getHomeStationary();
     homeSixResponse.data!.forEach((item) {
-      HomeSixCategoryList.add(item);
+      homeSixCategoryList.add(item);
     });
     isSixInitial = false;
     notifyListeners();
@@ -193,7 +188,7 @@ class HomePresenter extends ChangeNotifier {
   fetchPatanjali() async {
     var homeSevenResponse = await CategoryRepository().getHomePatanjali();
     homeSevenResponse.data!.forEach((item) {
-      HomeSevenCategoryList.add(item);
+      homeSevenCategoryList.add(item);
     });
     isSevenInitial = false;
     notifyListeners();
@@ -203,14 +198,11 @@ class HomePresenter extends ChangeNotifier {
   fetchHomeKitchen() async {
     var homeEightResponse = await CategoryRepository().getHomeNewKitchen();
     homeEightResponse.data!.forEach((item) {
-      HomeEightCategoryList.add(item);
+      homeEightCategoryList.add(item);
     });
     isEightInitial = false;
     notifyListeners();
   }
-
-
-
 
   fetchBannerTwoImages() async {
     var bannerTwoResponse = await SlidersRepository().getBannerTwoImages();
@@ -260,14 +252,14 @@ class HomePresenter extends ChangeNotifier {
     bannerOneImageList.clear();
     bannerTwoImageList.clear();
     featuredCategoryList.clear();
-    HomeOneCategoryList.clear();
-    HomeTwoCategoryList.clear();
-    HomeThreeCategoryList.clear();
-    HomeFourCategoryList.clear();
-    HomeFiveCategoryList.clear();
-    HomeSixCategoryList.clear();
-    HomeSevenCategoryList.clear();
-    HomeEightCategoryList.clear();
+    homeOneCategoryList.clear();
+    homeTwoCategoryList.clear();
+    homeThreeCategoryList.clear();
+    homeFourCategoryList.clear();
+    homeFiveCategoryList.clear();
+    homeSixCategoryList.clear();
+    homeSevenCategoryList.clear();
+    homeEightCategoryList.clear();
     homeBrandList.clear();
     isCarouselInitial = true;
     isBrandInitial = true;

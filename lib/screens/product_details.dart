@@ -84,9 +84,9 @@ class _ProductDetailsState extends State<ProductDetails>
   var _singlePrice;
   var _singlePriceString;
   int? _quantity = 1;
+
   int? _stock = 0;
   var _stock_txt;
-
   double opacity = 0;
 
   List<dynamic> _relatedProducts = [];
@@ -387,7 +387,12 @@ class _ProductDetailsState extends State<ProductDetails>
     if (is_logged_in.$ == false) {
       // ToastComponent.showDialog(AppLocalizations.of(context).common_login_warning, context,
       //     gravity: Toast.center, duration: Toast.lengthLong);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Login(),
+        ),
+      );
       return;
     }
 
@@ -463,7 +468,7 @@ class _ProductDetailsState extends State<ProductDetails>
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                               side:
-                                  BorderSide(color: Colors.black, width: 1.0)),
+                                  BorderSide(color: Colors.black, width: 1.0),),
                           child: Text(
                             AppLocalizations.of(context)!.copy_product_link_ucf,
                             style: TextStyle(
@@ -488,7 +493,6 @@ class _ProductDetailsState extends State<ProductDetails>
                             )
                           : Container(),
                       Padding(
-
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Btn.minWidthFixHeight(
                           minWidth: 75,
@@ -821,19 +825,17 @@ class _ProductDetailsState extends State<ProductDetails>
         extendBody: true,
         bottomNavigationBar: buildBottomAppBar(context, _addedToCartSnackbar),
         //appBar: buildAppBar(statusBarHeight, context),
-        body:
-
-        RefreshIndicator(
+        body: RefreshIndicator(
           color: MyTheme.accent_color,
           backgroundColor: Colors.pink,
           onRefresh: _onPageRefresh,
           child: CustomScrollView(
             controller: _mainScrollController,
             physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             slivers: <Widget>[
               SliverAppBar(
-
                 elevation: 0,
                 backgroundColor: Color(0XffE20145).withOpacity(opacity),
                 pinned: true,
@@ -2152,17 +2154,17 @@ class _ProductDetailsState extends State<ProductDetails>
                 left: 18,
               ),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.0),
-                  color: MyTheme.accent_color,
-                  boxShadow: [
-                    BoxShadow(
-                      color: MyTheme.accent_color_shadow,
-                      blurRadius: 20,
-                      spreadRadius: 0.0,
-                      offset:
-                          Offset(0.0, 10.0), // shadow direction: bottom right
-                    )
-                  ]),
+                borderRadius: BorderRadius.circular(6.0),
+                color: MyTheme.accent_color,
+                boxShadow: [
+                  BoxShadow(
+                    color: MyTheme.accent_color_shadow,
+                    blurRadius: 20,
+                    spreadRadius: 0.0,
+                    offset: Offset(0.0, 10.0), // shadow direction: bottom right
+                  ),
+                ],
+              ),
               height: 50,
               child: Center(
                 child: Text(
@@ -2194,7 +2196,7 @@ class _ProductDetailsState extends State<ProductDetails>
                     blurRadius: 20,
                     spreadRadius: 0.0,
                     offset: Offset(0.0, 10.0), // shadow direction: bottom right
-                  )
+                  ),
                 ],
               ),
               child: Center(
@@ -2208,7 +2210,8 @@ class _ProductDetailsState extends State<ProductDetails>
               ),
             ),
           ),
-        )
+        ),
+
         /*Container(
           color: Colors.white.withOpacity(0.95),
           height: 83,
@@ -2744,7 +2747,7 @@ class _ProductDetailsState extends State<ProductDetails>
       return CarouselSlider(
         carouselController: _carouselController,
         options: CarouselOptions(
-            aspectRatio:200 / 180,
+            aspectRatio: 200 / 180,
             viewportFraction: 1,
             initialPage: 0,
             autoPlay: true,

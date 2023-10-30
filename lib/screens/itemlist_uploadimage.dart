@@ -14,12 +14,9 @@ class ItemImageUpload extends StatefulWidget {
 
   @override
   State<ItemImageUpload> createState() => _ItemImageUploadState();
- }
+}
 
 class _ItemImageUploadState extends State<ItemImageUpload> {
-
-
-
   final ImageUploadController controller = Get.put(ImageUploadController());
 
   @override
@@ -27,7 +24,10 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyTheme.accent_color,
-        title: Text('Item Image Upload Detail',style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          'Manual Order',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -36,43 +36,64 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Name',
-              ),
-             // onSaved: (){},
-              autovalidateMode:
-              AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your user name.';
-                } else if (value.contains('@')) {
-                  return 'Please don\'t use the @ char.';
+              validator: (UsernameController) {
+                if (UsernameController!.isEmpty) {
+                  return "Please Enter Moblie No";
                 }
                 return null;
               },
-              textInputAction: TextInputAction.next,
+              //cursorColor: hexClr,
+              // controller: UsernameController,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10),
+                hintText: "Enter Name",
+                hintStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black),
+                fillColor: Colors.grey[200],
+                filled: true,
+                border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide.none),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none),
+              ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 20,
+            ),
             TextFormField(
-              decoration: const InputDecoration(
-
-                labelText: 'Mobile No.',
-              ),
-              // onSaved: (){},
-              autovalidateMode:
-              AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your mobile number name.';
-                } else if (value.contains('@')) {
-                  return 'Please don\'t use the @ char.';
+              validator: (UsernameController) {
+                if (UsernameController!.isEmpty) {
+                  return "Please Enter Moblie No";
                 }
                 return null;
               },
-              textInputAction: TextInputAction.next,
+              //cursorColor: hexClr,
+              // controller: UsernameController,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10),
+                hintText: "Enter Mobile No.",
+                hintStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black),
+                fillColor: Colors.grey[200],
+                filled: true,
+                border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide.none),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none),
+              ),
             ),
 
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 20,
+            ),
 
             // Obx(
             //   () => controller.selectedImage.value == null
@@ -82,31 +103,82 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
             //         ),
             // ),
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
-                  controller.uploadSingleImageGallery();
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return WillPopScope(
+                        onWillPop: () async => true,
+                        // False will prevent and true will allow to dismiss
+
+                        child: AlertDialog(
+                          backgroundColor: Color(0xffFFEBEE),
+                          // insetPadding: EdgeInsets.all(15),
+                          title: Text(
+                            "From where do you want to take the photo?",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children: <Widget>[
+                                GestureDetector(
+                                  child: Text("Gallery",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold)),
+                                  onTap: () {
+                                    controller.uploadSingleImageGallery();
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                ),
+                                Padding(padding: EdgeInsets.all(8.0)),
+                                GestureDetector(
+                                  child: Text("Camera",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold)),
+                                  onTap: () {
+                                    controller.takePicture();
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 },
-                child: Text('Select Image from Gallery'),
+                child: Text(
+                  "Image Upload",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 style: ElevatedButton.styleFrom(
-                  primary: MyTheme.accent_color,
+                  primary: Colors.pink,
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            SizedBox(
+              height: 10,
+            ),
+
+            SizedBox(
+              height: 40,
+              width: 350,
               child: ElevatedButton(
-
-                onPressed: controller.takePicture,
-                child: Text('Take Picture'),
                 style: ElevatedButton.styleFrom(
-
-                  primary: MyTheme.accent_color,
+                  primary: MyTheme.accent_color, // background
+                  onPrimary: Colors.yellow, // foreground
                 ),
-                // ElevatedButton(
-                //   onPressed: controller.uploadImageToServer,
-                //   child: Text('Upload Image'),
-                // ),
+                onPressed: () {},
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ),
             )
           ],
@@ -171,7 +243,9 @@ class ImageUploadController extends GetxController {
         var imageUrl = responseMap["imageUrl"];
         Get.rawSnackbar(message: "Profile image upload successful");
       } else {
-        Get.rawSnackbar(message: responseMap["message"],);
+        Get.rawSnackbar(
+          message: responseMap["message"],
+        );
         // showErrorMessage(responseMap["message"]);
       }
     } catch (e) {

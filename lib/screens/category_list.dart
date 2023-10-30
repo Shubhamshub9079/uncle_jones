@@ -75,7 +75,7 @@ class _CategoryListState extends State<CategoryList> {
               height: MediaQuery.of(context).size.height,
               child: buildSubCategoryList(),
             )
-          ]),
+          ],),
         ),
       ),
     );
@@ -184,7 +184,7 @@ class _CategoryListState extends State<CategoryList> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
-                      onTap: ()  {
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -196,7 +196,6 @@ class _CategoryListState extends State<CategoryList> {
                             },
                           ),
                         );
-
                       },
                       child: Center(
                         // Centering each item
@@ -392,8 +391,8 @@ class _CategoryListState extends State<CategoryList> {
   Widget buildShimmerGrid() {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        mainAxisSpacing: 14,
-        crossAxisSpacing: 14,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
         childAspectRatio: 1,
         crossAxisCount: 2,
       ),

@@ -164,17 +164,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   width: 50,
                                   margin: const EdgeInsets.all(15.0),
                                   padding: const EdgeInsets.all(3.0),
-                                  decoration:
-                                      BoxDecoration(color: MyTheme.light_grey,border: Border.all(width: 2,color: MyTheme.accent_color)),
-
+                                  decoration: BoxDecoration(
+                                      color: MyTheme.light_grey,
+                                      border: Border.all(
+                                          width: 2,
+                                          color: MyTheme.accent_color)),
                                   child: Center(
-                                      child: Text(
-                                    'Manual Order',
-                                    style: TextStyle(
-                                        color: MyTheme.accent_color,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  )),
+                                    child: Text(
+                                      'Manual Order',
+                                      style: TextStyle(
+                                          color: MyTheme.accent_color,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ),
                               ),
                             )
@@ -433,14 +436,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  "Personal & Care",
+                              Text.rich(
+                                TextSpan(
+                                  text: 'Personal &',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15,
-                                      fontWeight: FontWeight.w700),
+                                      fontWeight: FontWeight.w300),
+                                  children: <InlineSpan>[
+                                    TextSpan(
+                                      text: ' Care',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ) ],
                             ),
                           ),
                           buildThreeCategoryData(homeData)
@@ -615,7 +628,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 130,
+                                    width: 170,
                                   ),
                                   Text(
                                     'View all',
@@ -667,7 +680,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 130,
+                                    width: 180,
                                   ),
                                   Text(
                                     'View all',
@@ -706,7 +719,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 15,
-                                          fontWeight: FontWeight.w900),
+                                          fontWeight: FontWeight.w300),
                                       children: <InlineSpan>[
                                         TextSpan(
                                           text: ' Kitchen',
@@ -1094,7 +1107,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildOneCategoryData(HomePresenter homeData) {
     if (homeData.isOneInitial == true &&
-        homeData.HomeOneCategoryList.length == 0) {
+        homeData.homeOneCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1117,7 +1130,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeOneCategoryList.length > 0) {
+    } else if (homeData.homeOneCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 210,
@@ -1134,7 +1147,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeOneCategoryList.length,
+              itemCount: homeData.homeOneCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
@@ -1142,15 +1155,15 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeOneCategoryList[index].id,
-                  image: homeData.HomeOneCategoryList[index].thumbnailImage,
-                  name: homeData.HomeOneCategoryList[index].name,
-                  main_price: homeData.HomeOneCategoryList[index].mainPrice,
+                  id: homeData.homeOneCategoryList[index].id,
+                  image: homeData.homeOneCategoryList[index].thumbnailImage,
+                  name: homeData.homeOneCategoryList[index].name,
+                  main_price: homeData.homeOneCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeOneCategoryList[index].strokedPrice,
-                  has_discount: homeData.HomeOneCategoryList[index].hasDiscount,
-                  is_wholesale: homeData.HomeOneCategoryList[index].isWholesale,
-                  discount: homeData.HomeOneCategoryList[index].discount,
+                      homeData.homeOneCategoryList[index].strokedPrice,
+                  has_discount: homeData.homeOneCategoryList[index].hasDiscount,
+                  is_wholesale: homeData.homeOneCategoryList[index].isWholesale,
+                  discount: homeData.homeOneCategoryList[index].discount,
                 );
               },
             ),
@@ -1172,7 +1185,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildTwoCategoryData(HomePresenter homeData) {
     if (homeData.isTwoInitial == true &&
-        homeData.HomeTwoCategoryList.length == 0) {
+        homeData.homeTwoCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1195,7 +1208,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeTwoCategoryList.length > 0) {
+    } else if (homeData.homeTwoCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 220,
@@ -1212,7 +1225,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeTwoCategoryList.length,
+              itemCount: homeData.homeTwoCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
@@ -1220,15 +1233,15 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeTwoCategoryList[index].id,
-                  image: homeData.HomeTwoCategoryList[index].thumbnailImage,
-                  name: homeData.HomeTwoCategoryList[index].name,
-                  main_price: homeData.HomeTwoCategoryList[index].mainPrice,
+                  id: homeData.homeTwoCategoryList[index].id,
+                  image: homeData.homeTwoCategoryList[index].thumbnailImage,
+                  name: homeData.homeTwoCategoryList[index].name,
+                  main_price: homeData.homeTwoCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeTwoCategoryList[index].strokedPrice,
-                  has_discount: homeData.HomeTwoCategoryList[index].hasDiscount,
-                  is_wholesale: homeData.HomeTwoCategoryList[index].isWholesale,
-                  discount: homeData.HomeTwoCategoryList[index].discount,
+                      homeData.homeTwoCategoryList[index].strokedPrice,
+                  has_discount: homeData.homeTwoCategoryList[index].hasDiscount,
+                  is_wholesale: homeData.homeTwoCategoryList[index].isWholesale,
+                  discount: homeData.homeTwoCategoryList[index].discount,
                 );
               },
             ),
@@ -1250,7 +1263,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildThreeCategoryData(HomePresenter homeData) {
     if (homeData.isThereInitial == true &&
-        homeData.HomeThreeCategoryList.length == 0) {
+        homeData.homeThreeCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1270,7 +1283,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   width: (MediaQuery.of(context).size.width - 160) / 3)),
         ],
       );
-    } else if (homeData.HomeThreeCategoryList.length > 0) {
+    } else if (homeData.homeThreeCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 200,
@@ -1287,24 +1300,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeThreeCategoryList.length,
+              itemCount: homeData.homeThreeCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeThreeCategoryList[index].id,
-                  image: homeData.HomeThreeCategoryList[index].thumbnailImage,
-                  name: homeData.HomeThreeCategoryList[index].name,
-                  main_price: homeData.HomeThreeCategoryList[index].mainPrice,
+                  id: homeData.homeThreeCategoryList[index].id,
+                  image: homeData.homeThreeCategoryList[index].thumbnailImage,
+                  name: homeData.homeThreeCategoryList[index].name,
+                  main_price: homeData.homeThreeCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeThreeCategoryList[index].strokedPrice,
+                      homeData.homeThreeCategoryList[index].strokedPrice,
                   has_discount:
-                      homeData.HomeThreeCategoryList[index].hasDiscount,
+                      homeData.homeThreeCategoryList[index].hasDiscount,
                   is_wholesale:
-                      homeData.HomeThreeCategoryList[index].isWholesale,
-                  discount: homeData.HomeThreeCategoryList[index].discount,
+                      homeData.homeThreeCategoryList[index].isWholesale,
+                  discount: homeData.homeThreeCategoryList[index].discount,
                 );
               },
             ),
@@ -1326,7 +1339,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildFourCategoryData(HomePresenter homeData) {
     if (homeData.isFourInitial == true &&
-        homeData.HomeFourCategoryList.length == 0) {
+        homeData.homeFourCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1349,7 +1362,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeFourCategoryList.length > 0) {
+    } else if (homeData.homeFourCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 220,
@@ -1366,24 +1379,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeFourCategoryList.length,
+              itemCount: homeData.homeFourCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeFourCategoryList[index].id,
-                  image: homeData.HomeFourCategoryList[index].thumbnailImage,
-                  name: homeData.HomeFourCategoryList[index].name,
-                  main_price: homeData.HomeFourCategoryList[index].mainPrice,
+                  id: homeData.homeFourCategoryList[index].id,
+                  image: homeData.homeFourCategoryList[index].thumbnailImage,
+                  name: homeData.homeFourCategoryList[index].name,
+                  main_price: homeData.homeFourCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeFourCategoryList[index].strokedPrice,
+                      homeData.homeFourCategoryList[index].strokedPrice,
                   has_discount:
-                      homeData.HomeFourCategoryList[index].hasDiscount,
+                      homeData.homeFourCategoryList[index].hasDiscount,
                   is_wholesale:
-                      homeData.HomeFourCategoryList[index].isWholesale,
-                  discount: homeData.HomeFourCategoryList[index].discount,
+                      homeData.homeFourCategoryList[index].isWholesale,
+                  discount: homeData.homeFourCategoryList[index].discount,
                 );
               },
             ),
@@ -1403,7 +1416,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildFiveCategoryData(HomePresenter homeData) {
     if (homeData.isFiveInitial == true &&
-        homeData.HomeFiveCategoryList.length == 0) {
+        homeData.homeFiveCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1426,7 +1439,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeFiveCategoryList.length > 0) {
+    } else if (homeData.homeFiveCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 220,
@@ -1443,24 +1456,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeFiveCategoryList.length,
+              itemCount: homeData.homeFiveCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeFiveCategoryList[index].id,
-                  image: homeData.HomeFiveCategoryList[index].thumbnailImage,
-                  name: homeData.HomeFiveCategoryList[index].name,
-                  main_price: homeData.HomeFiveCategoryList[index].mainPrice,
+                  id: homeData.homeFiveCategoryList[index].id,
+                  image: homeData.homeFiveCategoryList[index].thumbnailImage,
+                  name: homeData.homeFiveCategoryList[index].name,
+                  main_price: homeData.homeFiveCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeFiveCategoryList[index].strokedPrice,
+                      homeData.homeFiveCategoryList[index].strokedPrice,
                   has_discount:
-                      homeData.HomeFiveCategoryList[index].hasDiscount,
+                      homeData.homeFiveCategoryList[index].hasDiscount,
                   is_wholesale:
-                      homeData.HomeFiveCategoryList[index].isWholesale,
-                  discount: homeData.HomeFiveCategoryList[index].discount,
+                      homeData.homeFiveCategoryList[index].isWholesale,
+                  discount: homeData.homeFiveCategoryList[index].discount,
                 );
               },
             ),
@@ -1482,7 +1495,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildSixCategoryData(HomePresenter homeData) {
     if (homeData.isSixInitial == true &&
-        homeData.HomeSixCategoryList.length == 0) {
+        homeData.homeSixCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1505,7 +1518,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeSixCategoryList.length > 0) {
+    } else if (homeData.homeSixCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 220,
@@ -1522,22 +1535,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeSixCategoryList.length,
+              itemCount: homeData.homeSixCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeSixCategoryList[index].id,
-                  image: homeData.HomeSixCategoryList[index].thumbnailImage,
-                  name: homeData.HomeSixCategoryList[index].name,
-                  main_price: homeData.HomeSixCategoryList[index].mainPrice,
+                  id: homeData.homeSixCategoryList[index].id,
+                  image: homeData.homeSixCategoryList[index].thumbnailImage,
+                  name: homeData.homeSixCategoryList[index].name,
+                  main_price: homeData.homeSixCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeSixCategoryList[index].strokedPrice,
-                  has_discount: homeData.HomeSixCategoryList[index].hasDiscount,
-                  is_wholesale: homeData.HomeSixCategoryList[index].isWholesale,
-                  discount: homeData.HomeSixCategoryList[index].discount,
+                      homeData.homeSixCategoryList[index].strokedPrice,
+                  has_discount: homeData.homeSixCategoryList[index].hasDiscount,
+                  is_wholesale: homeData.homeSixCategoryList[index].isWholesale,
+                  discount: homeData.homeSixCategoryList[index].discount,
                 );
               },
             ),
@@ -1557,7 +1570,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildSevenCategoryData(HomePresenter homeData) {
     if (homeData.isSevenInitial == true &&
-        homeData.HomeSevenCategoryList.length == 0) {
+        homeData.homeSevenCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1580,7 +1593,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeSevenCategoryList.length > 0) {
+    } else if (homeData.homeSevenCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 220,
@@ -1597,24 +1610,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeSevenCategoryList.length,
+              itemCount: homeData.homeSevenCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeSevenCategoryList[index].id,
-                  image: homeData.HomeSevenCategoryList[index].thumbnailImage,
-                  name: homeData.HomeSevenCategoryList[index].name,
-                  main_price: homeData.HomeSevenCategoryList[index].mainPrice,
+                  id: homeData.homeSevenCategoryList[index].id,
+                  image: homeData.homeSevenCategoryList[index].thumbnailImage,
+                  name: homeData.homeSevenCategoryList[index].name,
+                  main_price: homeData.homeSevenCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeSevenCategoryList[index].strokedPrice,
+                      homeData.homeSevenCategoryList[index].strokedPrice,
                   has_discount:
-                      homeData.HomeSevenCategoryList[index].hasDiscount,
+                      homeData.homeSevenCategoryList[index].hasDiscount,
                   is_wholesale:
-                      homeData.HomeSevenCategoryList[index].isWholesale,
-                  discount: homeData.HomeSevenCategoryList[index].discount,
+                      homeData.homeSevenCategoryList[index].isWholesale,
+                  discount: homeData.homeSevenCategoryList[index].discount,
                 );
               },
             ),
@@ -1634,7 +1647,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Widget buildEightCategoryData(HomePresenter homeData) {
     if (homeData.isEightInitial == true &&
-        homeData.HomeEightCategoryList.length == 0) {
+        homeData.homeEightCategoryList.length == 0) {
       return Row(
         children: [
           Padding(
@@ -1657,7 +1670,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ],
       );
-    } else if (homeData.HomeEightCategoryList.length > 0) {
+    } else if (homeData.homeEightCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
           height: 220,
@@ -1674,24 +1687,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               separatorBuilder: (context, index) => SizedBox(
                 width: 14,
               ),
-              itemCount: homeData.HomeEightCategoryList.length,
+              itemCount: homeData.homeEightCategoryList.length,
               scrollDirection: Axis.horizontal,
               //itemExtent: 135,
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemBuilder: (context, index) {
                 return MiniProductCard(
-                  id: homeData.HomeEightCategoryList[index].id,
-                  image: homeData.HomeEightCategoryList[index].thumbnailImage,
-                  name: homeData.HomeEightCategoryList[index].name,
-                  main_price: homeData.HomeEightCategoryList[index].mainPrice,
+                  id: homeData.homeEightCategoryList[index].id,
+                  image: homeData.homeEightCategoryList[index].thumbnailImage,
+                  name: homeData.homeEightCategoryList[index].name,
+                  main_price: homeData.homeEightCategoryList[index].mainPrice,
                   stroked_price:
-                      homeData.HomeEightCategoryList[index].strokedPrice,
+                      homeData.homeEightCategoryList[index].strokedPrice,
                   has_discount:
-                      homeData.HomeEightCategoryList[index].hasDiscount,
+                      homeData.homeEightCategoryList[index].hasDiscount,
                   is_wholesale:
-                      homeData.HomeEightCategoryList[index].isWholesale,
-                  discount: homeData.HomeEightCategoryList[index].discount,
+                      homeData.homeEightCategoryList[index].isWholesale,
+                  discount: homeData.homeEightCategoryList[index].discount,
                 );
               },
             ),
