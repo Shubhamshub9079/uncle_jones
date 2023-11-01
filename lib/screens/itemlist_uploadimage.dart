@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:UncleJons/my_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -65,6 +66,8 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
               height: 20,
             ),
             TextFormField(
+              inputFormatters: [LengthLimitingTextInputFormatter(10)],
+              keyboardType: TextInputType.number,
               validator: (UsernameController) {
                 if (UsernameController!.isEmpty) {
                   return "Please Enter Moblie No";
@@ -125,8 +128,8 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                               children: <Widget>[
                                 GestureDetector(
                                   child: Text("Gallery",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold)),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
                                   onTap: () {
                                     controller.uploadSingleImageGallery();
                                     Navigator.of(context)
@@ -136,8 +139,8 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                                 Padding(padding: EdgeInsets.all(8.0)),
                                 GestureDetector(
                                   child: Text("Camera",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold)),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
                                   onTap: () {
                                     controller.takePicture();
                                     Navigator.of(context)
@@ -221,8 +224,7 @@ class ImageUploadController extends GetxController {
     var image = await pickImageGallery();
 
     try {
-      var request = http.MultipartRequest(
-          "POST", Uri.parse("http://143.198.151.57/api/upload-single-image"))
+      var request = http.MultipartRequest("POST", Uri.parse(""))
         ..fields["image"]
         ..files.add(
           http.MultipartFile(

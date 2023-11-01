@@ -18,7 +18,12 @@ import 'package:toast/toast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Cart extends StatefulWidget {
-  Cart({Key? key, this.has_bottomnav,this.from_navigation = false, this.counter}) : super(key: key);
+  Cart(
+      {Key? key,
+      this.has_bottomnav,
+      this.from_navigation = false,
+      this.counter})
+      : super(key: key);
   final bool? has_bottomnav;
   final bool from_navigation;
   final CartCounter? counter;
@@ -51,18 +56,16 @@ class _CartState extends State<Cart> {
     }
   }
 
-
   @override
   void dispose() {
     super.dispose();
     _mainScrollController.dispose();
   }
 
-
   getCartCount() {
     Provider.of<CartCounter>(context, listen: false).getCount();
     // var res = await CartRepository().getCartCount();
-   // widget.counter.controller.sink.add(res.count);
+    // widget.counter.controller.sink.add(res.count);
   }
 
   fetchData() async {
@@ -149,7 +152,8 @@ class _CartState extends State<Cart> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 child: Text(
-                  AppLocalizations.of(context)!.are_you_sure_to_remove_this_item,
+                  AppLocalizations.of(context)!
+                      .are_you_sure_to_remove_this_item,
                   maxLines: 3,
                   style: TextStyle(color: MyTheme.font_grey, fontSize: 14),
                 ),
@@ -218,10 +222,8 @@ class _CartState extends State<Cart> {
     }
 
     if (cart_ids.length == 0) {
-      ToastComponent.showDialog(
-          AppLocalizations.of(context)!.cart_is_empty,
-          gravity: Toast.center,
-          duration: Toast.lengthLong);
+      ToastComponent.showDialog(AppLocalizations.of(context)!.cart_is_empty,
+          gravity: Toast.center, duration: Toast.lengthLong);
       return;
     }
 
@@ -274,7 +276,8 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+      textDirection:
+          app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
           key: _scaffoldKey,
           //drawer: MainDrawer(),
@@ -327,7 +330,7 @@ class _CartState extends State<Cart> {
       height: widget.has_bottomnav! ? 200 : 120,
       //color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0,vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 4),
         child: Column(
           children: [
             Container(
@@ -342,8 +345,10 @@ class _CartState extends State<Cart> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
                       AppLocalizations.of(context)!.total_amount_ucf,
-                      style:
-                          TextStyle(color: MyTheme.dark_font_grey, fontSize: 13,fontWeight: FontWeight.w700),
+                      style: TextStyle(
+                          color: MyTheme.dark_font_grey,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                   Spacer(),
@@ -437,7 +442,6 @@ class _CartState extends State<Cart> {
                               )),
                     child: Btn.basic(
                       minWidth: MediaQuery.of(context).size.width,
-
                       color: MyTheme.accent_color,
                       shape: app_language_rtl.$!
                           ? RoundedRectangleBorder(
@@ -455,8 +459,7 @@ class _CartState extends State<Cart> {
                               bottomRight: const Radius.circular(6.0),
                             )),
                       child: Text(
-                        AppLocalizations.of(context)!
-                            .proceed_to_shipping_ucf,
+                        AppLocalizations.of(context)!.proceed_to_shipping_ucf,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 13,
@@ -480,9 +483,9 @@ class _CartState extends State<Cart> {
     return AppBar(
       backgroundColor: MyTheme.accent_color,
       leading: Builder(
-        builder: (context) =>
-            widget.from_navigation ? UsefulElements.backToMain(context, go_back: false,color: 'white')
-                : UsefulElements.backButton(context,color: 'white'),
+        builder: (context) => widget.from_navigation
+            ? UsefulElements.backToMain(context, go_back: false, color: 'white')
+            : UsefulElements.backButton(context, color: 'white'),
       ),
       centerTitle: true,
       title: Text(
@@ -534,7 +537,6 @@ class _CartState extends State<Cart> {
                       ),
                       Spacer(),
                       Text(
-
                         partialTotalString(index),
                         style: TextStyle(
                             color: MyTheme.accent_color,
@@ -586,7 +588,7 @@ class _CartState extends State<Cart> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-                width: DeviceInfo(context).width!/4.7,
+                width: DeviceInfo(context).width! / 4.7,
                 height: 80,
                 child: ClipRRect(
                     borderRadius: BorderRadius.horizontal(
@@ -600,7 +602,7 @@ class _CartState extends State<Cart> {
                     ))),
             Container(
               //color: Colors.red,
-              width: DeviceInfo(context).width!/2.7,
+              width: DeviceInfo(context).width! / 2.7,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
@@ -613,12 +615,10 @@ class _CartState extends State<Cart> {
                           .product_name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-
                       style: TextStyle(
                           color: MyTheme.black,
                           fontSize: 12,
                           height: 1.5,
-
                           fontWeight: FontWeight.w700),
                     ),
                     Padding(
@@ -626,7 +626,7 @@ class _CartState extends State<Cart> {
                       child: Row(
                         children: [
                           Text(
-                            SystemConfig.systemCurrency!.symbol!+
+                            SystemConfig.systemCurrency!.symbol! +
                                 (_shopList[seller_index]
                                             .cart_items[item_index]
                                             .price *

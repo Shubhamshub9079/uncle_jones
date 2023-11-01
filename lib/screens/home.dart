@@ -453,7 +453,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ),
                                   ],
                                 ),
-                              ) ],
+                              ) ,
+                                SizedBox(
+                                  width: 130,
+                                ),
+                                Text(
+                                  'View all',
+                                  style: TextStyle(
+                                      color: Colors.pink,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.pink,
+                                  size: 18,
+                                )
+                              ],
                             ),
                           ),
                           buildThreeCategoryData(homeData)

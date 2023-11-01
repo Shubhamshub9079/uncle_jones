@@ -189,18 +189,19 @@ class _BrandProductsState extends State<BrandProducts> {
             crossAxisSpacing: 14,
             itemCount: _productList.length,
             shrinkWrap: true,
-            padding: EdgeInsets.only(top:10.0,bottom: 10,left: 18,right:18),
+            padding:
+                EdgeInsets.only(top: 10.0, bottom: 10, left: 18, right: 18),
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               // 3
               return ProductCard(
-                  id: _productList[index].id,
-                  image: _productList[index].thumbnail_image,
-                  name: _productList[index].name,
-                  main_price: _productList[index].main_price,
-                  stroked_price: _productList[index].stroked_price,
-                  has_discount: _productList[index].has_discount,
-                  discount: _productList[index].discount,
+                id: _productList[index].id,
+                image: _productList[index].thumbnail_image,
+                name: _productList[index].name,
+                main_price: _productList[index].main_price,
+                stroked_price: _productList[index].stroked_price,
+                has_discount: _productList[index].has_discount,
+                discount: _productList[index].discount,
                 is_wholesale: _productList[index].isWholesale,
               );
             },

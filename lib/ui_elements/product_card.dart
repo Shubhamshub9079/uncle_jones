@@ -1,8 +1,20 @@
 import 'package:UncleJons/helpers/system_config.dart';
 import 'package:UncleJons/my_theme.dart';
+import 'package:UncleJons/repositories/cart_repository.dart';
 import 'package:UncleJons/screens/product_details.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
+import '../custom/toast_component.dart';
+import '../helpers/shared_value_helper.dart';
+import '../presenter/cart_counter.dart';
+import '../repositories/product_repository.dart';
 import '../screens/auction_products_details.dart';
+import '../screens/cart.dart';
+import '../screens/login.dart';
 
 class ProductCard extends StatefulWidget {
   var identifier;
@@ -14,7 +26,6 @@ class ProductCard extends StatefulWidget {
   bool? has_discount;
   bool? is_wholesale;
   var discount;
-
 
   ProductCard({
     Key? key,
@@ -34,7 +45,6 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-
 
 
   @override
@@ -201,138 +211,40 @@ class _ProductCardState extends State<ProductCard> {
                                 ],
                               ),
                               SizedBox(
-                                height: 5,
+                                height: 10,
                               ),
-                              // Row(
-                              //   crossAxisAlignment: CrossAxisAlignment.start,
-                              //   mainAxisAlignment: MainAxisAlignment.start,
-                              //   children: [
-                              //     // Text(
-                              //     //   'Save this order : ',
-                              //     //   style: TextStyle(
-                              //     //       color: Colors.green,
-                              //     //       fontSize: 14,
-                              //     //       fontWeight: FontWeight.bold),
-                              //     // ),
-                              //     // Align(
-                              //     //   alignment: Alignment.center,
-                              //     //   child: Column(
-                              //     //     crossAxisAlignment:
-                              //     //         CrossAxisAlignment.start,
-                              //     //     mainAxisAlignment: MainAxisAlignment.start,
-                              //     //
-                              //     //     children: [
-                              //     //       if (widget.has_discount!)
-                              //     //         Container(
-                              //     //           padding: EdgeInsets.symmetric(
-                              //     //               horizontal: 6, vertical: 5),
-                              //     //           margin: EdgeInsets.only(bottom: 5),
-                              //     //           decoration: BoxDecoration(
-                              //     //             border: Border.all(
-                              //     //               color: Colors.green,
-                              //     //               width: 2,
-                              //     //             ),
-                              //     //
-                              //     //                 //color: Colors.red,
-                              //     //                 borderRadius: BorderRadius.circular(17),
-                              //     //             boxShadow: [
-                              //     //               BoxShadow(
-                              //     //                 color: const Color(0x14000000),
-                              //     //                 offset: Offset(-1, 1),
-                              //     //                 blurRadius: 1,
-                              //     //               ),
-                              //     //             ],
-                              //     //           ),
-                              //     //           child: Text(
-                              //     //             widget.discount ?? "",
-                              //     //             style: TextStyle(
-                              //     //               fontSize: 12,
-                              //     //               color: Colors.black,
-                              //     //               fontWeight: FontWeight.w700,
-                              //     //               height: 1.8,
-                              //     //             ),
-                              //     //             textHeightBehavior:
-                              //     //                 TextHeightBehavior(
-                              //     //                     applyHeightToFirstAscent:
-                              //     //                         false),
-                              //     //             softWrap: false,
-                              //     //           ),
-                              //     //         ),
-                              //     //       Visibility(
-                              //     //         visible: whole_sale_addon_installed.$,
-                              //     //         child: widget.is_wholesale != null &&
-                              //     //                 widget.is_wholesale!
-                              //     //             ? Container(
-                              //     //                 padding: EdgeInsets.symmetric(
-                              //     //                     horizontal: 4, vertical: 4),
-                              //     //                 decoration: BoxDecoration(
-                              //     //                   color: Colors.blueGrey,
-                              //     //                   borderRadius:
-                              //     //                       BorderRadius.only(
-                              //     //                     topRight:
-                              //     //                         Radius.circular(6.0),
-                              //     //                     bottomLeft:
-                              //     //                         Radius.circular(6.0),
-                              //     //                   ),
-                              //     //                   boxShadow: [
-                              //     //                     BoxShadow(
-                              //     //                       color: const Color(
-                              //     //                           0x14000000),
-                              //     //                       offset: Offset(-1, 1),
-                              //     //                       blurRadius: 1,
-                              //     //                     ),
-                              //     //                   ],
-                              //     //                 ),
-                              //     //                 child: Text(
-                              //     //                   "Wholesale",
-                              //     //                   style: TextStyle(
-                              //     //                     fontSize: 10,
-                              //     //                     color:
-                              //     //                         const Color(0xffffffff),
-                              //     //                     fontWeight: FontWeight.w700,
-                              //     //                     height: 1.8,
-                              //     //                   ),
-                              //     //                   textHeightBehavior:
-                              //     //                       TextHeightBehavior(
-                              //     //                           applyHeightToFirstAscent:
-                              //     //                               false),
-                              //     //                   softWrap: false,
-                              //     //                 ),
-                              //     //               )
-                              //     //             : SizedBox.shrink(),
-                              //     //       ),
-                              //     //     ],
-                              //     //   ),
-                              //     // ),
-                              //   ],
-                              // ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                          Container(
-                            width: 125,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
 
-                            child: Center(
-                              child: Text(
-                                "Add to Cart",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+
+                              InkWell(
+                                onTap: () {
+                                   // onPressAddToCart(context, _addedToCartSnackbar);
+                                },
+                                child:
+                                Container(
+                                  width: 125,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Add to Cart",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ), //BoxDecoration
-                          )],
+                            ],
                           ),
                         ),
                       ),
                     ],
                   ),
-                  // discount and wholesale
                 ),
               ],
             ),
@@ -342,5 +254,36 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+SnackBar _addedToCartSnackbar = SnackBar(
+  content: Text('new cart',
+
+    style: TextStyle(color: MyTheme.font_grey),
+  ),
+  backgroundColor: MyTheme.soft_accent_color,
+  duration: const Duration(seconds: 3),
+  action: SnackBarAction(
+    label: 'complete',
+    onPressed: ()
+    {
+     Get.to(Cart());
+      },
+
+    textColor: MyTheme.accent_color,
+    disabledTextColor: Colors.grey,
+  ),
+);
+
 
 

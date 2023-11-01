@@ -35,7 +35,8 @@ class CategoryList extends StatefulWidget {
   _CategoryListState createState() => _CategoryListState();
 }
 
-class _CategoryListState extends State<CategoryList> {
+class _CategoryListState extends State<CategoryList>
+    with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final TextEditingController _searchController = TextEditingController();
   var selectedItem = 0;
@@ -52,30 +53,32 @@ class _CategoryListState extends State<CategoryList> {
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: Row(children: [
-            Container(
-                width: MediaQuery.of(context).size.width * 0.35,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFffffff),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 8.0, // soften the shadow
-                      spreadRadius: 1.0, //extend the shadow
-                      offset: Offset(
-                        1.0, // Move to right 5  horizontally
-                        1.0, // Move to bottom 5 Vertically
-                      ),
-                    )
-                  ],
-                ),
-                child: buildTopCategoryList()),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.65,
-              height: MediaQuery.of(context).size.height,
-              child: buildSubCategoryList(),
-            )
-          ],),
+          child: Row(
+            children: [
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFffffff),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 8.0, // soften the shadow
+                        spreadRadius: 1.0, //extend the shadow
+                        offset: Offset(
+                          1.0, // Move to right 5  horizontally
+                          1.0, // Move to bottom 5 Vertically
+                        ),
+                      )
+                    ],
+                  ),
+                  child: buildTopCategoryList()),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.65,
+                height: MediaQuery.of(context).size.height,
+                child: buildSubCategoryList(),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -180,7 +183,7 @@ class _CategoryListState extends State<CategoryList> {
                   itemCount: snapshot.data!.data!.length,
                   // Number of items in the grid
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, // Number of columsns in the grid
+                    crossAxisCount: 2, // Number of columns in the grid
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(

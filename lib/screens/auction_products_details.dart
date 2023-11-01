@@ -663,26 +663,6 @@ class _AuctionProductsDetailsState extends State<AuctionProductsDetails>
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-    SnackBar _addedToCartSnackbar = SnackBar(
-      content: Text(
-        AppLocalizations.of(context)!.added_to_cart,
-        style: TextStyle(color: MyTheme.font_grey),
-      ),
-      backgroundColor: MyTheme.soft_accent_color,
-      duration: const Duration(seconds: 3),
-      action: SnackBarAction(
-        label: AppLocalizations.of(context)!.show_cart_all_capital,
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return Cart(has_bottomnav: false);
-          })).then((value) {
-            onPopped(value);
-          });
-        },
-        textColor: MyTheme.accent_color,
-        disabledTextColor: Colors.grey,
-      ),
-    );
 
     return Directionality(
       textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,

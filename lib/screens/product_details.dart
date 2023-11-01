@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:UncleJons/app_config.dart';
 import 'package:UncleJons/custom/box_decorations.dart';
 import 'package:UncleJons/custom/btn.dart';
 import 'package:UncleJons/custom/device_info.dart';
@@ -52,6 +51,7 @@ class _ProductDetailsState extends State<ProductDetails>
   int _currentImage = 0;
   ScrollController _mainScrollController =
       ScrollController(initialScrollOffset: 0.0);
+
   ScrollController _colorScrollController = ScrollController();
   ScrollController _variantScrollController = ScrollController();
   ScrollController _imageScrollController = ScrollController();
@@ -466,9 +466,9 @@ class _ProductDetailsState extends State<ProductDetails>
                           height: 26,
                           color: Color.fromRGBO(253, 253, 253, 1),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side:
-                                  BorderSide(color: Colors.black, width: 1.0),),
+                            borderRadius: BorderRadius.circular(8.0),
+                            side: BorderSide(color: Colors.black, width: 1.0),
+                          ),
                           child: Text(
                             AppLocalizations.of(context)!.copy_product_link_ucf,
                             style: TextStyle(
@@ -2145,7 +2145,8 @@ class _ProductDetailsState extends State<ProductDetails>
         BottomNavigationBarItem(
           backgroundColor: Colors.transparent,
           label: '',
-          icon: InkWell(
+          icon:
+          InkWell(
             onTap: () {
               onPressAddToCart(context, _addedToCartSnackbar);
             },
@@ -2867,4 +2868,11 @@ $string
 </html>
 """;
   }
+
+
 }
+
+
+
+
+
