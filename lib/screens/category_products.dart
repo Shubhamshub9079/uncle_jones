@@ -35,7 +35,6 @@ class _CategoryProductsState extends State<CategoryProducts> {
   bool _showLoadingContainer = false;
   bool _showSearchBar = false;
 
-
   getSubCategory() async {
     var res =
         await CategoryRepository().getCategories(parent_id: widget.category_id);
@@ -136,28 +135,21 @@ class _CategoryProductsState extends State<CategoryProducts> {
       toolbarHeight: _subCategoryList.isEmpty
           ? DeviceInfo(context).height! / 10
           : DeviceInfo(context).height! / 6.5,
-      flexibleSpace:
-
-
-          Container(
-            height: DeviceInfo(context).height! / 4,
-            width: DeviceInfo(context).width,
-            color: MyTheme.accent_color,
-            alignment: Alignment.topRight,
-          ),
-
-
+      flexibleSpace: Container(
+        height: DeviceInfo(context).height! / 4,
+        width: DeviceInfo(context).width,
+        color: MyTheme.accent_color,
+        alignment: Alignment.topRight,
+      ),
       bottom: PreferredSize(
-          child:
-              AnimatedContainer(
-                //color: MyTheme.textfield_grey,
-                height: _subCategoryList.isEmpty ? 0 : 60,
-                duration: Duration(milliseconds: 500),
-                child: !_isInitial ? buildSubCategory() : buildSubCategory(),
-              ),
-
-
-          preferredSize: Size.fromHeight(0.0),),
+        child: AnimatedContainer(
+          //color: MyTheme.textfield_grey,
+          height: _subCategoryList.isEmpty ? 0 : 60,
+          duration: Duration(milliseconds: 500),
+          child: !_isInitial ? buildSubCategory() : buildSubCategory(),
+        ),
+        preferredSize: Size.fromHeight(0.0),
+      ),
       /*leading: Builder(
         builder: (context) => IconButton(
           icon: Icon(CupertinoIcons.arrow_left, color: MyTheme.dark_grey),
@@ -280,32 +272,32 @@ class _CategoryProductsState extends State<CategoryProducts> {
     );
   }
 
-
   ListView buildSubCategory() {
     return ListView.separated(
       padding: EdgeInsets.only(left: 18, right: 18, bottom: 10),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         if (index == 0) {
-
           // The first container with static text
-          return Container(
-            height: 46,
-            width: 96,
-            alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecorations.buildBoxDecoration_1(),
-            child: Text(
-              "All",
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-                color: MyTheme.font_grey,
+          return GestureDetector(
+            onTap: (){},
+            child: Container(
+              height: 46,
+              width: 96,
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecorations.buildBoxDecoration_1(),
+              child: Text(
+                "All",
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: MyTheme.font_grey,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           );
-
         } else {
           // Containers with API data
           int dataIndex = index - 1; // Adjust the index to match your API data
@@ -343,14 +335,15 @@ class _CategoryProductsState extends State<CategoryProducts> {
             );
           }
         }
-        return SizedBox.shrink(); // Return an empty container for unsupported indices.
+        return SizedBox
+            .shrink(); // Return an empty container for unsupported indices.
       },
       separatorBuilder: (context, index) {
         return SizedBox(width: 10);
       },
-      itemCount: _subCategoryList.length + 1, // Adjust the count to include the static container.
+      itemCount: _subCategoryList.length +
+          1, // Adjust the count to include the static container.
     );
-
   }
 
   buildProductList() {
@@ -369,27 +362,27 @@ class _CategoryProductsState extends State<CategoryProducts> {
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
           child:
-          // ListView.builder(
-          //   scrollDirection: Axis.vertical,
-          //   itemCount: _productList.length,
-          //   itemBuilder: (context, index) {
-          //     return Padding(
-          //       padding: EdgeInsets.only(top: 10.0, bottom: 10, left: 18, right: 18),
-          //       child: ProductCard(
-          //         id: _productList[index].id,
-          //         image: _productList[index].thumbnail_image,
-          //         name: _productList[index].name,
-          //         main_price: _productList[index].main_price,
-          //         stroked_price: _productList[index].stroked_price,
-          //         discount: _productList[index].discount,
-          //         is_wholesale: _productList[index].isWholesale,
-          //         has_discount: _productList[index].has_discount,
-          //       ),
-          //     );
-          //   },
-          // )
+              // ListView.builder(
+              //   scrollDirection: Axis.vertical,
+              //   itemCount: _productList.length,
+              //   itemBuilder: (context, index) {
+              //     return Padding(
+              //       padding: EdgeInsets.only(top: 10.0, bottom: 10, left: 18, right: 18),
+              //       child: ProductCard(
+              //         id: _productList[index].id,
+              //         image: _productList[index].thumbnail_image,
+              //         name: _productList[index].name,
+              //         main_price: _productList[index].main_price,
+              //         stroked_price: _productList[index].stroked_price,
+              //         discount: _productList[index].discount,
+              //         is_wholesale: _productList[index].isWholesale,
+              //         has_discount: _productList[index].has_discount,
+              //       ),
+              //     );
+              //   },
+              // )
 
-          ListView.builder(
+              ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: _productList.length,
             shrinkWrap: true,
