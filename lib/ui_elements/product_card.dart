@@ -45,8 +45,6 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-
-
   @override
   Widget build(
     BuildContext context,
@@ -213,14 +211,11 @@ class _ProductCardState extends State<ProductCard> {
                               SizedBox(
                                 height: 10,
                               ),
-
-
                               InkWell(
                                 onTap: () {
-                                   // onPressAddToCart(context, _addedToCartSnackbar);
+                                  // onPressAddToCart(context, _addedToCartSnackbar);
                                 },
-                                child:
-                                Container(
+                                child: Container(
                                   width: 125,
                                   height: 30,
                                   decoration: BoxDecoration(
@@ -254,36 +249,4 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-SnackBar _addedToCartSnackbar = SnackBar(
-  content: Text('new cart',
-
-    style: TextStyle(color: MyTheme.font_grey),
-  ),
-  backgroundColor: MyTheme.soft_accent_color,
-  duration: const Duration(seconds: 3),
-  action: SnackBarAction(
-    label: 'complete',
-    onPressed: ()
-    {
-     Get.to(Cart());
-      },
-
-    textColor: MyTheme.accent_color,
-    disabledTextColor: Colors.grey,
-  ),
-);
-
-
 

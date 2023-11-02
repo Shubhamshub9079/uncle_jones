@@ -35,6 +35,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
   bool _showLoadingContainer = false;
   bool _showSearchBar = false;
 
+
   getSubCategory() async {
     var res =
         await CategoryRepository().getCategories(parent_id: widget.category_id);
@@ -135,20 +136,28 @@ class _CategoryProductsState extends State<CategoryProducts> {
       toolbarHeight: _subCategoryList.isEmpty
           ? DeviceInfo(context).height! / 10
           : DeviceInfo(context).height! / 6.5,
-      flexibleSpace: Container(
-        height: DeviceInfo(context).height! / 4,
-        width: DeviceInfo(context).width,
-        color: MyTheme.accent_color,
-        alignment: Alignment.topRight,
-      ),
-      bottom: PreferredSize(
-          child: AnimatedContainer(
-            //color: MyTheme.textfield_grey,
-            height: _subCategoryList.isEmpty ? 0 : 60,
-            duration: Duration(milliseconds: 500),
-            child: !_isInitial ? buildSubCategory() : buildSubCategory(),
+      flexibleSpace:
+
+
+          Container(
+            height: DeviceInfo(context).height! / 4,
+            width: DeviceInfo(context).width,
+            color: MyTheme.accent_color,
+            alignment: Alignment.topRight,
           ),
-          preferredSize: Size.fromHeight(0.0)),
+
+
+      bottom: PreferredSize(
+          child:
+              AnimatedContainer(
+                //color: MyTheme.textfield_grey,
+                height: _subCategoryList.isEmpty ? 0 : 60,
+                duration: Duration(milliseconds: 500),
+                child: !_isInitial ? buildSubCategory() : buildSubCategory(),
+              ),
+
+
+          preferredSize: Size.fromHeight(0.0),),
       /*leading: Builder(
         builder: (context) => IconButton(
           icon: Icon(CupertinoIcons.arrow_left, color: MyTheme.dark_grey),
@@ -271,48 +280,77 @@ class _CategoryProductsState extends State<CategoryProducts> {
     );
   }
 
+
   ListView buildSubCategory() {
     return ListView.separated(
-        padding: EdgeInsets.only(left: 18, right: 18, bottom: 10),
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return CategoryProducts(
-                      category_id: _subCategoryList[index].id,
-                      category_name: _subCategoryList[index].name,
-                    );
-                  },
-                ),
-              );
-            },
-            child: Container(
-              height: _subCategoryList.isEmpty ? 0 : 46,
-              width: _subCategoryList.isEmpty ? 0 : 96,
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecorations.buildBoxDecoration_1(),
-              child: Text(
-                _subCategoryList[index].name!,
-                style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: MyTheme.font_grey),
-                textAlign: TextAlign.center,
+      padding: EdgeInsets.only(left: 18, right: 18, bottom: 10),
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        if (index == 0) {
+
+          // The first container with static text
+          return Container(
+            height: 46,
+            width: 96,
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecorations.buildBoxDecoration_1(),
+            child: Text(
+              "All",
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: MyTheme.font_grey,
               ),
+              textAlign: TextAlign.center,
             ),
           );
-        },
-        separatorBuilder: (context, index) {
-          return SizedBox(
-            width: 10,
-          );
-        },
-        itemCount: _subCategoryList.length);
+
+        } else {
+          // Containers with API data
+          int dataIndex = index - 1; // Adjust the index to match your API data
+          if (dataIndex < _subCategoryList.length) {
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CategoryProducts(
+                        category_id: _subCategoryList[dataIndex].id,
+                        category_name: _subCategoryList[dataIndex].name,
+                      );
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 46,
+                width: 96,
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecorations.buildBoxDecoration_1(),
+                child: Text(
+                  _subCategoryList[dataIndex].name!,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: MyTheme.font_grey,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          }
+        }
+        return SizedBox.shrink(); // Return an empty container for unsupported indices.
+      },
+      separatorBuilder: (context, index) {
+        return SizedBox(width: 10);
+      },
+      itemCount: _subCategoryList.length + 1, // Adjust the count to include the static container.
+    );
+
   }
 
   buildProductList() {

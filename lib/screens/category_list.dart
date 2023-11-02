@@ -39,6 +39,7 @@ class _CategoryListState extends State<CategoryList>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final TextEditingController _searchController = TextEditingController();
+
   var selectedItem = 0;
   var selectedItemId = "5";
 
@@ -142,6 +143,7 @@ class _CategoryListState extends State<CategoryList>
             return Container(
               margin: EdgeInsets.only(bottom: 60),
               child: ListView.builder(
+                // controller: _scrollController,
                 itemCount: snapshot.data!.categories!.length,
                 padding: EdgeInsets.symmetric(vertical: 15),
                 scrollDirection: Axis.vertical,

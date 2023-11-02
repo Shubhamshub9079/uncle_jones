@@ -43,7 +43,6 @@ class ProductDetails extends StatefulWidget {
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
-
 class _ProductDetailsState extends State<ProductDetails>
     with TickerProviderStateMixin {
   bool _showCopied = false;
@@ -380,8 +379,9 @@ class _ProductDetailsState extends State<ProductDetails>
   }
 
   onPressBuyNow(context) {
-    addToCart(mode: "buy_now", context: context);
+     addToCart(mode: "buy_now", context: context);
   }
+
 
   addToCart({mode, context = null, snackbar = null}) async {
     if (is_logged_in.$ == false) {
