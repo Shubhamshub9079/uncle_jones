@@ -1,9 +1,11 @@
 
-import 'package:UncleJons/custom/AIZTypeDef.dart';
-import 'package:UncleJons/custom/btn.dart';
-import 'package:UncleJons/custom/device_info.dart';
-import 'package:UncleJons/my_theme.dart';
+
 import 'package:flutter/material.dart';
+
+import '../my_theme.dart';
+import 'AIZTypeDef.dart';
+import 'btn.dart';
+import 'device_info.dart';
 
 class ConfirmDialog{
 

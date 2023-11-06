@@ -1,13 +1,12 @@
-import 'package:UncleJons/helpers/shared_value_helper.dart';
-import 'package:UncleJons/helpers/system_config.dart';
-import 'package:UncleJons/screens/address.dart';
-import 'package:UncleJons/screens/cart.dart';
-import 'package:UncleJons/screens/main.dart';
-import 'package:UncleJons/screens/otp.dart';
-import 'package:UncleJons/screens/profile.dart';
-import 'package:UncleJons/screens/profile_edit.dart';
-import 'package:UncleJons/screens/select_address.dart';
+
 import 'package:flutter/material.dart';
+
+import '../data_model/address_response.dart';
+import '../helpers/shared_value_helper.dart';
+import '../helpers/system_config.dart';
+import '../screens/otp.dart';
+import '../screens/profile.dart';
+import '../screens/select_address.dart';
 
 class AIZRoute {
   static  final  otpRoute = Otp(title: "Verify your account",);

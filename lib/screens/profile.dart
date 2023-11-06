@@ -1,38 +1,37 @@
 import 'dart:async';
-import 'package:UncleJons/custom/aiz_route.dart';
-import 'package:UncleJons/custom/box_decorations.dart';
-import 'package:UncleJons/custom/btn.dart';
-import 'package:UncleJons/custom/device_info.dart';
-import 'package:UncleJons/custom/lang_text.dart';
-import 'package:UncleJons/helpers/auth_helper.dart';
-import 'package:UncleJons/screens/auction_products.dart';
-import 'package:UncleJons/screens/classified_ads/classified_ads.dart';
-import 'package:UncleJons/screens/classified_ads/my_classified_ads.dart';
-import 'package:UncleJons/screens/digital_product/digital_products.dart';
-import 'package:UncleJons/screens/filter.dart';
-import 'package:UncleJons/screens/followed_sellers.dart';
-import 'package:UncleJons/screens/login.dart';
-import 'package:UncleJons/screens/main.dart';
+
+
+import 'package:UncleJons/screens/profile_edit.dart';
+import 'package:UncleJons/screens/wallet.dart';
 import 'package:UncleJons/screens/whole_sale_products.dart';
 import 'package:UncleJons/screens/wishlist.dart';
 import 'package:flutter/material.dart';
-import 'package:UncleJons/my_theme.dart';
-import 'package:UncleJons/helpers/shared_value_helper.dart';
-import 'package:UncleJons/app_config.dart';
-import 'package:UncleJons/screens/wallet.dart';
-import 'package:UncleJons/screens/profile_edit.dart';
-import 'package:UncleJons/screens/address.dart';
-import 'package:UncleJons/screens/order_list.dart';
-import 'package:UncleJons/screens/club_point.dart';
-import 'package:UncleJons/screens/refund_request.dart';
-import 'package:UncleJons/repositories/profile_repository.dart';
-import 'package:UncleJons/custom/toast_component.dart';
 import 'package:route_transitions/route_transitions.dart';
 import 'package:toast/toast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../custom/aiz_route.dart';
+import '../custom/box_decorations.dart';
+import '../custom/btn.dart';
+import '../custom/device_info.dart';
+import '../custom/lang_text.dart';
+import '../custom/toast_component.dart';
+import '../helpers/auth_helper.dart';
+import '../helpers/shared_value_helper.dart';
+import '../my_theme.dart';
 import '../repositories/auth_repository.dart';
+import '../repositories/profile_repository.dart';
+import 'auction_products.dart';
+import 'classified_ads/classified_ads.dart';
+import 'classified_ads/my_classified_ads.dart';
+import 'club_point.dart';
 import 'common_webview_screen.dart';
+import 'digital_product/digital_products.dart';
+import 'filter.dart';
+import 'followed_sellers.dart';
 import 'itemlist_uploadimage.dart';
+import 'login.dart';
+import 'main.dart';
+import 'order_list.dart';
 
 class Profile extends StatefulWidget {
   Profile({Key? key, this.show_back_button = false}) : super(key: key);
@@ -570,14 +569,14 @@ class _ProfileState extends State<Profile> {
               AppLocalizations.of(context)!.address_ucf,
               is_logged_in.$
                   ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Address();
-                          },
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) {
+                      //       return Address();
+                      //     },
+                      //   ),
+                      // );
                     }
                   : () => showLoginWarning()),
         ],
@@ -887,12 +886,13 @@ class _ProfileState extends State<Profile> {
                 "assets/refund.png",
                 AppLocalizations.of(context)!.refund_requests_ucf,
                 is_logged_in.$
-                    ? () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return RefundRequest();
-                        }));
-                      }
+                    ? () {}
+                // {
+                //         Navigator.push(context,
+                //             MaterialPageRoute(builder: (context) {
+                //           return RefundRequest();
+                //         }));
+                //       }
                     : () => null),
           if (refund_addon_installed.$)
             Divider(
@@ -970,7 +970,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Terms Conditions",
-                  url: "https://unclejons.in/terms",
+                  url: "https://mate.net.in",
                 ),
               ),
             ),
@@ -987,7 +987,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Privacy Policy",
-                  url: "https://unclejons.in/privacy-policy",
+                  url: "https://mate.net.in",
                 ),
               ),
             ),
@@ -1004,7 +1004,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Shipping Policy",
-                  url: "https://unclejons.in/support-policy",
+                  url: "https://mate.net.in",
                 ),
               ),
             ),
@@ -1021,7 +1021,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Return Policy",
-                  url: "https://unclejons.in/return-policy",
+                  url: "https://mate.net.in",
                 ),
               ),
             ),

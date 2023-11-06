@@ -12,7 +12,6 @@ import 'package:UncleJons/data_model/state_response.dart';
 import 'package:UncleJons/data_model/country_response.dart';
 import 'package:UncleJons/custom/toast_component.dart';
 import 'package:toast/toast.dart';
-import 'package:UncleJons/other_config.dart';
 import 'package:UncleJons/screens/map_location.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
