@@ -18,10 +18,10 @@ class AppConfig {
   static const DOMAIN_PATH = "192.168.8.17/ecommerce"; //localhost
 
   //do not configure these below
-  static const String API_ENDPATH = "unclejons.in/api/v2";
+  static const String API_ENDPATH = "mate.net.in/api/v2";
   static const String PROTOCOL = HTTPS ? "https://" : "http://";
-  static const String RAW_BASE_URL = "https://unclejons.in/";
-  static const String BASE_URL = "https://unclejons.in/api/v2";
+  static const String RAW_BASE_URL = "https://mate.net.in/";
+  static const String BASE_URL = "https://mate.net.in/api/v2";
 
 
   @override

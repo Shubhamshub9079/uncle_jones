@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:one_context/one_context.dart';
 import 'package:provider/provider.dart';
-import 'package:route_transitions/route_transitions.dart';
 
 class Main extends StatefulWidget {
   Main({Key? key, go_back = true}) : super(key: key);
@@ -52,7 +51,7 @@ class _MainState extends State<Main> {
     //       ? AIZRoute.slideLeft( context,Profile())
     //       : AIZRoute.slideRight(context ,Profile());
     //   return;
-    // }
+    // }y0
 
     setState(() {
       _currentIndex = i;
@@ -155,7 +154,7 @@ class _MainState extends State<Main> {
                       child: Image.asset(
                         "assets/home.png",
                         color: _currentIndex == 0
-                            ? MyTheme.accent_color
+                            ? Colors.red
                             : Color.fromRGBO(153, 153, 153, 1),
                         height: 16,
                       ),
@@ -167,7 +166,7 @@ class _MainState extends State<Main> {
                       child: Image.asset(
                         "assets/categories.png",
                         color: _currentIndex == 1
-                            ? MyTheme.accent_color
+                            ? Colors.red
                             : Color.fromRGBO(153, 153, 153, 1),
                         height: 16,
                       ),
@@ -179,7 +178,7 @@ class _MainState extends State<Main> {
                       child: badges.Badge(
                         badgeStyle: badges.BadgeStyle(
                           shape: badges.BadgeShape.circle,
-                          badgeColor: MyTheme.accent_color,
+                          badgeColor: Colors.red,
                           borderRadius: BorderRadius.circular(10),
                           padding: EdgeInsets.all(5),
                         ),
@@ -189,7 +188,7 @@ class _MainState extends State<Main> {
                         child: Image.asset(
                           "assets/cart.png",
                           color: _currentIndex == 2
-                              ? MyTheme.accent_color
+                              ? Colors.red
                               : Color.fromRGBO(153, 153, 153, 1),
                           height: 16,
                         ),
@@ -211,7 +210,7 @@ class _MainState extends State<Main> {
                     child: Image.asset(
                       "assets/profile.png",
                       color: _currentIndex == 3
-                          ? MyTheme.accent_color
+                          ? Colors.red
                           : Color.fromRGBO(153, 153, 153, 1),
                       height: 16,
                     ),

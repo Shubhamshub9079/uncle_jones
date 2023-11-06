@@ -59,7 +59,6 @@ class UsefulElements {
             borderRadius: borderRadius,
             border: Border.all(color: borderColor, width: borderWidth),
             color: backgroundColor,
-
           ),
           height: height,
           width: width,
