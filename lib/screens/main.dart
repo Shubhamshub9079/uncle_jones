@@ -154,7 +154,7 @@ class _MainState extends State<Main> {
                       child: Image.asset(
                         "assets/home.png",
                         color: _currentIndex == 0
-                            ? Colors.red
+                            ?  MyTheme.accent_color
                             : Color.fromRGBO(153, 153, 153, 1),
                         height: 16,
                       ),
@@ -166,7 +166,7 @@ class _MainState extends State<Main> {
                       child: Image.asset(
                         "assets/categories.png",
                         color: _currentIndex == 1
-                            ? Colors.red
+                            ?  MyTheme.accent_color
                             : Color.fromRGBO(153, 153, 153, 1),
                         height: 16,
                       ),
@@ -178,7 +178,7 @@ class _MainState extends State<Main> {
                       child: badges.Badge(
                         badgeStyle: badges.BadgeStyle(
                           shape: badges.BadgeShape.circle,
-                          badgeColor: Colors.red,
+                          badgeColor:  MyTheme.accent_color,
                           borderRadius: BorderRadius.circular(10),
                           padding: EdgeInsets.all(5),
                         ),
@@ -188,7 +188,7 @@ class _MainState extends State<Main> {
                         child: Image.asset(
                           "assets/cart.png",
                           color: _currentIndex == 2
-                              ? Colors.red
+                              ?  MyTheme.accent_color
                               : Color.fromRGBO(153, 153, 153, 1),
                           height: 16,
                         ),
@@ -210,7 +210,7 @@ class _MainState extends State<Main> {
                     child: Image.asset(
                       "assets/profile.png",
                       color: _currentIndex == 3
-                          ? Colors.red
+                          ?  MyTheme.accent_color
                           : Color.fromRGBO(153, 153, 153, 1),
                       height: 16,
                     ),

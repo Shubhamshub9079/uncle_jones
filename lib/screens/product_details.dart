@@ -43,6 +43,7 @@ class ProductDetails extends StatefulWidget {
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
+
 class _ProductDetailsState extends State<ProductDetails>
     with TickerProviderStateMixin {
   bool _showCopied = false;
@@ -379,9 +380,8 @@ class _ProductDetailsState extends State<ProductDetails>
   }
 
   onPressBuyNow(context) {
-     addToCart(mode: "buy_now", context: context);
+    addToCart(mode: "buy_now", context: context);
   }
-
 
   addToCart({mode, context = null, snackbar = null}) async {
     if (is_logged_in.$ == false) {
@@ -552,173 +552,161 @@ class _ProductDetailsState extends State<ProductDetails>
 
   onTapSellerChat() {
     return showDialog(
-        context: context,
-        builder: (_) => Directionality(
-              textDirection:
-                  app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
-              child: AlertDialog(
-                insetPadding: EdgeInsets.symmetric(horizontal: 10),
-                contentPadding: EdgeInsets.only(
-                    top: 36.0, left: 36.0, right: 36.0, bottom: 2.0),
-                content: Container(
-                  width: 400,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Text(
-                            AppLocalizations.of(context)!.title_ucf,
-                            style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Container(
-                            height: 40,
-                            child: TextField(
-                              controller: sellerChatTitleController,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                hintText: AppLocalizations.of(context)!
-                                    .enter_title_ucf,
-                                hintStyle: TextStyle(
-                                    fontSize: 12.0,
-                                    color: MyTheme.textfield_grey),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: MyTheme.textfield_grey,
-                                      width: 0.5),
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(8.0),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: MyTheme.textfield_grey,
-                                      width: 1.0),
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(8.0),
-                                  ),
-                                ),
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 8.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Text(
-                            "${AppLocalizations.of(context)!.message_ucf} *",
-                            style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Container(
-                            height: 55,
-                            child: TextField(
-                              controller: sellerChatMessageController,
-                              autofocus: false,
-                              maxLines: null,
-                              keyboardType: TextInputType.multiline,
-                              decoration: InputDecoration(
-                                hintText: AppLocalizations.of(context)!
-                                    .enter_message_ucf,
-                                hintStyle: TextStyle(
-                                    fontSize: 12.0,
-                                    color: MyTheme.textfield_grey),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: MyTheme.textfield_grey,
-                                      width: 0.5),
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(8.0),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: MyTheme.textfield_grey,
-                                      width: 1.0),
-                                  borderRadius: const BorderRadius.all(
-                                    const Radius.circular(8.0),
-                                  ),
-                                ),
-                                contentPadding: EdgeInsets.only(
-                                    right: 16.0,
-                                    left: 8.0,
-                                    top: 16.0,
-                                    bottom: 16.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+      context: context,
+      builder: (_) => Directionality(
+        textDirection:
+            app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+        child: AlertDialog(
+          insetPadding: EdgeInsets.symmetric(horizontal: 10),
+          contentPadding:
+              EdgeInsets.only(top: 36.0, left: 36.0, right: 36.0, bottom: 2.0),
+          content: Container(
+            width: 400,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      AppLocalizations.of(context)!.title_ucf,
+                      style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
                     ),
                   ),
-                ),
-                actions: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Btn.minWidthFixHeight(
-                          minWidth: 75,
-                          height: 30,
-                          color: Color.fromRGBO(253, 253, 253, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            side: BorderSide(
-                                color: MyTheme.light_grey, width: 1.0),
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.close_all_capital,
-                            style: TextStyle(
-                              color: MyTheme.font_grey,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Container(
+                      height: 40,
+                      child: TextField(
+                        controller: sellerChatTitleController,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          hintText:
+                              AppLocalizations.of(context)!.enter_title_ucf,
+                          hintStyle: TextStyle(
+                              fontSize: 12.0, color: MyTheme.textfield_grey),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyTheme.textfield_grey, width: 0.5),
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(8.0),
                             ),
                           ),
-                          onPressed: () {
-                            Navigator.of(context, rootNavigator: true).pop();
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        width: 1,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                        child: Btn.minWidthFixHeight(
-                          minWidth: 75,
-                          height: 30,
-                          color: MyTheme.accent_color,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(
-                                  color: MyTheme.light_grey, width: 1.0)),
-                          child: Text(
-                            AppLocalizations.of(context)!.send_all_capital,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyTheme.textfield_grey, width: 1.0),
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(8.0),
+                            ),
                           ),
-                          onPressed: () {
-                            Navigator.of(context, rootNavigator: true).pop();
-                            onPressSendMessage();
-                          },
+                          contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                         ),
-                      )
-                    ],
-                  )
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      "${AppLocalizations.of(context)!.message_ucf} *",
+                      style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Container(
+                      height: 55,
+                      child: TextField(
+                        controller: sellerChatMessageController,
+                        autofocus: false,
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        decoration: InputDecoration(
+                          hintText:
+                              AppLocalizations.of(context)!.enter_message_ucf,
+                          hintStyle: TextStyle(
+                              fontSize: 12.0, color: MyTheme.textfield_grey),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyTheme.textfield_grey, width: 0.5),
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(8.0),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyTheme.textfield_grey, width: 1.0),
+                            borderRadius: const BorderRadius.all(
+                              const Radius.circular(8.0),
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.only(
+                              right: 16.0, left: 8.0, top: 16.0, bottom: 16.0),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ));
+            ),
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Btn.minWidthFixHeight(
+                    minWidth: 75,
+                    height: 30,
+                    color: Color.fromRGBO(253, 253, 253, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: MyTheme.light_grey, width: 1.0),
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context)!.close_all_capital,
+                      style: TextStyle(
+                        color: MyTheme.font_grey,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Btn.minWidthFixHeight(
+                    minWidth: 75,
+                    height: 30,
+                    color: MyTheme.accent_color,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side:
+                            BorderSide(color: MyTheme.light_grey, width: 1.0)),
+                    child: Text(
+                      AppLocalizations.of(context)!.send_all_capital,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                      onPressSendMessage();
+                    },
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   loading() {
@@ -966,7 +954,7 @@ class _ProductDetailsState extends State<ProductDetails>
                   ],
                 ),
 
-                expandedHeight: 460.0,
+                expandedHeight: 470.0,
 
                 flexibleSpace: FlexibleSpaceBar(
                   background: buildProductSliderImageSection(),
@@ -2145,8 +2133,7 @@ class _ProductDetailsState extends State<ProductDetails>
         BottomNavigationBarItem(
           backgroundColor: Colors.transparent,
           label: '',
-          icon:
-          InkWell(
+          icon: InkWell(
             onTap: () {
               onPressAddToCart(context, _addedToCartSnackbar);
             },
@@ -2704,15 +2691,16 @@ class _ProductDetailsState extends State<ProductDetails>
                             //shape: BoxShape.rectangle,
                           ),
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child:
-                                  /*Image.asset(
+                            borderRadius: BorderRadius.circular(10),
+                            child:
+                                /*Image.asset(
                                         singleProduct.product_images[index])*/
-                                  FadeInImage.assetNetwork(
-                                placeholder: 'assets/placeholder.png',
-                                image: _productImageList[index],
-                                fit: BoxFit.contain,
-                              )),
+                                FadeInImage.assetNetwork(
+                              placeholder: 'assets/placeholder.png',
+                              image: _productImageList[index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       );
                     }),
@@ -2727,11 +2715,12 @@ class _ProductDetailsState extends State<ProductDetails>
               height: 250,
               width: MediaQuery.of(context).size.width - 96,
               child: Container(
-                  child: FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder_rectangle.png',
-                image: _productImageList[_currentImage],
-                fit: BoxFit.scaleDown,
-              )),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/placeholder_rectangle.png',
+                  image: _productImageList[_currentImage],
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
             ),
           ),
         ],
@@ -2766,45 +2755,49 @@ class _ProductDetailsState extends State<ProductDetails>
         items: _productImageList.map((i) {
           return Builder(
             builder: (BuildContext context) {
-              return Container(
-                child: Stack(
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        openPhotoDialog(
-                            context, _productImageList[_currentImage]);
-                      },
-                      child: Container(
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Stack(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          openPhotoDialog(
+                              context, _productImageList[_currentImage]);
+                        },
+                        child: Container(
                           height: double.infinity,
-                          width: double.infinity,
+                          width: 350,
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/placeholder_rectangle.png',
                             image: i,
-                            fit: BoxFit.fitHeight,
-                          )),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          _productImageList.length,
-                          (index) => Container(
-                            width: 7.0,
-                            height: 7.0,
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 4.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _currentImage == index
-                                  ? MyTheme.font_grey
-                                  : Colors.grey.withOpacity(0.2),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            _productImageList.length,
+                            (index) => Container(
+                              width: 7.0,
+                              height: 7.0,
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 4.0),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: _currentImage == index
+                                    ? MyTheme.font_grey
+                                    : Colors.grey.withOpacity(0.2),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
@@ -2868,11 +2861,4 @@ $string
 </html>
 """;
   }
-
-
 }
-
-
-
-
-

@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
       height: DeviceInfo(context).height,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/MateS.png"),
+          image: AssetImage("assets/splashadd.jpg"),
           fit: BoxFit.fill,
         ),
       ),
