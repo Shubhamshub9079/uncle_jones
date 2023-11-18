@@ -12,7 +12,7 @@ class ToastComponent {
       gravity: gravity != 0 ? gravity : Toast.bottom,
         backgroundColor:
         Color.fromRGBO(239, 239, 239, .9),
-        textStyle: TextStyle(color: MyTheme.font_grey),
+        textStyle: TextStyle(color: MyTheme.green),
         border: Border(
             top: BorderSide(
               color: Color.fromRGBO(203, 209, 209, 1),

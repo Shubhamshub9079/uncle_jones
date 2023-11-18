@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:UncleJons/my_theme.dart';
@@ -7,7 +8,10 @@ import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:toast/toast.dart';
 
+import '../custom/toast_component.dart';
+import '../helpers/auth_helper.dart';
 import 'home.dart';
 
 class ItemImageUpload extends StatefulWidget {
@@ -20,10 +24,8 @@ class ItemImageUpload extends StatefulWidget {
 }
 
 class _ItemImageUploadState extends State<ItemImageUpload> {
-
-  final ItemImageUploadController controller = Get.put(ItemImageUploadController());
-
-
+  final ItemImageUploadController controller =
+      Get.put(ItemImageUploadController());
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +76,7 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
 
               TextFormField(
                 keyboardType: TextInputType.number,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(10)
-                ],
+                inputFormatters: [LengthLimitingTextInputFormatter(10)],
                 validator: (mobileController) {
                   if (mobileController!.isEmpty) {
                     return "Please Enter Moblie No";
@@ -86,7 +86,6 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                 //cursorColor: hexClr,
                 controller: controller.mobileController,
                 decoration: InputDecoration(
-
                   contentPadding: EdgeInsets.only(left: 10),
                   hintText: "Enter Mobile No.",
                   hintStyle: TextStyle(
@@ -114,7 +113,7 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                   return null;
                 },
                 //cursorColor: hexClr,
-               controller: controller.addressController,
+                controller: controller.addressController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(left: 10),
                   hintText: "Enter Address",
@@ -137,7 +136,7 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
               ),
               TextFormField(
                 maxLines: 5,
-                controller:controller.commentController,
+                controller: controller.commentController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   hintText: "Comment here..",
@@ -167,51 +166,55 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
               //           File(controller.selectedImage.value!.path),
               //         ),
               // ),
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        backgroundColor: Color(0xffFFEBEE),
-                        title: Text(
-                          "From where do you want to take the photo?",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        content: SingleChildScrollView(
-                          child: ListBody(
-                            children: <Widget>[
-                              GestureDetector(
-                                child: Text("Gallery",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                onTap: () {
-                                  controller.pickImage(ImageSource.gallery);
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog
-                                },
-                              ),
-                              Padding(padding: EdgeInsets.all(8.0)),
-                              GestureDetector(
-                                child: Text("Camera",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                onTap: () {
-                                  controller.pickImage(ImageSource.camera);
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog
-                                },
-                              ),
-                            ],
+              SizedBox(
+                width: 250,
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: Color(0xffFFEBEE),
+                          title: Text(
+                            "From where do you want to take the photo?",
+                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
                           ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Text("Image Upload",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                style: ElevatedButton.styleFrom(primary: Colors.pink),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children: <Widget>[
+                                GestureDetector(
+                                  child: Text("Gallery",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                                  onTap: () {
+                                    controller.pickImage(ImageSource.gallery);
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                ),
+                                Padding(padding: EdgeInsets.all(8.0)),
+                                GestureDetector(
+                                  child: Text("Camera",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                                  onTap: () {
+                                    controller.pickImage(ImageSource.camera);
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Text("Image Upload",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: ElevatedButton.styleFrom(primary: Colors.pink),
+                ),
               ),
 
               SizedBox(
@@ -221,17 +224,40 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
               SizedBox(
                 height: 40,
                 width: 350,
-                child:
-                ElevatedButton(
+                child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: MyTheme.accent_color, onPrimary: Colors.yellow),
-                 onPressed:
-                 controller.uploadData
-                  ,child: Text('Submit',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
+                    primary: MyTheme.accent_color,
+                    onPrimary: Colors.yellow,
+                  ),
+                  onPressed: () async {
+                    // Set a loading state
+                    controller.setLoading(true);
+
+                    // Wait for the uploadData method to complete
+                    await controller.uploadData(context);
+
+                    // Reset the loading state
+                    controller.setLoading(false);
+                  },
+                  child: FutureBuilder(
+                    // Use the isLoading property to determine whether to show the button or the circular progress indicator
+                    future: Future.delayed(Duration.zero),
+                    builder: (context, snapshot) {
+                      if (controller.isLoading) {
+                        return CircularProgressIndicator();
+                      } else {
+                        return Text(
+                          'Submit',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -241,6 +267,14 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
 }
 
 class ItemImageUploadController extends GetxController {
+  RxBool _isLoading = RxBool(false);
+
+  bool get isLoading => _isLoading.value;
+
+  void setLoading(bool value) {
+    _isLoading.value = value;
+  }
+
   final picker = ImagePicker();
   TextEditingController nameController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
@@ -260,16 +294,14 @@ class ItemImageUploadController extends GetxController {
     _image.value = pickedImage;
   }
 
-
-  Future<void> uploadData() async {
-    if (
-    nameController.text.isEmpty ||
+  Future<void> uploadData(BuildContext context) async {
+    if (nameController.text.isEmpty ||
         mobileController.text.isEmpty ||
         addressController.text.isEmpty) {
       // Handle validation or show an error message
       return;
     }
-
+    setLoading(true);
     // Prepare the data
     var formData = http.MultipartRequest(
         'POST', Uri.parse('https://unclejons.in/api/v2/manualorder'));
@@ -285,32 +317,36 @@ class ItemImageUploadController extends GetxController {
     try {
       var response = await formData.send();
       if (response.statusCode == 200) {
-        // Successfully uploaded
+        var responseData = await response.stream.bytesToString();
+        Map<String, dynamic> jsonResponse = json.decode(responseData);
+        setLoading(false);
+        // Assuming the API response has a 'message' field
+        var apiMessage = jsonResponse['message'];
+
+        print('Response: $apiMessage');
+        ToastComponent.showDialog(apiMessage,
+            gravity: Toast.center, duration: Toast.lengthLong);
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) {
+          return Home();
+        }), (newRoute) => false);
+        nameController.clear();
+        mobileController.clear();
+        addressController.clear();
+        commentController.clear();
+
+
         print('Successfully uploaded');
-
-
-
-
-
       } else {
         print('Failed to upload image');
+        setLoading(false);
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'An error occurred: $e',
-        duration: Duration(seconds: 2),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red, // Customize the color if needed
-      );
       print('Error: $e');
+      setLoading(false);
     }
   }
 }
-
-
-
-
 //controller
 // class ImageUploadController extends GetxController {
 //   final ImagePicker _picker = ImagePicker();
