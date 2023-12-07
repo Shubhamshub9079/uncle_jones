@@ -45,6 +45,9 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+
+
+
   @override
   Widget build(
     BuildContext context,
@@ -211,6 +214,8 @@ class _ProductCardState extends State<ProductCard> {
                               SizedBox(
                                 height: 10,
                               ),
+
+
                               InkWell(
                                 onTap: () {
                                   // onPressAddToCart(context, _addedToCartSnackbar);

@@ -39,8 +39,8 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
 
   Future<ProductMiniResponse>? _future;
 
-  late List<Product> _searchList;
-  late List<Product> _fullList;
+ // late List<data> _searchList;
+ // late List<data> _fullList;
   ScrollController? _scrollController;
 
   String timeText(String txt, {default_length = 3}) {
@@ -76,27 +76,27 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
     // TODO: implement initState
     _future =
         ProductRepository().getFlashDealProducts(id: widget.flash_deal_id);
-    _searchList = [];
-    _fullList = [];
+    //_searchList = [];
+  //  _fullList = [];
     super.initState();
   }
 
   _buildSearchList(search_key) async {
-    _searchList.clear();
+   // _searchList.clear();
     //print(_fullList.length);
 
     if (search_key.isEmpty) {
-      _searchList.addAll(_fullList);
+      //_searchList.addAll(_fullList);
       setState(() {});
       //print("_searchList.length on empty " + _searchList.length.toString());
       //print("_fullList.length on empty " + _fullList.length.toString());
     } else {
-      for (var i = 0; i < _fullList.length; i++) {
-        if (StringHelper().stringContains(_fullList[i].name, search_key)!) {
-          _searchList.add(_fullList[i]);
-          setState(() {});
-        }
-      }
+      // for (var i = 0; i < _fullList.length; i++) {
+      //   if (StringHelper().stringContains(_fullList[i].name, search_key)!) {
+      //     _searchList.add(_fullList[i]);
+      //     setState(() {});
+      //   }
+      // }
 
       //print("_searchList.length with txt " + _searchList.length.toString());
       //print("_fullList.length with txt " + _fullList.length.toString());
@@ -104,16 +104,16 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: buildAppBar(context),
-        body: buildProductList(context),
-      ),
-    );
-  }
+  // Widget build(BuildContext context) {
+  //   return Directionality(
+  //     textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+  //     child: Scaffold(
+  //       backgroundColor: Colors.white,
+  //       appBar: buildAppBar(context),
+  //       body: buildProductList(context),
+  //     ),
+  //   );
+  // }
 
   bool? shouldProductBoxBeVisible(product_name, search_key) {
     if (search_key == "") {
@@ -179,68 +179,68 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
     );
   }
 
-  buildProductList(context) {
-    return FutureBuilder(
-        future: _future,
-        builder: (context,AsyncSnapshot<ProductMiniResponse> snapshot) {
-          if (snapshot.hasError) {
-            //snapshot.hasError
-            //print("product error");
-            //print(snapshot.error.toString());
-            return Container();
-          } else if (snapshot.hasData) {
-            var productResponse = snapshot.data;
-            if (_fullList.length == 0) {
-              _fullList.addAll(productResponse!.products!);
-              _searchList.addAll(productResponse!.products!);
-            }
-
-            //print('called');
-
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  buildFlashDealsBanner(context),
-                  MasonryGridView.count(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 14,
-                    crossAxisSpacing: 14,
-                    itemCount: _searchList.length,
-                    shrinkWrap: true,
-                    padding: EdgeInsets.only(
-                        top: 10.0, bottom: 10, left: 18, right: 18),
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      // 3
-                      return ProductCard(
-                          id: _searchList[index].id,
-                          image: _searchList[index].thumbnail_image,
-                          name: _searchList[index].name,
-                          main_price: _searchList[index].main_price,
-                          stroked_price: _searchList[index].stroked_price,
-                          has_discount: _searchList[index].has_discount,
-                          discount: _searchList[index].discount,
-                        is_wholesale:_searchList[index].isWholesale ,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  headerShimmer(),
-                  ShimmerHelper()
-                  .buildProductGridShimmer(scontroller: _scrollController),
-                ],
-              ),
-            );
-
-          }
-        });
-  }
+  // buildProductList(context) {
+  //   return FutureBuilder(
+  //       future: _future,
+  //       builder: (context,AsyncSnapshot<ProductMiniResponse> snapshot) {
+  //         if (snapshot.hasError) {
+  //           //snapshot.hasError
+  //           //print("product error");
+  //           //print(snapshot.error.toString());
+  //           return Container();
+  //         } else if (snapshot.hasData) {
+  //           var productResponse = snapshot.data;
+  //           // if (_fullList.length == 0) {
+  //           //   _fullList.addAll(productResponse!.data!);
+  //           //   _searchList.addAll(productResponse!.data!);
+  //           // }
+  //
+  //           //print('called');
+  //
+  //           // return SingleChildScrollView(
+  //           //   child: Column(
+  //           //     children: [
+  //           //       buildFlashDealsBanner(context),
+  //           //       MasonryGridView.count(
+  //           //         crossAxisCount: 2,
+  //           //         mainAxisSpacing: 14,
+  //           //         crossAxisSpacing: 14,
+  //           //         itemCount: _searchList.length,
+  //           //         shrinkWrap: true,
+  //           //         padding: EdgeInsets.only(
+  //           //             top: 10.0, bottom: 10, left: 18, right: 18),
+  //           //         physics: NeverScrollableScrollPhysics(),
+  //           //         itemBuilder: (context, index) {
+  //           //           // 3
+  //           //           return ProductCard(
+  //           //               id: _searchList[index].id,
+  //           //               image: _searchList[index].thumbnail_image,
+  //           //               name: _searchList[index].name,
+  //           //               main_price: _searchList[index].main_price,
+  //           //               stroked_price: _searchList[index].stroked_price,
+  //           //               has_discount: _searchList[index].has_discount,
+  //           //               discount: _searchList[index].discount,
+  //           //             is_wholesale:_searchList[index].isWholesale ,
+  //           //           );
+  //           //         },
+  //           //       ),
+  //           //     ],
+  //           //   ),
+  //           // );
+  //         } else {
+  //           return SingleChildScrollView(
+  //             child: Column(
+  //               children: [
+  //                 headerShimmer(),
+  //                 ShimmerHelper()
+  //                 .buildProductGridShimmer(scontroller: _scrollController),
+  //               ],
+  //             ),
+  //           );
+  //
+  //         }
+  //       });
+  // }
 
   Container buildFlashDealsBanner(BuildContext context) {
     return Container(
@@ -469,5 +469,11 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
         color: MyTheme.accent_color,
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }

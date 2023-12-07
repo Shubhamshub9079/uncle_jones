@@ -7,8 +7,6 @@ import 'package:UncleJons/my_theme.dart';
 import 'package:UncleJons/presenter/home_presenter.dart';
 import 'package:UncleJons/screens/category_products.dart';
 import 'package:UncleJons/screens/filter.dart';
-import 'package:UncleJons/screens/flash_deal_list.dart';
-import 'package:UncleJons/screens/todays_deal_products.dart';
 import 'package:UncleJons/screens/top_selling_products.dart';
 import 'package:UncleJons/ui_elements/mini_product_card.dart';
 import 'package:UncleJons/ui_elements/product_card.dart';
@@ -1749,82 +1747,82 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
-  Widget buildHomeMenuRow1(BuildContext context, HomePresenter homeData) {
-    return Row(
-      children: [
-        if (homeData.isTodayDeal)
-          Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return TodaysDealProducts();
-                  }),
-                );
-              },
-              child: Container(
-                height: 90,
-                decoration: BoxDecorations.buildBoxDecoration_1(),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Container(
-                          height: 20,
-                          width: 20,
-                          child: Image.asset("assets/todays_deal.png")),
-                    ),
-                    Text(AppLocalizations.of(context)!.todays_deal_ucf,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color.fromRGBO(132, 132, 132, 1),
-                            fontWeight: FontWeight.w300)),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        if (homeData.isTodayDeal && homeData.isFlashDeal) SizedBox(width: 14.0),
-        if (homeData.isFlashDeal)
-          Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return FlashDealList();
-                }));
-              },
-              child: Container(
-                height: 90,
-                decoration: BoxDecorations.buildBoxDecoration_1(),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Container(
-                          height: 20,
-                          width: 20,
-                          child: Image.asset("assets/flash_deal.png")),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.flash_deal_ucf,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Color.fromRGBO(132, 132, 132, 1),
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-      ],
-    );
-  }
+  // Widget buildHomeMenuRow1(BuildContext context, HomePresenter homeData) {
+  //   return Row(
+  //     children: [
+  //       if (homeData.isTodayDeal)
+  //         Flexible(
+  //           flex: 1,
+  //           fit: FlexFit.tight,
+  //           child: GestureDetector(
+  //             onTap: () {
+  //               Navigator.push(
+  //                 context,
+  //                 MaterialPageRoute(builder: (context) {
+  //                   return TodaysDealProducts();
+  //                 }),
+  //               );
+  //             },
+  //             child: Container(
+  //               height: 90,
+  //               decoration: BoxDecorations.buildBoxDecoration_1(),
+  //               child: Column(
+  //                 children: [
+  //                   Padding(
+  //                     padding: const EdgeInsets.all(16.0),
+  //                     child: Container(
+  //                         height: 20,
+  //                         width: 20,
+  //                         child: Image.asset("assets/todays_deal.png")),
+  //                   ),
+  //                   Text(AppLocalizations.of(context)!.todays_deal_ucf,
+  //                       textAlign: TextAlign.center,
+  //                       style: TextStyle(
+  //                           color: Color.fromRGBO(132, 132, 132, 1),
+  //                           fontWeight: FontWeight.w300)),
+  //                 ],
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       if (homeData.isTodayDeal && homeData.isFlashDeal) SizedBox(width: 14.0),
+  //       if (homeData.isFlashDeal)
+  //         // Flexible(
+  //         //   flex: 1,
+  //         //   fit: FlexFit.tight,
+  //         //   child: GestureDetector(
+  //         //     onTap: () {
+  //         //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //         //         return FlashDealList();
+  //         //       }));
+  //         //     },
+  //         //     child: Container(
+  //         //       height: 90,
+  //         //       decoration: BoxDecorations.buildBoxDecoration_1(),
+  //         //       child: Column(
+  //         //         children: [
+  //         //           Padding(
+  //         //             padding: const EdgeInsets.all(16.0),
+  //         //             child: Container(
+  //         //                 height: 20,
+  //         //                 width: 20,
+  //         //                 child: Image.asset("assets/flash_deal.png")),
+  //         //           ),
+  //         //           Text(
+  //         //             AppLocalizations.of(context)!.flash_deal_ucf,
+  //         //             textAlign: TextAlign.center,
+  //         //             style: TextStyle(
+  //         //                 color: Color.fromRGBO(132, 132, 132, 1),
+  //         //                 fontWeight: FontWeight.w300),
+  //         //           ),
+  //         //         ],
+  //         //       ),
+  //         //     ),
+  //         //   ),
+  //         // )
+  //     ],
+  //   );
+  // }
 
   Widget buildHomeMenuRow2(BuildContext context) {
     return Row(

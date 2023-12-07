@@ -100,19 +100,20 @@ class _CartState extends State<Cart> {
     setState(() {});
   }
 
-  partialTotalString(index) {
+  String partialTotalString(index) {
     var partialTotal = 0.00;
-    var partialTotalString = "";
-    if (_shopList[index].cart_items.length > 0) {
+    var partialTotalString = "${SystemConfig.systemCurrency?.symbol}0.00";
+
+    if (_shopList[index].cart_items != null && _shopList[index].cart_items.length > 0) {
       _shopList[index].cart_items.forEach((cart_item) {
         partialTotal += (cart_item.price + cart_item.tax) * cart_item.quantity;
-        partialTotalString =
-            "${SystemConfig.systemCurrency!.symbol}${partialTotal.toStringAsFixed(2)}";
+        partialTotalString = "${SystemConfig.systemCurrency?.symbol}${partialTotal.toStringAsFixed(2)}";
       });
     }
 
     return partialTotalString;
   }
+
 
   onQuantityIncrease(seller_index, item_index) {
     if (_shopList[seller_index].cart_items[item_index].quantity <

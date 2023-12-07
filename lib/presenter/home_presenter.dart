@@ -74,7 +74,7 @@ class HomePresenter extends ChangeNotifier {
     fetchFeaturedProducts();
     fetchAllProducts();
     fetchTodayDealData();
-    fetchFlashDealData();
+  //  fetchFlashDealData();
     fetchBrandData();
     fetchDairyBeverages();
     fetchGrocery();
@@ -95,13 +95,13 @@ class HomePresenter extends ChangeNotifier {
     }
   }
 
-  fetchFlashDealData() async {
-    var deal = await FlashDealRepository().getFlashDeals();
-    if (deal.success! && deal.flashDeals!.isNotEmpty) {
-      isFlashDeal = true;
-      notifyListeners();
-    }
-  }
+  // fetchFlashDealData() async {
+  //   var deal = await FlashDealRepository().getFlashDeals();
+  //   if (deal.success! && deal.flashDeals!.isNotEmpty) {
+  //     isFlashDeal = true;
+  //     notifyListeners();
+  //   }
+  // }
 
   fetchCarouselImages() async {
     var carouselResponse = await SlidersRepository().getSliders();

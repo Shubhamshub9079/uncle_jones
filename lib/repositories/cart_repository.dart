@@ -127,7 +127,7 @@ class CartRepository {
       },
       middleware: BannedUser()
     );
-
+    print('API Response: ${response.body}');
     return cartSummaryResponseFromJson(response.body);
   }
 }

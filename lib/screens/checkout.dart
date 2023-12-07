@@ -138,6 +138,7 @@ class _CheckoutState extends State<Checkout> {
       _used_coupon_code = cartSummaryResponse.coupon_code ?? _used_coupon_code;
       _couponController.text = _used_coupon_code;
       _coupon_applied = cartSummaryResponse.coupon_applied;
+
       setState(() {});
     }
   }
@@ -614,7 +615,7 @@ class _CheckoutState extends State<Checkout> {
                               fontWeight: FontWeight.w600),
                         ),
                       ],
-                    )),
+                    ),),
               ],
             ),
           ),

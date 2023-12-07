@@ -104,17 +104,20 @@ class _CategoryProductsState extends State<CategoryProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: buildAppBar(context),
-        body: Stack(
-          children: [
-            buildProductList(),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: buildLoadingContainer())
-          ],
-        ));
+      backgroundColor: Colors.white,
+      appBar: buildAppBar(context),
+      body: Stack(
+        children: [
+          _productList != null ? buildProductList() : Container(), // Add null check
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: buildLoadingContainer(),
+          )
+        ],
+      ),
+    );
   }
+
 
   Container buildLoadingContainer() {
     return Container(

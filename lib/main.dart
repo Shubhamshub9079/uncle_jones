@@ -159,7 +159,7 @@ class _MyAppState extends State<MyApp> {
               "/chat": (context) => Chat(),
               "/checkout": (context) => Checkout(),
               "/clubpoint": (context) => Clubpoint(),
-              "/flash_deal_list": (context) => FlashDealList(),
+            //  "/flash_deal_list": (context) => FlashDealList(),
               "/flash_deal_products": (context) => FlashDealProducts(),
               "/home": (context) => Home(),
               "/login": (context) => Login(),

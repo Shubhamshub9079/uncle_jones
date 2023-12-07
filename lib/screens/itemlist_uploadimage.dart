@@ -24,8 +24,11 @@ class ItemImageUpload extends StatefulWidget {
 }
 
 class _ItemImageUploadState extends State<ItemImageUpload> {
+  bool isLoading = false;
+  bool apiSuccess = false;
+
   final ItemImageUploadController controller =
-      Get.put(ItemImageUploadController());
+  Get.put(ItemImageUploadController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +44,28 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'You Want Order Manually\n     Please Fill this form',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              SizedBox(height: 14,),
+              Container(
+                height: 2, width: 110,
+                color: Colors.black,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+
               TextFormField(
                 validator: (nameController) {
                   if (nameController!.isEmpty) {
@@ -166,61 +188,89 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
               //           File(controller.selectedImage.value!.path),
               //         ),
               // ),
-              SizedBox(
-                width: 250,
-                height: 45,
-                child: ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: Color(0xffFFEBEE),
-                          title: Text(
-                            "From where do you want to take the photo?",
-                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
-                          ),
-                          content: SingleChildScrollView(
-                            child: ListBody(
-                              children: <Widget>[
-                                GestureDetector(
-                                  child: Text("Gallery",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                                  onTap: () {
-                                    controller.pickImage(ImageSource.gallery);
-                                    Navigator.of(context)
-                                        .pop(); // Close the dialog
-                                  },
+              Column(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 350,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: MyTheme.light_grey,
+                              title: Text(
+                                "From where do you want to take the photo?",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
                                 ),
-                                Padding(padding: EdgeInsets.all(8.0)),
-                                GestureDetector(
-                                  child: Text("Camera",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                                  onTap: () {
-                                    controller.pickImage(ImageSource.camera);
-                                    Navigator.of(context)
-                                        .pop(); // Close the dialog
-                                  },
+                              ),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: <Widget>[
+                                    GestureDetector(
+                                      child: Text(
+                                        "Gallery",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        controller
+                                            .pickImage(ImageSource.gallery);
+                                        Navigator.of(context)
+                                            .pop(); // Close the dialog
+                                      },
+                                    ),
+                                    Padding(padding: EdgeInsets.all(8.0)),
+                                    GestureDetector(
+                                      child: Text(
+                                        "Camera",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        controller
+                                            .pickImage(ImageSource.camera);
+                                        Navigator.of(context)
+                                            .pop(); // Close the dialog
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                  child: Text("Image Upload",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  style: ElevatedButton.styleFrom(primary: Colors.pink),
-                ),
+                      child: Text("Image Upload",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      style:
+                      ElevatedButton.styleFrom(primary: MyTheme.dark_grey),
+                    ),
+                  ),
+                  Obx(
+                        () =>
+                    controller.isImageSelected && controller.image != null
+                        ? Container(
+                      height: 100,
+                      width: 250,
+                      padding: EdgeInsets.all(16),
+                      child: controller.buildSelectedImage(),
+                    )
+                        : Container(), // You can return an empty container or a placeholder image
+                  ),
+                ],
               ),
 
               SizedBox(
-                height: 10,
+                height: 40,
               ),
-
               SizedBox(
                 height: 40,
                 width: 350,
@@ -229,32 +279,34 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                     primary: MyTheme.accent_color,
                     onPrimary: Colors.yellow,
                   ),
-                  onPressed: () async {
-                    // Set a loading state
-                    controller.setLoading(true);
-
-                    // Wait for the uploadData method to complete
-                    await controller.uploadData(context);
-
-                    // Reset the loading state
-                    controller.setLoading(false);
-                  },
-                  child: FutureBuilder(
-                    // Use the isLoading property to determine whether to show the button or the circular progress indicator
-                    future: Future.delayed(Duration.zero),
-                    builder: (context, snapshot) {
-                      if (controller.isLoading) {
-                        return CircularProgressIndicator();
-                      } else {
-                        return Text(
-                          'Submit',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        );
+                  onPressed:
+                  (controller.isApiSuccess || controller.isLoading.isTrue)
+                      ? null
+                      : () async {
+                    try {
+                      controller.setLoading(true);
+                      await controller.uploadData(context);
+                      // Check if the API response is successful (HTTP status code 200)
+                      if (controller.isApiSuccess) {
+                        // If successful, you can disable the button here if needed
                       }
-                    },
+                    } finally {
+                      controller.setLoading(false);
+                    }
+                  },
+                  child: Obx(
+                        () =>
+                    controller.isLoading.isTrue
+                        ? CircularProgressIndicator(color: Colors.grey,)
+                        : Text(
+                      controller.isApiSuccess ? 'Yes' : 'Submit',
+                      style: TextStyle(
+                        color: controller.isApiSuccess
+                            ? Colors.green
+                            : Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -267,12 +319,24 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
 }
 
 class ItemImageUploadController extends GetxController {
-  RxBool _isLoading = RxBool(false);
+  RxBool isLoading = RxBool(false);
 
-  bool get isLoading => _isLoading.value;
+  final RxBool _isImageSelected = RxBool(false);
+
+  RxBool _isApiSuccess = RxBool(false);
+
+  bool get isApiSuccess => _isApiSuccess.value;
+
+  bool get isImageSelected => _isImageSelected.value;
+
+  void pickImage(ImageSource source) async {
+    final pickedImage = await picker.pickImage(source: source);
+    setImage(pickedImage?.path != null ? File(pickedImage!.path) : null);
+    _isImageSelected.value = _image.value != null;
+  }
 
   void setLoading(bool value) {
-    _isLoading.value = value;
+    isLoading.value = value;
   }
 
   final picker = ImagePicker();
@@ -285,13 +349,16 @@ class ItemImageUploadController extends GetxController {
 
   File? get image => _image.value;
 
-  void pickImage(ImageSource source) async {
-    final pickedImage = await picker.pickImage(source: source);
-    setImage(pickedImage?.path != null ? File(pickedImage!.path) : null);
-  }
-
   void setImage(File? pickedImage) {
     _image.value = pickedImage;
+  }
+
+  Widget buildSelectedImage() {
+    if (_image.value != null) {
+      return Image.file(_image.value!);
+    } else {
+      return Container(); // You can return an empty container or a placeholder image
+    }
   }
 
   Future<void> uploadData(BuildContext context) async {
@@ -320,6 +387,7 @@ class ItemImageUploadController extends GetxController {
         var responseData = await response.stream.bytesToString();
         Map<String, dynamic> jsonResponse = json.decode(responseData);
         setLoading(false);
+        var apiSuccess = jsonResponse['success'];
         // Assuming the API response has a 'message' field
         var apiMessage = jsonResponse['message'];
 
@@ -328,14 +396,14 @@ class ItemImageUploadController extends GetxController {
             gravity: Toast.center, duration: Toast.lengthLong);
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (context) {
-          return Home();
-        }), (newRoute) => false);
+              return Home();
+            }), (newRoute) => false);
         nameController.clear();
         mobileController.clear();
         addressController.clear();
         commentController.clear();
-
-
+        setImage(null);
+        _isApiSuccess.value = apiSuccess;
         print('Successfully uploaded');
       } else {
         print('Failed to upload image');
