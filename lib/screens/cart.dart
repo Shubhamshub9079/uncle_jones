@@ -100,16 +100,17 @@ class _CartState extends State<Cart> {
     setState(() {});
   }
 
-  String partialTotalString(index) {
+  partialTotalString(index) {
     var partialTotal = 0.00;
-    var partialTotalString = "${SystemConfig.systemCurrency?.symbol}0.00";
-
-    if (_shopList[index].cart_items != null && _shopList[index].cart_items.length > 0) {
+    if (_shopList[index].cart_items != null &&
+        _shopList[index].cart_items.length > 0) {
       _shopList[index].cart_items.forEach((cart_item) {
         partialTotal += (cart_item.price + cart_item.tax) * cart_item.quantity;
-        partialTotalString = "${SystemConfig.systemCurrency?.symbol}${partialTotal.toStringAsFixed(2)}";
       });
     }
+
+    // Format partialTotal as an integer value without the fractional part
+    var partialTotalString = partialTotal.toInt().toString();
 
     return partialTotalString;
   }

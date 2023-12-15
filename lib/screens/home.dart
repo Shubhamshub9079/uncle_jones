@@ -183,7 +183,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         ),
                       ),
 
-
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
@@ -287,7 +286,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                        color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -296,7 +295,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   ),
                                 ],
@@ -349,7 +348,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                        color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -358,7 +357,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   )
                                 ],
@@ -368,7 +367,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                     // Bakery//
+                      // Bakery//
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
@@ -424,7 +423,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                     // Home Kitchen//
+                      // Home Kitchen//
                       SliverList(
                         delegate: SliverChildListDelegate([
                           Padding(
@@ -434,37 +433,37 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                              Text.rich(
-                                TextSpan(
-                                  text: 'Personal &',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w300),
-                                  children: <InlineSpan>[
-                                    TextSpan(
-                                      text: ' Care',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w900),
-                                    ),
-                                  ],
+                                Text.rich(
+                                  TextSpan(
+                                    text: 'Personal &',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w300),
+                                    children: <InlineSpan>[
+                                      TextSpan(
+                                        text: ' Care',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w900),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ) ,
                                 SizedBox(
                                   width: 140,
                                 ),
                                 Text(
                                   'View all',
                                   style: TextStyle(
-                                      color:  Colors.pink,
+                                      color: Colors.pink,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Icon(
                                   Icons.arrow_forward,
-                                  color:  Colors.pink,
+                                  color: Colors.pink,
                                   size: 18,
                                 )
                               ],
@@ -554,13 +553,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                        color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w900),
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   )
                                 ],
@@ -606,13 +605,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                        color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   )
                                 ],
@@ -658,13 +657,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                        color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   )
                                 ],
@@ -710,13 +709,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                        color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   )
                                 ],
@@ -762,13 +761,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   Text(
                                     'View all',
                                     style: TextStyle(
-                                         color:  Colors.pink,
+                                        color: Colors.pink,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                     color:  Colors.pink,
+                                    color: Colors.pink,
                                     size: 18,
                                   )
                                 ],
@@ -827,6 +826,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             stroked_price: homeData.allProductList[index].stroked_price,
             has_discount: homeData.allProductList[index].has_discount,
             discount: homeData.allProductList[index].discount,
+            // choiceOptions: homeData.allProductList[index].choiceOptions,
           );
         },
       );
@@ -862,7 +862,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               has_discount: homeData.allProductList[index].has_discount,
               discount: homeData.allProductList[index].discount,
               is_wholesale: homeData.allProductList[index].isWholesale,
+              //choiceOptions: homeData.allProductList[index].choiceOptions,
             );
+
           });
     } else if (homeData.totalAllProductData == 0) {
       return Center(

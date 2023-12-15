@@ -579,7 +579,7 @@ class _ProfileState extends State<Profile> {
                       // );
                     }
                   : () => showLoginWarning()),
-        ],
+           ],
       ),
     );
   }
@@ -818,14 +818,14 @@ class _ProfileState extends State<Profile> {
           buildSettingAndAddonsHorizontalMenuItem(
               "assets/orders.png",
               AppLocalizations.of(context)!.my_orders_ucf,
-              is_logged_in.$
-                  ? () {
+             // is_logged_in.$ ?
+                  () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return OrderList();
                       }),);
-                    }
-                  : () => null),
+                    }),
+               //   : () => null),
           Divider(
             thickness: 1,
             color: MyTheme.light_grey,
@@ -852,14 +852,14 @@ class _ProfileState extends State<Profile> {
           buildSettingAndAddonsHorizontalMenuItem(
               "assets/heart.png",
               AppLocalizations.of(context)!.my_wishlist_ucf,
-              is_logged_in.$
-                  ? () {
+           //  is_logged_in.$?
+                   () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return Wishlist();
                       }),);
-                    }
-                  : () => null),
+                    }),
+                //  : () => null),
           Divider(
             thickness: 1,
             color: MyTheme.light_grey,
@@ -970,7 +970,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Terms Conditions",
-                  url: "https://mate.net.in",
+                  url: "https://unclejons.in/terms",
                 ),
               ),
             ),
@@ -987,7 +987,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Privacy Policy",
-                  url: "https://mate.net.in",
+                  url: "https://unclejons.in/privacy-policy",
                 ),
               ),
             ),
@@ -1004,7 +1004,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Shipping Policy",
-                  url: "https://mate.net.in",
+                  url: "https://unclejons.in/support-policy",
                 ),
               ),
             ),
@@ -1021,7 +1021,7 @@ class _ProfileState extends State<Profile> {
               MaterialPageRoute(
                 builder: (context) => CommonWebviewScreen(
                   page_name: "Return Policy",
-                  url: "https://mate.net.in",
+                  url: "https://unclejons.in/return-policy",
                 ),
               ),
             ),
@@ -1053,11 +1053,9 @@ class _ProfileState extends State<Profile> {
       // color: Colors.red,
       // width: DeviceInfo(context).width / 4,
       child: InkWell(
-        onTap: is_logged_in.$
-            ? onTap
-            : () {
-                showLoginWarning();
-              },
+        onTap:
+             onTap,
+
         child: Row(
           children: [
             Image.asset(
@@ -1067,7 +1065,7 @@ class _ProfileState extends State<Profile> {
               fit: BoxFit.fill,
               color: is_logged_in.$
                   ? MyTheme.dark_font_grey
-                  : MyTheme.medium_grey_50,
+                  : MyTheme.dark_font_grey,
             ),
             SizedBox(
               width: 10,
@@ -1081,7 +1079,7 @@ class _ProfileState extends State<Profile> {
                 style: TextStyle(
                     color: is_logged_in.$
                         ? MyTheme.dark_font_grey
-                        : MyTheme.medium_grey_50,
+                        : MyTheme.dark_font_grey,
                     fontSize: 12),
               ),
             ),
