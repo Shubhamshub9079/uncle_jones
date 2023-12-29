@@ -1026,17 +1026,17 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-         // if (is_logged_in.$)
-            // Divider(
-            //   thickness: 1,
-            //   color: MyTheme.light_grey,
-            // ),
-          // if (is_logged_in.$)
-          //   buildSettingAndAddonsHorizontalMenuItem(
-          //       "assets/delete.png", LangText(context).local!.delete_my_account,
-          //       () {
-          //     deleteWarningDialog();
-          //   }),
+        // if (is_logged_in.$)
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
+        //  if (is_logged_in.$)
+            buildSettingAndAddonsHorizontalMenuItem(
+                "assets/delete.png", LangText(context).local!.delete_my_account,
+                () {
+              deleteWarningDialog();
+            }),
 
 
 
