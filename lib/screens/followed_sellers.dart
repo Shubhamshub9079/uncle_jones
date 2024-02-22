@@ -155,12 +155,12 @@ class _FollowedSellersState extends State<FollowedSellers> {
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(16), bottom: Radius.zero),
                       child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/placeholder.png',
+                        placeholder: 'assets/Uncleplaceholder.png',
                         image: sellerInfo.shopLogo!,
                         fit: BoxFit.scaleDown,
                         imageErrorBuilder: (BuildContext errorContext,
                             Object obj, StackTrace? st) {
-                          return Image.asset('assets/placeholder.png');
+                          return Image.asset('assets/Uncleplaceholder.png');
                         },
                       ))),
             ),

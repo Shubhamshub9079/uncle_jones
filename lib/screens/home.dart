@@ -138,50 +138,66 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                      SliverList(
-                        delegate: SliverChildListDelegate(
-                          [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                18.0,
-                                0.0,
-                                22.0,
-                                0.0,
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ItemImageUpload()),
-                                  );
-                                },
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  margin: const EdgeInsets.all(15.0),
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                      color: MyTheme.light_grey,
-                                      border: Border.all(
-                                          width: 2,
-                                          color: MyTheme.accent_color)),
-                                  child: Center(
-                                    child: Text(
-                                      'Manual Order',
-                                      style: TextStyle(
-                                          color: MyTheme.accent_color,
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                      // SliverList(
+                      //   delegate: SliverChildListDelegate(
+                      //     [
+                      //       Padding(
+                      //         padding: const EdgeInsets.fromLTRB(
+                      //           18.0,
+                      //           0.0,
+                      //           22.0,
+                      //           0.0,
+                      //         ),
+                      //         child: InkWell(
+                      //           onTap: () {
+                      //             Navigator.push(
+                      //               context,
+                      //               MaterialPageRoute(
+                      //                   builder: (context) =>
+                      //                       ItemImageUpload()),
+                      //             );
+                      //           },
+                      //           child: Container(
+                      //             height: 48,
+                      //             width: 45,
+                      //             margin: const EdgeInsets.all(15.0),
+                      //             padding: const EdgeInsets.all(3.0),
+                      //             decoration: BoxDecoration(
+                      //               color:  MyTheme.accent_color,
+                      //               borderRadius: BorderRadius.circular(
+                      //                   50), // Half of width and height to make it circular
+                      //             ),
+                      //             child: Row(
+                      //               crossAxisAlignment:
+                      //                   CrossAxisAlignment.center,
+                      //               mainAxisAlignment: MainAxisAlignment.center,
+                      //               children: [
+                      //                 SizedBox(
+                      //                   width: 26,
+                      //                 ),
+                      //                 Text(
+                      //                   'Manual Order',
+                      //                   style: TextStyle(
+                      //                       color: MyTheme.white,
+                      //                       fontSize: 23,
+                      //                       fontWeight: FontWeight.w500),
+                      //                 ),
+                      //                 SizedBox(width: 18),
+                      //                 // Adjust spacing between text and image
+                      //                 Image.asset(
+                      //                   'assets/manualcart.png',
+                      //                   // Replace with your image asset path
+                      //                   height: 75,
+                      //                   width: 90,
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
 
                       SliverList(
                         delegate: SliverChildListDelegate(
@@ -220,21 +236,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 110,
-                                      ),
-                                      Text(
-                                        "View all ",
-                                        style: TextStyle(
-                                            color: Colors.red,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.pink,
-                                        size: 18,
-                                      )
+                                      // SizedBox(
+                                      //   width: 110,
+                                      // ),
+                                      // Text(
+                                      //   "View all ",
+                                      //   style: TextStyle(
+                                      //       color: Colors.red,
+                                      //       fontSize: 12,
+                                      //       fontWeight: FontWeight.w600),
+                                      // ),
+                                      // Icon(
+                                      //   Icons.arrow_forward,
+                                      //   color: Colors.pink,
+                                      //   size: 18,
+                                      // )
                                     ],
                                   ),
                                 ],
@@ -245,7 +261,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       ),
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 160,
+                          height: 165,
                           child: buildHomeFeaturedCategories(context, homeData),
                         ),
                       ),
@@ -280,24 +296,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 110,
-                                  ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  ),
+                                  // SizedBox(
+                                  //   width: 105,
+                                  // ),
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // SizedBox(
+                                  //   width: 3,
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // ),
                                 ],
                               ),
                             ),
@@ -343,23 +359,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 130,
+                                    width: 125,
                                   ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // SizedBox(
+                                  //   width: 3,
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -399,23 +415,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 200,
+                                    width: 195,
                                   ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // SizedBox(
+                                  //   width: 3,
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -451,21 +467,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 140,
-                                ),
-                                Text(
-                                  'View all',
-                                  style: TextStyle(
-                                      color: Colors.pink,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.pink,
-                                  size: 18,
-                                )
+                                // SizedBox(
+                                //   width: 140,
+                                // ),
+                                // Text(
+                                //   'View all',
+                                //   style: TextStyle(
+                                //       color: Colors.pink,
+                                //       fontSize: 12,
+                                //       fontWeight: FontWeight.w600),
+                                // ),
+                                // Icon(
+                                //   Icons.arrow_forward,
+                                //   color: Colors.pink,
+                                //   size: 18,
+                                // )
                               ],
                             ),
                           ),
@@ -547,21 +563,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 190,
-                                  ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w900),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // SizedBox(
+                                  //   width: 190,
+                                  // ),
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w900),
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -599,21 +615,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 150,
-                                  ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // SizedBox(
+                                  //   width: 150,
+                                  // ),
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -651,21 +667,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 170,
-                                  ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // SizedBox(
+                                  //   width: 170,
+                                  // ),
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -703,21 +719,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 170,
-                                  ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // SizedBox(
+                                  //   width: 170,
+                                  // ),
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -755,21 +771,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 135,
-                                  ),
-                                  Text(
-                                    'View all',
-                                    style: TextStyle(
-                                        color: Colors.pink,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.pink,
-                                    size: 18,
-                                  )
+                                  // SizedBox(
+                                  //   width: 135,
+                                  // ),
+                                  // Text(
+                                  //   'View all',
+                                  //   style: TextStyle(
+                                  //       color: Colors.pink,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.w600),
+                                  // ),
+                                  // Icon(
+                                  //   Icons.arrow_forward,
+                                  //   color: Colors.pink,
+                                  //   size: 18,
+                                  // )
                                 ],
                               ),
                             ),
@@ -792,6 +808,29 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ],
             );
           }),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+        child: SizedBox(
+          height: 100,
+          width: 75,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ItemImageUpload()),
+              );
+            },
+            child: Image.asset(
+              'assets/order1.png',
+              height: 55,
+            ),
+            // Replace with your desired icon
+            backgroundColor: MyTheme.accent_color,
+            shape: CircleBorder(), // Replace with your desired background color
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 
@@ -864,7 +903,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               is_wholesale: homeData.allProductList[index].isWholesale,
               //choiceOptions: homeData.allProductList[index].choiceOptions,
             );
-
           });
     } else if (homeData.totalAllProductData == 0) {
       return Center(
@@ -923,7 +961,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           height: 50,
                           width: 50,
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: homeData.featuredCategoryList[index].banner,
                             fit: BoxFit.cover,
                             height: 50,
@@ -1112,7 +1150,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 borderRadius: BorderRadius.vertical(
                     top: Radius.circular(6), bottom: Radius.zero),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/placeholder.png',
+                  placeholder: 'assets/Uncleplaceholder.png',
                   image: homeData.homeBrandList[index].logo,
                   fit: BoxFit.cover,
                 ),
@@ -1160,7 +1198,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (homeData.homeOneCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
-          height: 210,
+          height: 200,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
@@ -1432,12 +1470,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -1586,12 +1626,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -1663,12 +1705,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -1740,12 +1784,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       );
     } else {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_related_product,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -1929,15 +1975,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Container(
-                          height: 20,
-                          width: 20,
-                          child: Image.asset("assets/top_sellers.png")),
+                        height: 20,
+                        width: 20,
+                        child: Image.asset("assets/top_sellers.png"),
+                      ),
                     ),
-                    Text(AppLocalizations.of(context)!.top_sellers_ucf,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color.fromRGBO(132, 132, 132, 1),
-                            fontWeight: FontWeight.w300)),
+                    Text(
+                      AppLocalizations.of(context)!.top_sellers_ucf,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Color.fromRGBO(132, 132, 132, 1),
+                          fontWeight: FontWeight.w300),
+                    ),
                   ],
                 ),
               ),
@@ -1996,12 +2045,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (!homeData.isCarouselInitial &&
         homeData.carouselImageList.length == 0) {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.no_carousel_image_found,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     } else {
       // should not be happening
       return Container(
@@ -2137,9 +2188,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       automaticallyImplyLeading: false,
       title: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return Filter();
-          }));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return Filter();
+            }),
+          );
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),

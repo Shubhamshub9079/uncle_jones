@@ -36,7 +36,7 @@ class _BrandSquareCardState extends State<BrandSquareCard> {
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(16), bottom: Radius.zero),
                       child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/placeholder.png',
+                        placeholder: 'assets/Uncleplaceholder.png',
                         image:  widget.image!,
                         fit: BoxFit.cover,
                       ))),

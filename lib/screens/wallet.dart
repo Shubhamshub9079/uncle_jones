@@ -124,7 +124,7 @@ class _WalletState extends State<Wallet> {
         rechargeAmount: amount,
         title: AppLocalizations.of(context)!.recharge_wallet_ucf,
       );
-    }));
+    }),);
     // Navigator.push(context, MaterialPageRoute(builder: (context) {
     //   return RechargeWallet(amount: amount );
     // }));
@@ -183,7 +183,7 @@ class _WalletState extends State<Wallet> {
                   )*/
                 ],
               ),
-            )),
+            ),),
       ),
     );
   }
@@ -331,34 +331,35 @@ class _WalletState extends State<Wallet> {
                       color: MyTheme.dark_font_grey,
                       fontSize: 12,
                       fontWeight: FontWeight.w600),
-                )),
+                ),),
             Container(
-                width: 100,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _rechargeList[index].date,
-                      style: TextStyle(
-                        color: MyTheme.dark_font_grey,
-                        fontSize: 12,
-                      ),
+              width: 100,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _rechargeList[index].date,
+                    style: TextStyle(
+                      color: MyTheme.dark_font_grey,
+                      fontSize: 12,
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.payment_method_ucf,
-                      style: TextStyle(
-                          color: MyTheme.dark_font_grey, fontSize: 12),
-                    ),
-                    Text(
-                      _rechargeList[index].payment_method,
-                      style: TextStyle(
-                          color: MyTheme.dark_font_grey, fontSize: 12),
-                    ),
-                  ],
-                )),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.payment_method_ucf,
+                    style:
+                        TextStyle(color: MyTheme.dark_font_grey, fontSize: 12),
+                  ),
+                  Text(
+                    _rechargeList[index].payment_method,
+                    style:
+                        TextStyle(color: MyTheme.dark_font_grey, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
             Spacer(),
             Container(
                 width: 120,
@@ -497,124 +498,124 @@ class _WalletState extends State<Wallet> {
 
   Future buildShowAddFormDialog(BuildContext context) {
     return showDialog(
-        context: context,
-        builder: (_) => Directionality(
-              textDirection:
-                  app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
-              child: AlertDialog(
-                insetPadding: EdgeInsets.symmetric(horizontal: 10),
-                contentPadding: EdgeInsets.only(
-                    top: 36.0, left: 36.0, right: 36.0, bottom: 2.0),
-                content: Container(
-                  width: 400,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Text(AppLocalizations.of(context)!.amount_ucf,
-                              style: TextStyle(
-                                  color: MyTheme.dark_font_grey,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Container(
-                            height: 40,
-                            child: TextField(
-                              controller: _amountController,
-                              autofocus: false,
-                              keyboardType: TextInputType.numberWithOptions(
-                                  decimal: true),
-                              inputFormatters: [_amountValidator],
-                              decoration: InputDecoration(
-                                  fillColor: MyTheme.light_grey,
-                                  filled: true,
-                                  hintText: AppLocalizations.of(context)!
-                                      .enter_amount_ucf,
-                                  hintStyle: TextStyle(
-                                      fontSize: 12.0,
-                                      color: MyTheme.textfield_grey),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: MyTheme.noColor, width: 0.0),
-                                    borderRadius: const BorderRadius.all(
-                                      const Radius.circular(8.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: MyTheme.noColor, width: 0.0),
-                                    borderRadius: const BorderRadius.all(
-                                      const Radius.circular(8.0),
-                                    ),
-                                  ),
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 8.0)),
+      context: context,
+      builder: (_) => Directionality(
+        textDirection:
+            app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+        child: AlertDialog(
+          insetPadding: EdgeInsets.symmetric(horizontal: 10),
+          contentPadding:
+              EdgeInsets.only(top: 36.0, left: 36.0, right: 36.0, bottom: 2.0),
+          content: Container(
+            width: 400,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(AppLocalizations.of(context)!.amount_ucf,
+                        style: TextStyle(
+                            color: MyTheme.dark_font_grey,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      height: 40,
+                      child: TextField(
+                        controller: _amountController,
+                        autofocus: false,
+                        keyboardType:
+                            TextInputType.numberWithOptions(decimal: true),
+                        inputFormatters: [_amountValidator],
+                        decoration: InputDecoration(
+                            fillColor: MyTheme.light_grey,
+                            filled: true,
+                            hintText:
+                                AppLocalizations.of(context)!.enter_amount_ucf,
+                            hintStyle: TextStyle(
+                                fontSize: 12.0, color: MyTheme.textfield_grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: MyTheme.noColor, width: 0.0),
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(8.0),
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: MyTheme.noColor, width: 0.0),
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(8.0),
+                              ),
+                            ),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 8.0)),
+                      ),
                     ),
                   ),
-                ),
-                actions: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Btn.minWidthFixHeight(
-                          minWidth: 75,
-                          height: 30,
-                          color: Color.fromRGBO(253, 253, 253, 1),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6.0),
-                              side: BorderSide(
-                                  color: MyTheme.accent_color, width: 1.0)),
-                          child: Text(
-                            AppLocalizations.of(context)!.close_ucf,
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: MyTheme.accent_color,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context, rootNavigator: true).pop();
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        width: 1,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                        child: Btn.minWidthFixHeight(
-                          minWidth: 75,
-                          height: 30,
-                          color: MyTheme.accent_color,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.0),
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.proceed_ucf,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.normal),
-                          ),
-                          onPressed: () {
-                            onPressProceed();
-                          },
-                        ),
-                      )
-                    ],
-                  )
                 ],
               ),
-            ));
+            ),
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Btn.minWidthFixHeight(
+                    minWidth: 75,
+                    height: 30,
+                    color: Color.fromRGBO(253, 253, 253, 1),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                        side: BorderSide(
+                            color: MyTheme.accent_color, width: 1.0)),
+                    child: Text(
+                      AppLocalizations.of(context)!.close_ucf,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: MyTheme.accent_color,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Btn.minWidthFixHeight(
+                    minWidth: 75,
+                    height: 30,
+                    color: MyTheme.accent_color,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context)!.proceed_ucf,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.normal),
+                    ),
+                    onPressed: () {
+                      onPressProceed();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

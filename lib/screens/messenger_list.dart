@@ -196,7 +196,7 @@ backgroundColor: Colors.white,
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(35),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/placeholder.png',
+                  placeholder: 'assets/Uncleplaceholder.png',
                   image:  _list[index].shop_logo,
                   fit: BoxFit.contain,
                 )),

@@ -208,7 +208,7 @@ class _WishlistState extends State<Wishlist> {
                             borderRadius: BorderRadius.horizontal(
                                 left: Radius.circular(16), right: Radius.zero),
                             child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/placeholder.png',
+                              placeholder: 'assets/Uncleplaceholder.png',
                               image:
                                   _wishlistItems[index].product.thumbnail_image,
                               fit: BoxFit.cover,

@@ -9,7 +9,6 @@ import 'package:UncleJons/repositories/product_repository.dart';
 import 'package:UncleJons/ui_elements/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class CategoryProducts extends StatefulWidget {
   CategoryProducts({Key? key, this.category_name, this.category_id})
@@ -25,6 +24,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
   ScrollController _scrollController = ScrollController();
   ScrollController _xcrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
+  int selectedSubCategoryIndex = -1;
 
   List<dynamic> _productList = [];
   List<Category> _subCategoryList = [];
@@ -137,7 +137,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
       automaticallyImplyLeading: false,
       toolbarHeight: _subCategoryList.isEmpty
           ? DeviceInfo(context).height! / 10
-          : DeviceInfo(context).height! / 6.5,
+          : DeviceInfo(context).height! / 7.0,
       flexibleSpace: Container(
         height: DeviceInfo(context).height! / 4,
         width: DeviceInfo(context).width,
@@ -147,7 +147,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
       bottom: PreferredSize(
         child: AnimatedContainer(
           //color: MyTheme.textfield_grey,
-          height: _subCategoryList.isEmpty ? 0 : 60,
+          height: _subCategoryList.isEmpty ? 0 : 45,
           duration: Duration(milliseconds: 500),
           child: !_isInitial ? buildSubCategory() : buildSubCategory(),
         ),
@@ -187,7 +187,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
         crossFadeState: _showSearchBar
             ? CrossFadeState.showSecond
             : CrossFadeState.showFirst,
-        duration: Duration(milliseconds: 500));
+        duration: Duration(milliseconds: 500),);
   }
 
   Container buildAppBarTitleOption(BuildContext context) {
@@ -206,7 +206,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
               widget.category_name!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: MyTheme.white),
             ),
           ),
           Spacer(),
@@ -220,7 +220,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
                 padding: EdgeInsets.zero,
                 icon: Icon(
                   Icons.search,
-                  size: 25,
+                  size: 25,color: MyTheme.white,
                 )),
           ),
         ],
@@ -232,7 +232,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 18),
       width: DeviceInfo(context).width,
-      height: 40,
+      height: 30,
       child: TextField(
         controller: _searchController,
         onTap: () {},
@@ -283,19 +283,28 @@ class _CategoryProductsState extends State<CategoryProducts> {
         if (index == 0) {
           // The first container with static text
           return GestureDetector(
-            onTap: (){},
+            onTap: () {
+              // Handle tap for "All"
+              setState(() {
+                selectedSubCategoryIndex = -1; // No subcategory is selected
+              });
+            },
             child: Container(
-              height: 46,
-              width: 96,
+              height: 20,
+              width: 95,
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecorations.buildBoxDecoration_1(),
+              decoration: selectedSubCategoryIndex == -1
+                  ? BoxDecorations.buildBoxDecoration_1() // Add a selected style here
+                  : BoxDecorations.buildBoxDecoration_1(),
               child: Text(
                 "All",
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  color: MyTheme.font_grey,
+                  color: selectedSubCategoryIndex == -1
+                      ? MyTheme.accent_color
+                      : MyTheme.font_grey,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -307,6 +316,9 @@ class _CategoryProductsState extends State<CategoryProducts> {
           if (dataIndex < _subCategoryList.length) {
             return InkWell(
               onTap: () {
+                setState(() {
+                  selectedSubCategoryIndex = dataIndex;
+                });
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -320,17 +332,21 @@ class _CategoryProductsState extends State<CategoryProducts> {
                 );
               },
               child: Container(
-                height: 46,
-                width: 96,
+                height: 20,
+                width: 95,
                 alignment: Alignment.center,
                 padding: EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecorations.buildBoxDecoration_1(),
+                decoration: selectedSubCategoryIndex == dataIndex
+                    ? BoxDecorations.buildBoxDecoration_1() // Add a selected style here
+                    : BoxDecorations.buildBoxDecoration_1(),
                 child: Text(
                   _subCategoryList[dataIndex].name!,
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color: MyTheme.font_grey,
+                    color: selectedSubCategoryIndex == dataIndex
+                        ? MyTheme.accent_color
+                        : MyTheme.font_grey,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -338,14 +354,11 @@ class _CategoryProductsState extends State<CategoryProducts> {
             );
           }
         }
-        return SizedBox
-            .shrink(); // Return an empty container for unsupported indices.
       },
       separatorBuilder: (context, index) {
         return SizedBox(width: 10);
       },
-      itemCount: _subCategoryList.length +
-          1, // Adjust the count to include the static container.
+      itemCount: _subCategoryList.length + 1,
     );
   }
 

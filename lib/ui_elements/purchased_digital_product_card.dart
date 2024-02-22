@@ -99,7 +99,7 @@ class _PurchasedDigitalProductCardState
                   borderRadius: BorderRadius.vertical(
                       top: Radius.circular(6), bottom: Radius.zero),
                   child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/placeholder.png',
+                    placeholder: 'assets/Uncleplaceholder.png',
                     image: widget.image!,
                     fit: BoxFit.cover,
                   ))),

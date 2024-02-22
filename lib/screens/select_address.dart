@@ -15,10 +15,10 @@ import 'package:toast/toast.dart';
 
 import '../custom/text_styles.dart';
 
-
 class SelectAddress extends StatefulWidget {
   int? owner_id;
-   SelectAddress({Key? key,this.owner_id}) : super(key: key);
+
+  SelectAddress({Key? key, this.owner_id}) : super(key: key);
 
   @override
   State<SelectAddress> createState() => _SelectAddressState();
@@ -32,6 +32,7 @@ class _SelectAddressState extends State<SelectAddress> {
 
   // list type variables
   List<dynamic> _shippingAddressList = [];
+
   // List<PickupPoint> _pickupList = [];
   // List<City> _cityList = [];
   // List<Country> _countryList = [];
@@ -45,8 +46,6 @@ class _SelectAddressState extends State<SelectAddress> {
   //double variables
   double mWidth = 0;
   double mHeight = 0;
-
-
 
   fetchAll() {
     if (is_logged_in.$ == true) {
@@ -71,10 +70,8 @@ class _SelectAddressState extends State<SelectAddress> {
     _faceData = true;
     setState(() {});
 
-   // getSetShippingCost();
+    // getSetShippingCost();
   }
-
-
 
   reset() {
     _shippingAddressList.clear();
@@ -99,11 +96,7 @@ class _SelectAddressState extends State<SelectAddress> {
     fetchAll();
   }
 
-
-
   onPressProceed(context) async {
-
-
     if (_seleted_shipping_address == 0) {
       ToastComponent.showDialog(
           LangText(context).local!.choose_an_address_or_pickup_point,
@@ -118,7 +111,7 @@ class _SelectAddressState extends State<SelectAddress> {
       print(_seleted_shipping_address.toString() + "dddd");
       addressUpdateInCartResponse = await AddressRepository()
           .getAddressUpdateInCartResponse(
-          address_id: _seleted_shipping_address);
+              address_id: _seleted_shipping_address);
     }
     if (addressUpdateInCartResponse.result == false) {
       ToastComponent.showDialog(addressUpdateInCartResponse.message,
@@ -141,7 +134,6 @@ class _SelectAddressState extends State<SelectAddress> {
     // }
   }
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -157,23 +149,24 @@ class _SelectAddressState extends State<SelectAddress> {
     _mainScrollController.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     mHeight = MediaQuery.of(context).size.height;
     mWidth = MediaQuery.of(context).size.width;
     return Directionality(
-      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+      textDirection:
+          app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
-          appBar:buildAppBarmy(context),
+        appBar: buildAppBarmy(context),
         // AppBar(
         //     elevation: 0,
         //     leading: UsefulElements.backButton(context,color: 'white'),
         //     centerTitle: true,
         //     backgroundColor: MyTheme.black,title: buildAppbarTitle(context),),
-          backgroundColor: Colors.white,
-          bottomNavigationBar: buildBottomAppBar(context),
-          body: buildBody(context),),
+        backgroundColor: Colors.white,
+        bottomNavigationBar: buildBottomAppBar(context),
+        body: buildBody(context),
+      ),
     );
   }
 
@@ -182,7 +175,7 @@ class _SelectAddressState extends State<SelectAddress> {
       backgroundColor: MyTheme.accent_color,
       leading: Builder(
         builder: (context) =>
-         UsefulElements.backButton(context,color: 'white'),
+            UsefulElements.backButton(context, color: 'white'),
       ),
       centerTitle: true,
       title: Text(
@@ -219,16 +212,14 @@ class _SelectAddressState extends State<SelectAddress> {
         slivers: [
           SliverList(
               delegate: SliverChildListDelegate([
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: buildShippingInfoList()
-                      
-                ),
-                buildAddOrEditAddress(context),
-                SizedBox(
-                  height: 100,
-                )
-              ]))
+            Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: buildShippingInfoList()),
+            buildAddOrEditAddress(context),
+            SizedBox(
+              height: 100,
+            )
+          ]))
         ],
       ),
     );
@@ -236,7 +227,7 @@ class _SelectAddressState extends State<SelectAddress> {
 
   Widget buildAddOrEditAddress(BuildContext context) {
     return Container(
-      height: 40,
+      height: 55,
       child: Center(
         child: InkWell(
           onTap: () {
@@ -250,12 +241,31 @@ class _SelectAddressState extends State<SelectAddress> {
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              LangText(context).local!.to_add_or_edit_addresses_go_to_address_page,
-              style: TextStyle(
-                  fontSize: 14,
-                  decoration: TextDecoration.underline,
-                  color: MyTheme.accent_color),
+            child: Container(
+              height: 95,
+              width: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: MyTheme.green),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'To Add Or Edit Address',
+                      style: TextStyle(
+                          fontSize: 15,
+                          //  decoration: TextDecoration.underline,height: 1,
+                          color: MyTheme.white,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      color: MyTheme.white,
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ),
@@ -288,9 +298,9 @@ class _SelectAddressState extends State<SelectAddress> {
           height: 100,
           child: Center(
               child: Text(
-                LangText(context).local!.you_need_to_log_in,
-                style: TextStyle(color: MyTheme.font_grey),
-              )));
+            LangText(context).local!.you_need_to_log_in,
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
     } else if (!_faceData && _shippingAddressList.length == 0) {
       return SingleChildScrollView(
           child: ShimmerHelper()
@@ -315,9 +325,9 @@ class _SelectAddressState extends State<SelectAddress> {
           height: 100,
           child: Center(
               child: Text(
-                LangText(context).local!.no_address_is_added,
-                style: TextStyle(color: MyTheme.font_grey),
-              )));
+            LangText(context).local!.no_address_is_added,
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
     }
   }
 
@@ -327,7 +337,7 @@ class _SelectAddressState extends State<SelectAddress> {
         if (_seleted_shipping_address != _shippingAddressList[index].id) {
           _seleted_shipping_address = _shippingAddressList[index].id;
 
-         // onAddressSwitch();
+          // onAddressSwitch();
         }
         //detectShippingOption();
         setState(() {});
@@ -539,20 +549,18 @@ class _SelectAddressState extends State<SelectAddress> {
     );
   }
 
-
-
   Container buildShippingOptionsCheckContainer(bool check) {
     return check
         ? Container(
-      height: 16,
-      width: 16,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0), color: Colors.green),
-      child: Padding(
-        padding: const EdgeInsets.all(3),
-        child: Icon(Icons.check, color: Colors.white, size: 10),
-      ),
-    )
+            height: 16,
+            width: 16,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0), color: Colors.green),
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Icon(Icons.check, color: Colors.white, size: 10),
+            ),
+          )
         : Container();
   }
 
@@ -565,15 +573,14 @@ class _SelectAddressState extends State<SelectAddress> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Btn.minWidthFixHeight(
-              minWidth: MediaQuery.of(context).size.width,
-              height: 50,
+              minWidth: MediaQuery.of(context).size.width * 0.9,
+              height: 40,
               color: MyTheme.accent_color,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: Text(
-                LangText(context).local!
-                    .continue_to_delivery_info_ucf,
+                LangText(context).local!.continue_to_delivery_info_ucf,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -601,7 +608,6 @@ class _SelectAddressState extends State<SelectAddress> {
               child: Row(
                 children: [
                   buildAppbarBackArrow(),
-
                 ],
               ),
             ),
@@ -625,10 +631,9 @@ class _SelectAddressState extends State<SelectAddress> {
       child: Text(
         "${LangText(context).local!.shipping_info}",
         style: TextStyle(
-            fontSize: 16,
-            color: MyTheme.white,
-            fontWeight: FontWeight.bold,
-
+          fontSize: 16,
+          color: MyTheme.white,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

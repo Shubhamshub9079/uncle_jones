@@ -49,13 +49,13 @@ class _MiniProductCardState extends State<MiniProductCard> {
         );
       },
       child: Container(
-
-        width: 180,
+        width: 175,
         decoration: BoxDecorations.buildBoxDecoration_1(),
-        child: Stack(children: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -67,7 +67,7 @@ class _MiniProductCardState extends State<MiniProductCard> {
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(6), bottom: Radius.zero),
                       child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/placeholder.png',
+                        placeholder: 'assets/Uncleplaceholder.png',
                         image: widget.image!,
                         fit: BoxFit.cover,
                       ),
@@ -138,91 +138,91 @@ class _MiniProductCardState extends State<MiniProductCard> {
                       ),
                     ],
                   ),
-                ]),
-          ),
-
-          // discount and wholesale
-          Positioned.fill(
-            top: 10,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  if (widget.has_discount!)
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      margin: EdgeInsets.only(bottom: 5),
-                      decoration: BoxDecoration(
-                        color: const Color(0xff237726),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(10.0),
-                          bottomRight: Radius.circular(10.0),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x14000000),
-                            offset: Offset(-1, 1),
-                            blurRadius: 1,
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        widget.discount ?? "",
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: const Color(0xffffffff),
-                          fontWeight: FontWeight.w700,
-                          height: 1.8,
-                        ),
-                        textHeightBehavior:
-                            TextHeightBehavior(applyHeightToFirstAscent: false),
-                        softWrap: false,
-                      ),
-                    ),
-                  Visibility(
-                    visible: whole_sale_addon_installed.$,
-                    child: widget.is_wholesale!
-                        ? Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.blueGrey,
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(6.0),
-                                bottomLeft: Radius.circular(6.0),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x14000000),
-                                  offset: Offset(-1, 1),
-                                  blurRadius: 1,
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              "Wholesale",
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: const Color(0xffffffff),
-                                fontWeight: FontWeight.w700,
-                                height: 1.8,
-                              ),
-                              textHeightBehavior: TextHeightBehavior(
-                                  applyHeightToFirstAscent: false),
-                              softWrap: false,
-                            ),
-                          )
-                        : SizedBox.shrink(),
-                  )
                 ],
               ),
             ),
-          ),
 
-          // whole sale
-        ]),
+            // discount and wholesale
+            Positioned.fill(
+              top: 10,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    if (widget.has_discount!)
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        margin: EdgeInsets.only(bottom: 5),
+                        decoration: BoxDecoration(
+                          color: const Color(0xff237726),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10.0),
+                            bottomRight: Radius.circular(10.0),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0x14000000),
+                              offset: Offset(-1, 1),
+                              blurRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          widget.discount ?? "",
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: const Color(0xffffffff),
+                            fontWeight: FontWeight.w700,
+                            height: 1.8,
+                          ),
+                          textHeightBehavior: TextHeightBehavior(
+                              applyHeightToFirstAscent: false),
+                          softWrap: false,
+                        ),
+                      ),
+                    Visibility(
+                      visible: whole_sale_addon_installed.$,
+                      child: widget.is_wholesale!
+                          ? Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.blueGrey,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(6.0),
+                                  bottomLeft: Radius.circular(6.0),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color(0x14000000),
+                                    offset: Offset(-1, 1),
+                                    blurRadius: 1,
+                                  ),
+                                ],
+                              ),
+                              child: Text(
+                                "Wholesale",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: const Color(0xffffffff),
+                                  fontWeight: FontWeight.w700,
+                                  height: 1.8,
+                                ),
+                                textHeightBehavior: TextHeightBehavior(
+                                    applyHeightToFirstAscent: false),
+                                softWrap: false,
+                              ),
+                            )
+                          : SizedBox.shrink(),
+                    ),
+                  ],
+                ),
+              ),
+            ), // whole sale
+          ],
+        ),
       ),
     );
   }

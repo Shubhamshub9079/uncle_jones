@@ -217,7 +217,7 @@ class _CategoryListState extends State<CategoryList>
                                       topRight: Radius.circular(6),
                                       topLeft: Radius.circular(6)),
                                   child: FadeInImage.assetNetwork(
-                                    placeholder: 'assets/placeholder.png',
+                                    placeholder: 'assets/Uncleplaceholder.png',
                                     image: snapshot.data!.data![index].banner!,
                                     fit: BoxFit.fitWidth,
                                     height: 60,
@@ -268,7 +268,7 @@ class _CategoryListState extends State<CategoryList>
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(6), topLeft: Radius.circular(6)),
               child: FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder.png',
+                placeholder: 'assets/Uncleplaceholder.png',
                 image: categoryResponse.categories[index].banner,
                 fit: BoxFit.cover,
                 height: 80,
@@ -320,7 +320,7 @@ class _CategoryListState extends State<CategoryList>
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(6), topLeft: Radius.circular(6)),
               child: FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder.png',
+                placeholder: 'assets/Uncleplaceholder.png',
                 image: categoryResponse.data[index].banner,
                 fit: BoxFit.fitWidth,
                 height: 60,

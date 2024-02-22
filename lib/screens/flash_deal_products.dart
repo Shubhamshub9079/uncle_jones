@@ -314,7 +314,7 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
   Container buildFlashDealBanner() {
     return Container(
       child: FadeInImage.assetNetwork(
-        placeholder: 'assets/placeholder_rectangle.png',
+        placeholder: 'assets/Uncleplaceholder.png',
         image: widget.bannerUrl!,
         fit: BoxFit.cover,
         width: DeviceInfo(context).width,

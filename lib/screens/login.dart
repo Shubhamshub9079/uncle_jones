@@ -27,7 +27,6 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:toast/toast.dart';
 import 'package:twitter_login/twitter_login.dart';
-
 import '../repositories/address_repository.dart';
 
 class Login extends StatefulWidget {
@@ -51,11 +50,13 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light
-        //color set to transperent or set your own color
-        ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light
+          //color set to transperent or set your own color
+          ),
+    );
 
     super.initState();
     fetch_country();
@@ -372,20 +373,20 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: GestureDetector(
-                          onTap: (()=>{
-                            setState((){
-                              _login_by = 'phone';
-                            })
-                          }),
+                          onTap: (() => {
+                                setState(() {
+                                  _login_by = 'phone';
+                                })
+                              }),
                           child: Text(
                             "Or Login with a phone number",
-                            style: TextStyle(color: MyTheme.font_grey,
+                            style: TextStyle(
+                                color: MyTheme.font_grey,
                                 decoration: TextDecoration.underline,
                                 fontSize: 12),
                           ),
                         ),
                       ),
-
                       otp_addon_installed.$
                           ? GestureDetector(
                               onTap: () {
@@ -496,10 +497,12 @@ class _LoginState extends State<Login> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return PasswordForget();
-                        }));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return PasswordForget();
+                          }),
+                        );
                       },
                       child: Text(
                         AppLocalizations.of(context)!
@@ -509,7 +512,7 @@ class _LoginState extends State<Login> {
                             fontStyle: FontStyle.italic,
                             decoration: TextDecoration.underline),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -518,7 +521,9 @@ class _LoginState extends State<Login> {
                 child: Container(
                   height: 45,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(24.0),
+                    ),
                     // border: Border.all(color: MyTheme.textfield_grey, width: 1),
                   ),
                   child: Btn.minWidthFixHeight(
@@ -526,8 +531,7 @@ class _LoginState extends State<Login> {
                     height: 50,
                     shape: RoundedRectangleBorder(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(24.0))
-                    ),
+                            const BorderRadius.all(Radius.circular(24.0))),
                     color: MyTheme.accent_color,
                     child: Text(
                       AppLocalizations.of(context)!.login_screen_log_in,
@@ -545,11 +549,12 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, bottom: 15),
                 child: Center(
-                    child: Text(
-                  AppLocalizations.of(context)!
-                      .login_screen_or_create_new_account,
-                  style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
-                )),
+                  child: Text(
+                    AppLocalizations.of(context)!
+                        .login_screen_or_create_new_account,
+                    style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
+                  ),
+                ),
               ),
               Container(
                 height: 45,
@@ -584,18 +589,15 @@ class _LoginState extends State<Login> {
                     },
                   ),
                 ),
-
-
-
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.login_screen_login_with,
-                      style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
-                    )),
+                  child: Text(
+                    AppLocalizations.of(context)!.login_screen_login_with,
+                    style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
+                  ),
+                ),
               ),
-
               Padding(
                 padding: const EdgeInsets.only(top: 15.0),
                 child: Center(

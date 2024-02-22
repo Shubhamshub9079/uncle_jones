@@ -45,9 +45,6 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-
-
-
   @override
   Widget build(
     BuildContext context,
@@ -70,7 +67,7 @@ class _ProductCardState extends State<ProductCard> {
         children: <Widget>[
           Divider(),
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 20, 5, 5),
+            padding: const EdgeInsets.fromLTRB(10, 15, 5, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,10 +109,10 @@ class _ProductCardState extends State<ProductCard> {
                           borderRadius: BorderRadius.vertical(
                               top: Radius.circular(6), bottom: Radius.zero),
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: widget.image!,
-                            height: 120,
-                            width: 120,
+                            height: 110,
+                            width: 110,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -124,8 +121,8 @@ class _ProductCardState extends State<ProductCard> {
                         width: 5,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.16,
-                        width: MediaQuery.of(context).size.width * 0.50,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        width: MediaQuery.of(context).size.width * 0.45,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
                           child: Column(
@@ -212,30 +209,41 @@ class _ProductCardState extends State<ProductCard> {
                                 ],
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 8,
                               ),
-
-
                               InkWell(
                                 onTap: () {
                                   // onPressAddToCart(context, _addedToCartSnackbar);
                                 },
                                 child: Container(
-                                  width: 125,
-                                  height: 30,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.50,
+                                  height: 28,
                                   decoration: BoxDecoration(
                                     color: Colors.green,
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Add to Cart",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Add to Cart",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Image.asset(
+                                        'assets/addcart.png',
+                                        height: 20,
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
@@ -254,4 +262,3 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
-

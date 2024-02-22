@@ -115,7 +115,6 @@ class _CartState extends State<Cart> {
     return partialTotalString;
   }
 
-
   onQuantityIncrease(seller_index, item_index) {
     if (_shopList[seller_index].cart_items[item_index].quantity <
         _shopList[seller_index].cart_items[item_index].upper_limit) {
@@ -146,43 +145,42 @@ class _CartState extends State<Cart> {
 
   onPressDelete(cart_id) {
     showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-              contentPadding: EdgeInsets.only(
-                  top: 16.0, left: 2.0, right: 2.0, bottom: 2.0),
-              content: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Text(
-                  AppLocalizations.of(context)!
-                      .are_you_sure_to_remove_this_item,
-                  maxLines: 3,
-                  style: TextStyle(color: MyTheme.font_grey, fontSize: 14),
-                ),
-              ),
-              actions: [
-                Btn.basic(
-                  child: Text(
-                    AppLocalizations.of(context)!.cancel_ucf,
-                    style: TextStyle(color: MyTheme.medium_grey),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pop();
-                  },
-                ),
-                Btn.basic(
-                  color: MyTheme.soft_accent_color,
-                  child: Text(
-                    AppLocalizations.of(context)!.confirm_ucf,
-                    style: TextStyle(color: MyTheme.dark_grey),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pop();
-                    confirmDelete(cart_id);
-                  },
-                ),
-              ],
-            ));
+      context: context,
+      builder: (_) => AlertDialog(
+        contentPadding:
+            EdgeInsets.only(top: 16.0, left: 2.0, right: 2.0, bottom: 2.0),
+        content: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          child: Text(
+            AppLocalizations.of(context)!.are_you_sure_to_remove_this_item,
+            maxLines: 3,
+            style: TextStyle(color: MyTheme.font_grey, fontSize: 14),
+          ),
+        ),
+        actions: [
+          Btn.basic(
+            child: Text(
+              AppLocalizations.of(context)!.cancel_ucf,
+              style: TextStyle(color: MyTheme.medium_grey),
+            ),
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+          ),
+          Btn.basic(
+            color: MyTheme.soft_accent_color,
+            child: Text(
+              AppLocalizations.of(context)!.confirm_ucf,
+              style: TextStyle(color: MyTheme.dark_grey),
+            ),
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              confirmDelete(cart_id);
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   confirmDelete(cart_id) async {
@@ -281,42 +279,45 @@ class _CartState extends State<Cart> {
       textDirection:
           app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
-          key: _scaffoldKey,
-          //drawer: MainDrawer(),
-          backgroundColor: Colors.white,
-          appBar: buildAppBar(context),
-          body: Stack(
-            children: [
-              RefreshIndicator(
-                color: MyTheme.accent_color,
-                backgroundColor: Colors.white,
-                onRefresh: _onRefresh,
-                displacement: 0,
-                child: CustomScrollView(
-                  controller: _mainScrollController,
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  slivers: [
-                    SliverList(
-                      delegate: SliverChildListDelegate([
+        key: _scaffoldKey,
+        //drawer: MainDrawer(),
+        backgroundColor: Colors.white,
+        appBar: buildAppBar(context),
+        body: Stack(
+          children: [
+            RefreshIndicator(
+              color: MyTheme.accent_color,
+              backgroundColor: Colors.white,
+              onRefresh: _onRefresh,
+              displacement: 0,
+              child: CustomScrollView(
+                controller: _mainScrollController,
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: buildCartSellerList(),
                         ),
                         Container(
                           height: widget.has_bottomnav! ? 140 : 100,
-                        )
-                      ]),
-                    )
-                  ],
-                ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: buildBottomContainer(),
-              )
-            ],
-          )),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: buildBottomContainer(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -356,11 +357,13 @@ class _CartState extends State<Cart> {
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text("$_cartTotalString",
-                        style: TextStyle(
-                            color: MyTheme.accent_color,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600)),
+                    child: Text(
+                      "$_cartTotalString",
+                      style: TextStyle(
+                          color: MyTheme.accent_color,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ],
               ),
@@ -373,22 +376,23 @@ class _CartState extends State<Cart> {
                     width: (MediaQuery.of(context).size.width - 48) * (1 / 3),
                     height: 50,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        // border:
-                        //     Border.all(color: MyTheme.accent_color, width: 1),
-                        borderRadius: app_language_rtl.$!
-                            ? const BorderRadius.only(
-                                topLeft: const Radius.circular(0.0),
-                                bottomLeft: const Radius.circular(0.0),
-                                topRight: const Radius.circular(6.0),
-                                bottomRight: const Radius.circular(6.0),
-                              )
-                            : const BorderRadius.only(
-                                topLeft: const Radius.circular(6.0),
-                                bottomLeft: const Radius.circular(6.0),
-                                topRight: const Radius.circular(0.0),
-                                bottomRight: const Radius.circular(0.0),
-                              )),
+                      color: Colors.white,
+                      // border:
+                      //     Border.all(color: MyTheme.accent_color, width: 1),
+                      borderRadius: app_language_rtl.$!
+                          ? const BorderRadius.only(
+                              topLeft: const Radius.circular(0.0),
+                              bottomLeft: const Radius.circular(0.0),
+                              topRight: const Radius.circular(6.0),
+                              bottomRight: const Radius.circular(6.0),
+                            )
+                          : const BorderRadius.only(
+                              topLeft: const Radius.circular(6.0),
+                              bottomLeft: const Radius.circular(6.0),
+                              topRight: const Radius.circular(0.0),
+                              bottomRight: const Radius.circular(0.0),
+                            ),
+                    ),
                     child: Btn.basic(
                       minWidth: MediaQuery.of(context).size.width,
                       color: MyTheme.light_grey,
@@ -402,11 +406,12 @@ class _CartState extends State<Cart> {
                             ))
                           : RoundedRectangleBorder(
                               borderRadius: const BorderRadius.only(
-                              topLeft: const Radius.circular(6.0),
-                              bottomLeft: const Radius.circular(6.0),
-                              topRight: const Radius.circular(0.0),
-                              bottomRight: const Radius.circular(0.0),
-                            )),
+                                topLeft: const Radius.circular(6.0),
+                                bottomLeft: const Radius.circular(6.0),
+                                topRight: const Radius.circular(0.0),
+                                bottomRight: const Radius.circular(0.0),
+                              ),
+                            ),
                       child: Text(
                         AppLocalizations.of(context)!.update_cart_ucf,
                         style: TextStyle(
@@ -426,40 +431,42 @@ class _CartState extends State<Cart> {
                     height: 50,
                     width: (MediaQuery.of(context).size.width - 48) * (2 / 3),
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        border:
-                            Border.all(color: MyTheme.accent_color, width: 1),
-                        borderRadius: app_language_rtl.$!
-                            ? const BorderRadius.only(
-                                topLeft: const Radius.circular(6.0),
-                                bottomLeft: const Radius.circular(6.0),
-                                topRight: const Radius.circular(0.0),
-                                bottomRight: const Radius.circular(0.0),
-                              )
-                            : const BorderRadius.only(
-                                topLeft: const Radius.circular(0.0),
-                                bottomLeft: const Radius.circular(0.0),
-                                topRight: const Radius.circular(6.0),
-                                bottomRight: const Radius.circular(6.0),
-                              )),
+                      color: Colors.white,
+                      border: Border.all(color: MyTheme.accent_color, width: 1),
+                      borderRadius: app_language_rtl.$!
+                          ? const BorderRadius.only(
+                              topLeft: const Radius.circular(6.0),
+                              bottomLeft: const Radius.circular(6.0),
+                              topRight: const Radius.circular(0.0),
+                              bottomRight: const Radius.circular(0.0),
+                            )
+                          : const BorderRadius.only(
+                              topLeft: const Radius.circular(0.0),
+                              bottomLeft: const Radius.circular(0.0),
+                              topRight: const Radius.circular(6.0),
+                              bottomRight: const Radius.circular(6.0),
+                            ),
+                    ),
                     child: Btn.basic(
                       minWidth: MediaQuery.of(context).size.width,
                       color: MyTheme.accent_color,
                       shape: app_language_rtl.$!
                           ? RoundedRectangleBorder(
                               borderRadius: const BorderRadius.only(
-                              topLeft: const Radius.circular(6.0),
-                              bottomLeft: const Radius.circular(6.0),
-                              topRight: const Radius.circular(0.0),
-                              bottomRight: const Radius.circular(0.0),
-                            ))
+                                topLeft: const Radius.circular(6.0),
+                                bottomLeft: const Radius.circular(6.0),
+                                topRight: const Radius.circular(0.0),
+                                bottomRight: const Radius.circular(0.0),
+                              ),
+                            )
                           : RoundedRectangleBorder(
                               borderRadius: const BorderRadius.only(
-                              topLeft: const Radius.circular(0.0),
-                              bottomLeft: const Radius.circular(0.0),
-                              topRight: const Radius.circular(6.0),
-                              bottomRight: const Radius.circular(6.0),
-                            )),
+                                topLeft: const Radius.circular(0.0),
+                                bottomLeft: const Radius.circular(0.0),
+                                topRight: const Radius.circular(6.0),
+                                bottomRight: const Radius.circular(6.0),
+                              ),
+                            ),
                       child: Text(
                         AppLocalizations.of(context)!.proceed_to_shipping_ucf,
                         style: TextStyle(
@@ -502,12 +509,14 @@ class _CartState extends State<Cart> {
   buildCartSellerList() {
     if (is_logged_in.$ == false) {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.please_log_in_to_see_the_cart_items,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     } else if (_isInitial && _shopList.length == 0) {
       return SingleChildScrollView(
           child: ShimmerHelper()
@@ -530,21 +539,21 @@ class _CartState extends State<Cart> {
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: Row(
                     children: [
-                      Text(
-                        _shopList[index].name,
-                        style: TextStyle(
-                            color: MyTheme.dark_font_grey,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12),
-                      ),
-                      Spacer(),
-                      Text(
-                        partialTotalString(index),
-                        style: TextStyle(
-                            color: MyTheme.accent_color,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12),
-                      ),
+                      // Text(
+                      //   _shopList[index].name,
+                      //   style: TextStyle(
+                      //       color: MyTheme.dark_font_grey,
+                      //       fontWeight: FontWeight.w700,
+                      //       fontSize: 12),
+                      // ),
+                      // Spacer(),
+                      // Text(
+                      //   partialTotalString(index),
+                      //   style: TextStyle(
+                      //       color: MyTheme.accent_color,
+                      //       fontWeight: FontWeight.w700,
+                      //       fontSize: 12),
+                      // ),
                     ],
                   ),
                 ),
@@ -556,12 +565,14 @@ class _CartState extends State<Cart> {
       );
     } else if (!_isInitial && _shopList.length == 0) {
       return Container(
-          height: 100,
-          child: Center(
-              child: Text(
+        height: 100,
+        child: Center(
+          child: Text(
             AppLocalizations.of(context)!.cart_is_empty,
             style: TextStyle(color: MyTheme.font_grey),
-          )));
+          ),
+        ),
+      );
     }
   }
 
@@ -585,47 +596,80 @@ class _CartState extends State<Cart> {
   buildCartSellerItemCard(seller_index, item_index) {
     return Container(
       height: 100,
+      //width: 10,
       decoration: BoxDecorations.buildBoxDecoration_1(),
-      child: Row(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-                width: DeviceInfo(context).width! / 4.7,
-                height: 80,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(6), right: Radius.zero),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/placeholder.png',
-                      image: _shopList[seller_index]
-                          .cart_items[item_index]
-                          .product_thumbnail_image,
-                      fit: BoxFit.cover,
-                    ))),
+              width: DeviceInfo(context).width! / 4.4,
+              height: 75,
+              child: ClipRRect(
+                borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(6), right: Radius.zero),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/Uncleplaceholder.png',
+                  image: _shopList[seller_index]
+                      .cart_items[item_index]
+                      .product_thumbnail_image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             Container(
               //color: Colors.red,
-              width: DeviceInfo(context).width! / 2.7,
+              width: DeviceInfo(context).width! / 1.5,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      _shopList[seller_index]
-                          .cart_items[item_index]
-                          .product_name,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextStyle(
-                          color: MyTheme.black,
-                          fontSize: 12,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          _shopList[seller_index]
+                              .cart_items[item_index]
+                              .product_name,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: MyTheme.black,
+                              fontSize: 12,
+                              height: 1.5,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            onPressDelete(_shopList[seller_index]
+                                .cart_items[item_index]
+                                .id);
+                          },
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Image.asset(
+                                'assets/trash.png',
+                                height: 16,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
+                      padding: const EdgeInsets.only(top: 12.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             SystemConfig.systemCurrency!.symbol! +
@@ -644,6 +688,72 @@ class _CartState extends State<Cart> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700),
                           ),
+                          SizedBox(
+                            width: 70,
+                          ),
+
+                          GestureDetector(
+                            onTap: () {
+                              onQuantityIncrease(seller_index, item_index);
+                            },
+                            child: Container(
+                              width: 23,
+                              height: 23,
+                              decoration: BoxDecorations
+                                  .buildCartCircularButtonDecoration(),
+                              child: Icon(
+                                Icons.add,
+                                color: MyTheme.accent_color,
+                                size: 12,
+                              ),
+                            ),
+                          ),
+                          // SizedBox(width: 5,),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 2.0, bottom: 0.0),
+                            child: Text(
+                              _shopList[seller_index]
+                                  .cart_items[item_index]
+                                  .quantity
+                                  .toString(),
+                              style:
+                                  TextStyle(color: MyTheme.black, fontSize: 12),
+                            ),
+                          ),
+                          // SizedBox(width: 5,),
+                          GestureDetector(
+                            onTap: () {
+                              onQuantityDecrease(seller_index, item_index);
+                            },
+                            child: Container(
+                              width: 23,
+                              height: 23,
+                              decoration: BoxDecorations
+                                  .buildCartCircularButtonDecoration(),
+                              child: Icon(
+                                Icons.remove,
+                                color: MyTheme.accent_color,
+                                size: 12,
+                              ),
+                            ),
+                          ),
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     onPressDelete(
+                          //         _shopList[seller_index].cart_items[item_index].id);
+                          //   },
+                          //   child: Container(
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.only(bottom: 30.0),
+                          //       child: Image.asset(
+                          //         'assets/trash.png',
+                          //         height: 16,
+                          //         color: Colors.red,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -652,82 +762,84 @@ class _CartState extends State<Cart> {
               ),
             ),
             Spacer(),
-            Container(
-              width: 32,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      onPressDelete(
-                          _shopList[seller_index].cart_items[item_index].id);
-                    },
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 30.0),
-                        child: Image.asset(
-                          'assets/trash.png',
-                          height: 16,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      onQuantityIncrease(seller_index, item_index);
-                    },
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration:
-                          BoxDecorations.buildCartCircularButtonDecoration(),
-                      child: Icon(
-                        Icons.add,
-                        color: MyTheme.accent_color,
-                        size: 12,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2.0, bottom: 0.0),
-                    child: Text(
-                      _shopList[seller_index]
-                          .cart_items[item_index]
-                          .quantity
-                          .toString(),
-                      style:
-                          TextStyle(color: MyTheme.accent_color, fontSize: 12),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      onQuantityDecrease(seller_index, item_index);
-                    },
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration:
-                          BoxDecorations.buildCartCircularButtonDecoration(),
-                      child: Icon(
-                        Icons.remove,
-                        color: MyTheme.accent_color,
-                        size: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ]),
+            // Container(
+            //   width: 32,
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.end,
+            //     children: [
+            //       GestureDetector(
+            //         onTap: () {
+            //           onPressDelete(
+            //               _shopList[seller_index].cart_items[item_index].id);
+            //         },
+            //         child: Container(
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(bottom: 30.0),
+            //             child: Image.asset(
+            //               'assets/trash.png',
+            //               height: 16,
+            //               color: Colors.red,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(14.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.end,
+            //     children: [
+            //       GestureDetector(
+            //         onTap: () {
+            //           onQuantityIncrease(seller_index, item_index);
+            //         },
+            //         child: Container(
+            //           width: 24,
+            //           height: 24,
+            //           decoration:
+            //               BoxDecorations.buildCartCircularButtonDecoration(),
+            //           child: Icon(
+            //             Icons.add,
+            //             color: MyTheme.accent_color,
+            //             size: 12,
+            //           ),
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.only(top: 2.0, bottom: 0.0),
+            //         child: Text(
+            //           _shopList[seller_index]
+            //               .cart_items[item_index]
+            //               .quantity
+            //               .toString(),
+            //           style:
+            //               TextStyle(color: MyTheme.black, fontSize: 12),
+            //         ),
+            //       ),
+            //       GestureDetector(
+            //         onTap: () {
+            //           onQuantityDecrease(seller_index, item_index);
+            //         },
+            //         child: Container(
+            //           width: 24,
+            //           height: 24,
+            //           decoration:
+            //               BoxDecorations.buildCartCircularButtonDecoration(),
+            //           child: Icon(
+            //             Icons.remove,
+            //             color: MyTheme.accent_color,
+            //             size: 12,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // )
+          ],
+        ),
+      ),
     );
   }
 }

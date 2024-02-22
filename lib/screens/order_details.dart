@@ -621,7 +621,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                               fontWeight: FontWeight.w600),
                         ),
                       ],
-                    )),
+                    ),),
                 Divider(),
                 Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -648,7 +648,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                               fontWeight: FontWeight.w600),
                         ),
                       ],
-                    )),
+                    ),),
               ],
             )
           : ShimmerHelper().buildBasicShimmer(height: 100.0),
@@ -676,13 +676,13 @@ class _OrderDetailsState extends State<OrderDetails> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: ShimmerHelper().buildBasicShimmer(height: 40, width: 40.0),
-            )
+            ),
           ],
         ),
         Padding(
           padding: EdgeInsets.all(8.0),
           child: ShimmerHelper().buildBasicShimmer(height: 20, width: 250.0),
-        )
+        ),
       ],
     );
   }
@@ -873,7 +873,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       textAlign: TextAlign.center,
                       style: TextStyle(color: MyTheme.font_grey),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -981,11 +981,9 @@ class _OrderDetailsState extends State<OrderDetails> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
-              child:
-              Row(
+              child: Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.order_code_ucf,
@@ -1029,7 +1027,6 @@ class _OrderDetailsState extends State<OrderDetails> {
                     _orderDetails!.date!,
                     style: TextStyle(
                       color: MyTheme.black,
-
                     ),
                   ),
                   // Text(
@@ -1042,7 +1039,6 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ],
               ),
             ),
-
             Divider(),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
@@ -1108,7 +1104,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ),
                     ),
                   ),
-                  buildPaymentStatusCheckContainer(_orderDetails!.payment_status),
+                  buildPaymentStatusCheckContainer(
+                      _orderDetails!.payment_status),
                   // Text(
                   //   AppLocalizations.of(context)!.delivery_status_ucf,
                   //   style: TextStyle(
@@ -1172,7 +1169,7 @@ class _OrderDetailsState extends State<OrderDetails> {
               child: Row(
                 children: [
                   Container(
-                    width: (MediaQuery.of(context).size.width - (70.0)) ,
+                    width: (MediaQuery.of(context).size.width - (70.0)),
                     // (total_screen_width - padding)/2
                     child: _orderDetails!.shipping_address != null
                         ? Column(
@@ -1183,21 +1180,20 @@ class _OrderDetailsState extends State<OrderDetails> {
                                       "${AppLocalizations.of(context)!.name_ucf} : ${_orderDetails!.shipping_address!.name}",
                                       maxLines: 3,
                                       style: TextStyle(
-                                        color: MyTheme.black,fontWeight: FontWeight.w500,
-                                        fontSize: 14
-                                      ),
+                                          color: MyTheme.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14),
                                     )
-
                                   : Container(),
                               Divider(),
                               _orderDetails!.shipping_address!.email != null
                                   ? Text(
                                       "${AppLocalizations.of(context)!.email_ucf} : ${_orderDetails!.shipping_address!.email}",
                                       maxLines: 3,
-                                style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                      style: TextStyle(
+                                          color: MyTheme.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14),
                                     )
                                   : Container(),
                               Divider(),
@@ -1205,54 +1201,54 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 "${AppLocalizations.of(context)!.address_ucf} : ${_orderDetails!.shipping_address!.address}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                    color: MyTheme.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
                               ),
                               Divider(),
                               Text(
                                 "${AppLocalizations.of(context)!.city_ucf} : ${_orderDetails!.shipping_address!.city}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                    color: MyTheme.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
                               ),
                               Divider(),
                               Text(
                                 "${AppLocalizations.of(context)!.country_ucf} : ${_orderDetails!.shipping_address!.country}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                    color: MyTheme.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
                               ),
                               Divider(),
                               Text(
                                 "${AppLocalizations.of(context)!.state_ucf} : ${_orderDetails!.shipping_address!.state}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                    color: MyTheme.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
                               ),
                               Divider(),
                               Text(
                                 "${AppLocalizations.of(context)!.phone_ucf} : ${_orderDetails!.shipping_address!.phone ?? ''}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                    color: MyTheme.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
                               ),
                               Divider(),
                               Text(
                                 "${AppLocalizations.of(context)!.postal_code} : ${_orderDetails!.shipping_address!.postal_code ?? ''}",
                                 maxLines: 3,
                                 style: TextStyle(
-                                    color: MyTheme.black,fontWeight: FontWeight.w500,
-                                    fontSize: 14
-                                ),
+                                    color: MyTheme.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
                               ),
                             ],
                           )
@@ -1310,7 +1306,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   child: Text(
                     LangText(context).local.cancel_order_ucf,
                     style: TextStyle(color: Colors.white, fontSize: 16),
-                  ))
+                  ),),
           ],
         ),
       ),

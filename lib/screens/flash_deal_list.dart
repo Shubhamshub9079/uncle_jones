@@ -292,7 +292,7 @@
 //           ClipRRect(
 //             clipBehavior: Clip.none,
 //             child: FadeInImage(
-//               placeholder: AssetImage("assets/placeholder.png"),
+//               placeholder: AssetImage("assets/Uncleplaceholder.png"),
 //               image: NetworkImage(flashDealResponse.flashDeals[flashDealIndex].products.products[productIndex].image),
 //
 //             ),
@@ -341,7 +341,7 @@
 //   Container buildFlashDealBanner(flashDealResponse, index) {
 //     return Container(
 //       child: FadeInImage.assetNetwork(
-//         placeholder: 'assets/placeholder_rectangle.png',
+//         placeholder: 'assets/Uncleplaceholder.png',
 //         image: flashDealResponse.flashDeals[index].banner,
 //         fit: BoxFit.cover,
 //         width: DeviceInfo(context).width,

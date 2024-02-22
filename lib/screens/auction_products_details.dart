@@ -1146,7 +1146,7 @@ class _AuctionProductsDetailsState extends State<AuctionProductsDetails>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6.0),
                         child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/placeholder.png',
+                          placeholder: 'assets/Uncleplaceholder.png',
                           image: _auctionproductDetails.shopLogo,
                           fit: BoxFit.cover,
                         ),
@@ -1849,7 +1849,7 @@ class _AuctionProductsDetailsState extends State<AuctionProductsDetails>
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/placeholder.png',
+                        placeholder: 'assets/Uncleplaceholder.png',
                         image: _auctionproductDetails.brand.logo,
                         fit: BoxFit.contain,
                       )),
@@ -2029,7 +2029,7 @@ class _AuctionProductsDetailsState extends State<AuctionProductsDetails>
                                   /*Image.asset(
                                         singleProduct.product_images[index])*/
                                   FadeInImage.assetNetwork(
-                                placeholder: 'assets/placeholder.png',
+                                placeholder: 'assets/Uncleplaceholder.png',
                                 image: _productImageList[index],
                                 fit: BoxFit.contain,
                               )),
@@ -2048,7 +2048,7 @@ class _AuctionProductsDetailsState extends State<AuctionProductsDetails>
               width: MediaQuery.of(context).size.width - 96,
               child: Container(
                   child: FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder_rectangle.png',
+                placeholder: 'assets/Uncleplaceholder.png',
                 image: _productImageList[_currentImage],
                 fit: BoxFit.scaleDown,
               )),
@@ -2098,7 +2098,7 @@ class _AuctionProductsDetailsState extends State<AuctionProductsDetails>
                           height: double.infinity,
                           width: double.infinity,
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder_rectangle.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: i,
                             fit: BoxFit.fitHeight,
                           )),

@@ -67,7 +67,7 @@ class UsefulElements {
             borderRadius: borderRadius,
             child: url != null && url.isNotEmpty
                 ? FadeInImage.assetNetwork(
-              placeholder: "assets/placeholder.png",
+              placeholder: "assets/Uncleplaceholder.png",
               image: url,
 
               imageErrorBuilder: (context, object, stackTrace) {
@@ -77,7 +77,7 @@ class UsefulElements {
                   decoration: BoxDecoration(
                       borderRadius: borderRadius,
                       image:const DecorationImage(
-                          image: AssetImage("assets/placeholder.png"),
+                          image: AssetImage("assets/Uncleplaceholder.png"),
                           fit: BoxFit.cover
                       )
                   ),
@@ -93,7 +93,7 @@ class UsefulElements {
               decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   image:const DecorationImage(
-                      image: AssetImage("assets/placeholder.png"),
+                      image: AssetImage("assets/Uncleplaceholder.png"),
                       fit: BoxFit.cover
                   )
               ),

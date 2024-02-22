@@ -276,7 +276,7 @@ backgroundColor: Colors.white,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(35),
                         child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/placeholder.png',
+                          placeholder: 'assets/Uncleplaceholder.png',
                           image:  widget.messenger_image!,
                           fit: BoxFit.contain,
                         )),

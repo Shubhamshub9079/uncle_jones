@@ -298,7 +298,10 @@ class ProductRepository {
   }
 
   Future<VariantResponse> getVariantWiseInfo(
-      {int? id = 0, color = '', variants = '', qty = 1}) async {
+      {int? id = 0,
+        color = '',
+        variants = '',
+        qty = 1}) async {
     String url=("${AppConfig.BASE_URL}/products/variant/price");
 
     var postBody = jsonEncode({

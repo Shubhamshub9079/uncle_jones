@@ -22,7 +22,7 @@ class AuthRepository {
     String url = ("${AppConfig.BASE_URL}/auth/login");
     final response = await ApiRequest.post(
         url: url,
-        headers: {
+         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
           "App-Language": app_language.$!,
@@ -42,13 +42,13 @@ class AuthRepository {
   }) async {
     email = email == ("null") ? "" : email;
 
-    var post_body = jsonEncode({
-      "name": name,
-      "email": email,
-      "provider": "$provider",
-      "social_provider": "$social_provider",
-      "access_token": "$access_token",
-      "secret_token": "$secret_token"
+     var post_body = jsonEncode({
+         "name": name,
+         "email": email,
+         "provider": "$provider",
+         "social_provider": "$social_provider",
+         "access_token": "$access_token",
+         "secret_token": "$secret_token"
     });
 
     print(post_body);

@@ -614,7 +614,7 @@ class _SellerDetailsState extends State<SellerDetails> {
                       child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(6)),
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder_rectangle.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: i,
                             fit: BoxFit.cover,
                           ))),
@@ -854,11 +854,11 @@ class _SellerDetailsState extends State<SellerDetails> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/placeholder.png',
+                  placeholder: 'assets/Uncleplaceholder.png',
                   image: _shopDetails.logo,
                   fit: BoxFit.cover,
                   imageErrorBuilder: (BuildContext, Object, StackTrace){
-                    return Image.asset('assets/placeholder_rectangle.png');
+                    return Image.asset('assets/Uncleplaceholder.png');
                   },
                 ),
               ),

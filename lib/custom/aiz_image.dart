@@ -8,7 +8,7 @@ class AIZImage {
       imageUrl: url,
       progressIndicatorBuilder: (context, string, progress) {
         return Image.asset(
-          "assets/placeholder_rectangle.png",
+          "assets/Uncleplaceholder.png",
           fit: BoxFit.cover,
         );
       },
@@ -18,7 +18,7 @@ class AIZImage {
       // progressIndicatorBuilder: (context, url, downloadProgress) =>
       //     CircularProgressIndicator(value: downloadProgress.progress),
       errorWidget: (context, url, error) => Image.asset(
-        "assets/placeholder_rectangle.png",
+        "assets/Uncleplaceholder.png",
         fit: BoxFit.cover,
       ),
     );
@@ -34,7 +34,7 @@ class AIZImage {
               ),
               fit: fit,
               onError: (obj, e) {
-                //  return AssetImage("assets/placeholder_rectangle.png");
+                //  return AssetImage("assets/Uncleplaceholder.png");
               }),
           borderRadius: BorderRadius.circular(radius),
           color: Colors.white,

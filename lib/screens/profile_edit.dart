@@ -295,7 +295,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                     clipBehavior: Clip.hardEdge,
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                     child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/placeholder.png',
+                      placeholder: 'assets/Uncleplaceholder.png',
                       image: "${avatar_original.$}",
                       fit: BoxFit.fill,
                     )),

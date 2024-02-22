@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:UncleJons/custom/toast_component.dart';
 import 'package:UncleJons/repositories/brand_repository.dart';
 import 'package:UncleJons/repositories/category_repository.dart';
-import 'package:UncleJons/repositories/flash_deal_repository.dart';
 import 'package:UncleJons/repositories/product_repository.dart';
 import 'package:UncleJons/repositories/sliders_repository.dart';
 import 'package:flutter/material.dart';

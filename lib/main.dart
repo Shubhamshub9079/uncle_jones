@@ -47,7 +47,6 @@ import 'screens/classified_ads/my_classified_ads.dart';
 import 'screens/club_point.dart';
 import 'screens/digital_product/digital_product_details.dart';
 import 'screens/digital_product/purchased_digital_produts.dart';
-import 'screens/flash_deal_list.dart';
 import 'screens/flash_deal_products.dart';
 import 'screens/home.dart';
 import 'screens/package/packages.dart';
@@ -80,7 +79,7 @@ main() async {
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    systemNavigationBarDividerColor: Colors.transparent,
+    systemNavigationBarDividerColor: Colors.transparent
   ));
 
   runApp(

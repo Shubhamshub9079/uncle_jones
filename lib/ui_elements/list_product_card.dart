@@ -31,97 +31,108 @@ class _ListProductCardState extends State<ListProductCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return ProductDetails(
-            id: widget.id,
-          );
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return ProductDetails(
+              id: widget.id,
+            );
+          }),
+        );
       },
       child: Container(
         decoration: BoxDecorations.buildBoxDecoration_1(),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            height: 100,
-            child: ClipRRect(
-              borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(6), right: Radius.zero),
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder.png',
-                image: widget.image!,
-                fit: BoxFit.cover,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 100,
+              padding: EdgeInsets.all(10),
+              height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(6), right: Radius.zero),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/Uncleplaceholder.png',
+                  image: widget.image!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 14),
-            width: 240,
-            height: 100,
-            //color: Colors.red,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  //color:Colors.blue,
-                  child: Text(
-                    widget.name!,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(
-                        color: MyTheme.black,
-                        fontSize: 14,
-                        height: 1.6,
-                        fontWeight: FontWeight.w400),
+            Container(
+              padding:
+                  EdgeInsets.only(top: 10, left: 12, right: 12, bottom: 14),
+              width: 225,
+              height: 100,
+              //color: Colors.red,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    //color:Colors.blue,
+                    child: Text(
+                      widget.name!,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                          color: MyTheme.black,
+                          fontSize: 14,
+                          height: 1.6,
+                          fontWeight: FontWeight.w400),
+                    ),
                   ),
-                ),
-                Container(
-                  //color:Colors.green,
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    alignment: WrapAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        SystemConfig.systemCurrency!.code != null
-                            ? widget.main_price!.replaceAll(
-                                SystemConfig.systemCurrency!.code!,
-                                SystemConfig.systemCurrency!.symbol!)
-                            : widget.main_price!,
-                        textAlign: TextAlign.left,
-                        maxLines: 1,
-                        style: TextStyle(
-                            color: MyTheme.appColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      widget.has_discount!
-                          ? Text(
-                              SystemConfig.systemCurrency!.code != null
-                                  ? widget.stroked_price!.replaceAll(
-                                      SystemConfig.systemCurrency!.code!,
-                                      SystemConfig.systemCurrency!.symbol!)
-                                  : widget.stroked_price!,
-                              textAlign: TextAlign.left,
-                              maxLines: 1,
-                              style: TextStyle(
-                                  decoration: TextDecoration.lineThrough,
-                                  color: MyTheme.medium_grey,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400),
-                            )
-                          : Container(),
-                    ],
+                  Container(
+                    //color:Colors.green,
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'UJ Price : ',
+                          style: TextStyle(
+                              color: MyTheme.accent_color, fontSize: 17),
+                        ),
+                        Text(
+                          SystemConfig.systemCurrency!.code != null
+                              ? widget.main_price!.replaceAll(
+                                  SystemConfig.systemCurrency!.code!,
+                                  SystemConfig.systemCurrency!.symbol!)
+                              : widget.main_price!,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: MyTheme.appColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        widget.has_discount!
+                            ? Text(
+                                SystemConfig.systemCurrency!.code != null
+                                    ? widget.stroked_price!.replaceAll(
+                                        SystemConfig.systemCurrency!.code!,
+                                        SystemConfig.systemCurrency!.symbol!)
+                                    : widget.stroked_price!,
+                                textAlign: TextAlign.left,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: MyTheme.medium_grey,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            : Container(),
+                      ],
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

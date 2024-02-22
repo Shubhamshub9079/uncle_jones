@@ -834,7 +834,7 @@ class _ProfileState extends State<Profile> {
 
           buildSettingAndAddonsHorizontalMenuItem(
             "assets/Clo.png",
-            'Order Image List Upload',
+            'Manual Order',
                 () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -1448,7 +1448,7 @@ class _ProfileState extends State<Profile> {
                       clipBehavior: Clip.hardEdge,
                       borderRadius: BorderRadius.all(Radius.circular(100.0)),
                       child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/placeholder.png',
+                        placeholder: 'assets/Uncleplaceholder.png',
                         image: "${avatar_original.$}",
                         fit: BoxFit.fill,
                       ))

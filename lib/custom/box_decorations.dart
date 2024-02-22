@@ -10,7 +10,7 @@ class BoxDecorations {
     );
   }
 
-  static BoxDecoration buildBoxDecoration_1({double radius = 6.0}) {
+  static BoxDecoration buildBoxDecoration_1({double radius = 10.0}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius),
       color: Colors.white,
@@ -19,7 +19,7 @@ class BoxDecorations {
           color: Colors.black.withOpacity(.12),
           blurRadius: 20,
           spreadRadius: 0.0,
-          offset: Offset(0.0, 10.0), // shadow direction: bottom right
+          offset: Offset(0.0, 5.0), // shadow direction: bottom right
         )
       ],
     );

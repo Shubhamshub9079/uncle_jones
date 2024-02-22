@@ -236,7 +236,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                           fit: BoxFit.fitWidth,
                         ),*/
                               FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: _list[index].image,
                             fit: BoxFit.fitWidth,
                           ))),

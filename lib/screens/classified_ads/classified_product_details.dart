@@ -1151,7 +1151,7 @@ class _ClassifiedAdsDetailsState extends State<ClassifiedAdsDetails>
                                   /*Image.asset(
                                         singleProduct.product_images[index])*/
                                   FadeInImage.assetNetwork(
-                                placeholder: 'assets/placeholder.png',
+                                placeholder: 'assets/Uncleplaceholder.png',
                                 image: _productImageList[index],
                                 fit: BoxFit.contain,
                               )),
@@ -1170,7 +1170,7 @@ class _ClassifiedAdsDetailsState extends State<ClassifiedAdsDetails>
               width: MediaQuery.of(context).size.width - 96,
               child: Container(
                   child: FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder_rectangle.png',
+                placeholder: 'assets/Uncleplaceholder.png',
                 image: _productImageList[_currentImage],
                 fit: BoxFit.scaleDown,
               )),
@@ -1220,7 +1220,7 @@ class _ClassifiedAdsDetailsState extends State<ClassifiedAdsDetails>
                           height: double.infinity,
                           width: double.infinity,
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder_rectangle.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: i,
                             fit: BoxFit.fitHeight,
                           )),

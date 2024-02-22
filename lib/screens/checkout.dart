@@ -883,7 +883,7 @@ class _CheckoutState extends State<Checkout> {
                           fit: BoxFit.fitWidth,
                         ),*/
                               FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder.png',
+                            placeholder: 'assets/Uncleplaceholder.png',
                             image: _paymentTypeList[index].payment_type ==
                                     "manual_payment"
                                 ? _paymentTypeList[index].image
@@ -968,11 +968,11 @@ class _CheckoutState extends State<Checkout> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Btn.minWidthFixHeight(
-              minWidth: MediaQuery.of(context).size.width,
-              height: 50,
+              minWidth: MediaQuery.of(context).size.width*0.9,
+              height: 5,
               color: MyTheme.accent_color,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: Text(
                 widget.paymentFor == PaymentFor.WalletRecharge
