@@ -127,8 +127,9 @@ class _CategoryProductsState extends State<CategoryProducts> {
       child: Center(
         child: Text(_totalData == _productList.length
             ? AppLocalizations.of(context)!.no_more_products_ucf
-            : AppLocalizations.of(context)!.loading_more_products_ucf),
-      ),
+            : AppLocalizations.of(context)!.loading_more_products_ucf,style:
+        TextStyle(color: MyTheme.green),),),
+
     );
   }
 
@@ -232,8 +233,9 @@ class _CategoryProductsState extends State<CategoryProducts> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 18),
       width: DeviceInfo(context).width,
-      height: 30,
+      height: 35,
       child: TextField(
+
         controller: _searchController,
         onTap: () {},
         onChanged: (txt) {
@@ -259,15 +261,15 @@ class _CategoryProductsState extends State<CategoryProducts> {
             ),
           ),
           filled: true,
-          fillColor: MyTheme.white.withOpacity(0.6),
+          fillColor: MyTheme.white,
           hintText: "${AppLocalizations.of(context)!.search_products_from} : " +
               widget.category_name!,
           hintStyle: TextStyle(fontSize: 14.0, color: MyTheme.font_grey),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: MyTheme.noColor, width: 0.0),
+              borderSide: BorderSide(color: MyTheme.white, width: 0.0),
               borderRadius: BorderRadius.circular(6)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: MyTheme.noColor, width: 0.0),
+              borderSide: BorderSide(color: MyTheme.white, width: 0.0),
               borderRadius: BorderRadius.circular(6)),
           contentPadding: EdgeInsets.all(8.0),
         ),

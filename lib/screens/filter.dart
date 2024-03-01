@@ -32,8 +32,8 @@ class WhichFilter {
     return <WhichFilter>[
       WhichFilter(
           'product', AppLocalizations.of(OneContext().context!)!.product_ucf),
-      WhichFilter(
-          'sellers', AppLocalizations.of(OneContext().context!)!.sellers_ucf),
+      // WhichFilter(
+      //     'sellers', AppLocalizations.of(OneContext().context!)!.sellers_ucf),
       WhichFilter(
           'brands', AppLocalizations.of(OneContext().context!)!.brands_ucf),
     ];
@@ -351,7 +351,8 @@ class _FilterState extends State<Filter> {
       child: Center(
         child: Text(_totalProductData == _productList.length
             ? AppLocalizations.of(context)!.no_more_products_ucf
-            : AppLocalizations.of(context)!.loading_more_products_ucf),
+            : AppLocalizations.of(context)!.loading_more_products_ucf,
+          style: TextStyle(color: MyTheme.green),),
       ),
     );
   }
@@ -829,100 +830,17 @@ class _FilterState extends State<Filter> {
           app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: Drawer(
         child: Container(
-          padding: EdgeInsets.only(top: 50),
+          padding: EdgeInsets.symmetric(vertical: 5),
           child: Column(
             children: [
               Container(
-                height: 100,
+                height: 50,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text(
-                          AppLocalizations.of(context)!.price_range_ucf,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Container(
-                              height: 30,
-                              width: 100,
-                              child: TextField(
-                                controller: _minPriceController,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [_amountValidator],
-                                decoration: InputDecoration(
-                                    hintText: AppLocalizations.of(context)!
-                                        .minimum_ucf,
-                                    hintStyle: TextStyle(
-                                        fontSize: 12.0,
-                                        color: MyTheme.textfield_grey),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: MyTheme.textfield_grey,
-                                          width: 1.0),
-                                      borderRadius: const BorderRadius.all(
-                                        const Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: MyTheme.textfield_grey,
-                                          width: 2.0),
-                                      borderRadius: const BorderRadius.all(
-                                        const Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    contentPadding: EdgeInsets.all(4.0)),
-                              ),
-                            ),
-                          ),
-                          Text(" - "),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Container(
-                              height: 30,
-                              width: 100,
-                              child: TextField(
-                                controller: _maxPriceController,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [_amountValidator],
-                                decoration: InputDecoration(
-                                    hintText: AppLocalizations.of(context)!
-                                        .maximum_ucf,
-                                    hintStyle: TextStyle(
-                                        fontSize: 12.0,
-                                        color: MyTheme.textfield_grey),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: MyTheme.textfield_grey,
-                                          width: 1.0),
-                                      borderRadius: const BorderRadius.all(
-                                        const Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: MyTheme.textfield_grey,
-                                          width: 2.0),
-                                      borderRadius: const BorderRadius.all(
-                                        const Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    contentPadding: EdgeInsets.all(4.0)),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+
                     ],
                   ),
                 ),
@@ -944,7 +862,7 @@ class _FilterState extends State<Filter> {
                           ),
                           _filterCategoryList.length == 0
                               ? Container(
-                                  height: 100,
+                                  height: 60,
                                   child: Center(
                                     child: Text(
                                       AppLocalizations.of(context)!
@@ -967,7 +885,7 @@ class _FilterState extends State<Filter> {
                           ),
                           _filterBrandList.length == 0
                               ? Container(
-                                  height: 100,
+                                  height:60,
                                   child: Center(
                                     child: Text(
                                       AppLocalizations.of(context)!
@@ -987,7 +905,7 @@ class _FilterState extends State<Filter> {
                 ),
               ),
               Container(
-                height: 70,
+                height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -1049,7 +967,7 @@ class _FilterState extends State<Filter> {
 
   ListView buildFilterBrandsList() {
     return ListView(
-      padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+      padding: EdgeInsets.only(top: 0.0, bottom: 5.0),
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: <Widget>[
@@ -1080,7 +998,7 @@ class _FilterState extends State<Filter> {
 
   ListView buildFilterCategoryList() {
     return ListView(
-      padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+      padding: EdgeInsets.only(top: 1.0, bottom: 5.0),
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: <Widget>[

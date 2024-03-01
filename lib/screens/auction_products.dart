@@ -107,8 +107,9 @@ class _AuctionProductsState extends State<AuctionProducts> {
       child: Center(
         child: Text(_totalData == _auctionlProductItems.length
             ? AppLocalizations.of(context)!.no_more_products_ucf
-            : AppLocalizations.of(context)!.loading_more_products_ucf),
-      ),
+            : AppLocalizations.of(context)!.loading_more_products_ucf,
+          style: TextStyle(color: MyTheme.green),),),
+
     );
   }
 

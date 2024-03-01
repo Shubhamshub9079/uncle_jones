@@ -112,7 +112,8 @@ class _SellerProductsState extends State<SellerProducts> {
       child: Center(
         child: Text(_totalData == _productList.length
             ? AppLocalizations.of(context)!.no_more_products_ucf
-            : AppLocalizations.of(context)!.loading_more_products_ucf),
+            : AppLocalizations.of(context)!.loading_more_products_ucf,
+          style: TextStyle(color: MyTheme.green),),
       ),
     );
   }

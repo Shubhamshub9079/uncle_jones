@@ -41,7 +41,7 @@ class _CategoryListState extends State<CategoryList>
   final TextEditingController _searchController = TextEditingController();
 
   var selectedItem = 0;
-  var selectedItemId = "5";
+  var selectedItemId = "8";
 
   @override
   Widget build(BuildContext context) {

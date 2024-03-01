@@ -10,13 +10,16 @@ import 'package:UncleJons/screens/filter.dart';
 import 'package:UncleJons/screens/top_selling_products.dart';
 import 'package:UncleJons/ui_elements/mini_product_card.dart';
 import 'package:UncleJons/ui_elements/product_card.dart';
+import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../custom/device_info.dart';
+import 'barcodeProductview.dart';
 import 'itemlist_uploadimage.dart';
 
 class Home extends StatefulWidget {
@@ -37,6 +40,37 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   HomePresenter homeData = HomePresenter();
   final TextEditingController _searchController = TextEditingController();
+  String scannedBarcode = ''; // Hold the scanned barcode number
+  EdgeInsets getDynamicPadding(double top, double right) {
+    return EdgeInsets.fromLTRB(0, top, right, 0);
+  }
+  Future<void> scanBarcode(BuildContext context) async {
+    try {
+      var result = await BarcodeScanner.scan();
+      if (result.rawContent != null && result.rawContent.isNotEmpty) {
+        setState(() {
+          scannedBarcode =
+              result.rawContent; // Store the scanned barcode number
+        });
+        print('Scanned barcode: ${scannedBarcode}');
+
+        // Navigate to another screen with the scanned barcode number
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ProductViewBarCode(
+                    scannedBarcode: scannedBarcode,
+                    key: null,
+                  )),
+        );
+      } else {
+        print('User canceled the scan or no barcode found');
+      }
+    } catch (e) {
+      // Handle any exceptions
+      print('Error: $e');
+    }
+  }
 
   @override
   void initState() {
@@ -72,6 +106,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //extendBodyBehindAppBar: true,
       //key: homeData.scaffoldKey,
       appBar: PreferredSize(
         child: GestureDetector(
@@ -85,13 +120,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           },
           child: buildAppBar(context),
         ),
-        preferredSize: Size(
-          DeviceInfo(context).width!,
-          70,
+        preferredSize: Size.fromHeight(kToolbarHeight + 14),
         ),
-      ),
+
       //drawer: MainDrawer(),
-      body: ListenableBuilder(
+      body:
+      ListenableBuilder(
           listenable: homeData,
           builder: (context, child) {
             return Stack(
@@ -342,14 +376,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 children: [
                                   Text.rich(
                                     TextSpan(
-                                      text: 'Dairy &',
+                                      text: 'Beverages ',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w300),
                                       children: <InlineSpan>[
                                         TextSpan(
-                                          text: ' Beverages',
+                                          text: '/ Dairy',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 15,
@@ -451,7 +485,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               children: [
                                 Text.rich(
                                   TextSpan(
-                                    text: 'Personal &',
+                                    text: 'Personal ',
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 15,
@@ -551,7 +585,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 15,
-                                          fontWeight: FontWeight.w300),
+                                          fontWeight: FontWeight.w900),
                                       children: <InlineSpan>[
                                         TextSpan(
                                           text: '',
@@ -755,14 +789,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 children: [
                                   Text.rich(
                                     TextSpan(
-                                      text: 'Home &',
+                                      text: 'Home',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w300),
                                       children: <InlineSpan>[
                                         TextSpan(
-                                          text: ' Kitchen',
+                                          text: ' / Kitchen',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 15,
@@ -1034,7 +1068,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (homeData.featuredProductList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
-          height: 200,
+          height: 220,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
@@ -2185,58 +2219,96 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       backgroundColor: MyTheme.accent_color,
       centerTitle: false,
       elevation: 0,
+      flexibleSpace: Padding(
+        padding: getDynamicPadding(20, 200),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.03,
+          width: 20,
+          child: Image.asset('assets/logocom.png'),
+        ),
+      ),
       automaticallyImplyLeading: false,
-      title: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return Filter();
-            }),
-          );
-        },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: SizedBox(
-            height: 40,
-            child: TextField(
-              controller: _searchController,
-              textAlign: TextAlign.start,
-              enabled: false,
-              style: const TextStyle(color: Colors.black),
-              cursorColor: Colors.black,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Search...',
-                hintStyle: TextStyle(color: Color(0XFFa9a9a9)),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Color(0XFFa9a9a9),
-                ),
-                contentPadding: EdgeInsets.only(top: 5),
-                suffixIcon: Align(
-                  widthFactor: 1.0,
-                  heightFactor: 1.0,
-                  child: Image.asset(
-                    'assets/voice_search.png',
-                    fit: BoxFit.contain,
-                    height: 20,
-                    width: 20,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: 22,),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return Filter();
+                }),
+              );
+            },
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: SizedBox(
+                    height: 35,
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    child: TextField(
+                      controller: _searchController,
+                      textAlign: TextAlign.start,
+                      enabled: false,
+                      style: const TextStyle(color: Colors.black),
+                      cursorColor: Colors.black,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Search...',
+                        hintStyle: TextStyle(color: Color(0XFFa9a9a9)),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Color(0XFFa9a9a9),
+                        ),
+                        contentPadding: EdgeInsets.only(top: 1),
+                        suffixIcon: Align(
+                          widthFactor: 1.0,
+                          heightFactor: 1.0,
+                          child: Image.asset(
+                            'assets/voice_search.png',
+                            fit: BoxFit.contain,
+                            height: 20,
+                            width: 20,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(30),
+                SizedBox(
+                  width: 10,
                 ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(30),
+                GestureDetector(
+                  onTap: () async {
+                    await scanBarcode(
+                        context); // Call the function to scan the barcode
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0), // Adjust padding as needed
+                    child: Image.asset(
+                      'assets/scanner.png',
+                      fit: BoxFit.contain,
+                      height: 40,
+                      width: 30,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -2276,7 +2348,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         child: Text(
             homeData.totalAllProductData == homeData.allProductList.length
                 ? AppLocalizations.of(context)!.no_more_products_ucf
-                : AppLocalizations.of(context)!.loading_more_products_ucf),
+                : AppLocalizations.of(context)!.loading_more_products_ucf,style: TextStyle(color: MyTheme.green_light),),
       ),
     );
   }

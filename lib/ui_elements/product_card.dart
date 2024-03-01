@@ -209,7 +209,7 @@ class _ProductCardState extends State<ProductCard> {
                                 ],
                               ),
                               SizedBox(
-                                height: 8,
+                                height: 7,
                               ),
                               InkWell(
                                 onTap: () {
@@ -218,7 +218,7 @@ class _ProductCardState extends State<ProductCard> {
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.50,
-                                  height: 28,
+                                  height: 26,
                                   decoration: BoxDecoration(
                                     color: Colors.green,
                                     borderRadius: BorderRadius.circular(20),

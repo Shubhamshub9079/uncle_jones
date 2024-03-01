@@ -106,7 +106,8 @@ class _DigitalProductsState extends State<DigitalProducts> {
       child: Center(
         child: Text(_totalData == _digitalProducts.length
             ? AppLocalizations.of(context)!.no_more_products_ucf
-            : AppLocalizations.of(context)!.loading_more_products_ucf),
+            : AppLocalizations.of(context)!.loading_more_products_ucf,
+          style: TextStyle(color: MyTheme.green),),
       ),
     );
   }
