@@ -636,7 +636,7 @@ class _CartState extends State<Cart> {
                               .cart_items[item_index]
                               .product_name,
                           overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
+                          maxLines: 2,
                           style: TextStyle(
                               color: MyTheme.black,
                               fontSize: 12,

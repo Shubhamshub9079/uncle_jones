@@ -117,7 +117,7 @@ class _ListProductCardState extends State<ListProductCard> {
                                         SystemConfig.systemCurrency!.symbol!)
                                     : widget.stroked_price!,
                                 textAlign: TextAlign.left,
-                                maxLines: 1,
+                                maxLines: 2,
                                 style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: MyTheme.medium_grey,

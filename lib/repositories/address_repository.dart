@@ -120,10 +120,7 @@ class AddressRepository {
     return addressUpdateResponseFromJson(response.body);
   }
 
-  Future<dynamic> getAddressUpdateLocationResponse(
-     int? id,
-     double? latitude,
-     double? longitude,
+  Future<dynamic> getAddressUpdateLocationResponse(int? id, double? latitude, double? longitude,
   ) async {
     var post_body = jsonEncode({
       "id": "${id}",
@@ -145,12 +142,8 @@ class AddressRepository {
     return addressUpdateLocationResponseFromJson(response.body);
   }
 
-  Future<dynamic> getAddressMakeDefaultResponse(
-    int? id,
-  ) async {
-    var post_body = jsonEncode({
-      "id": "$id",
-    });
+  Future<dynamic> getAddressMakeDefaultResponse(int? id,
+  ) async {var post_body = jsonEncode({"id": "$id"});
 
     String url=("${AppConfig.BASE_URL}/user/shipping/make_default");
     final response = await ApiRequest.post(url:url,

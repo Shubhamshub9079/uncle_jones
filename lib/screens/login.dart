@@ -37,7 +37,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   String _login_by = "email"; //phone or email
   String initialCountry = 'US';
-
+  bool _isPasswordVisible = false;
   // PhoneNumber phoneCode = PhoneNumber(isoCode: 'US', dialCode: "+1");
   var countries_code = <String?>[];
 
@@ -365,28 +365,28 @@ class _LoginState extends State<Login> {
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                               border: UnderlineInputBorder(),
-                              hintText: "john@gmail.com",
+                              hintText: "Unclejons@gmail.com",
                               hintStyle: TextStyle(color: MyTheme.medium_grey),
                               suffixIcon: Icon(Icons.email_outlined)),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: GestureDetector(
-                          onTap: (() => {
-                                setState(() {
-                                  _login_by = 'phone';
-                                })
-                              }),
-                          child: Text(
-                            "Or Login with a phone number",
-                            style: TextStyle(
-                                color: MyTheme.font_grey,
-                                decoration: TextDecoration.underline,
-                                fontSize: 12),
-                          ),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 10.0),
+                      //   child: GestureDetector(
+                      //     onTap: (() => {
+                      //           setState(() {
+                      //             _login_by = 'phone';
+                      //           })
+                      //         }),
+                      //     child: Text(
+                      //       "Or Login with a phone number",
+                      //       style: TextStyle(
+                      //           color: MyTheme.font_grey,
+                      //           decoration: TextDecoration.underline,
+                      //           fontSize: 12),
+                      //     ),
+                      //   ),
+                      // ),
                       otp_addon_installed.$
                           ? GestureDetector(
                               onTap: () {
@@ -485,16 +485,25 @@ class _LoginState extends State<Login> {
                       child: TextField(
                         controller: _passwordController,
                         autofocus: false,
-                        obscureText: true,
+                        obscureText: !_isPasswordVisible, // Initially obscured
                         enableSuggestions: true,
                         autocorrect: false,
                         decoration: InputDecoration(
-                            border: UnderlineInputBorder(),
-                            hintText: "***********",
-                            hintStyle: TextStyle(color: MyTheme.medium_grey),
-                            suffixIcon: Icon(Icons.lock)),
+                          border: UnderlineInputBorder(),
+                          hintText: "***********",
+                          hintStyle: TextStyle(color: MyTheme.medium_grey),
+                          suffixIcon: IconButton(
+                            icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible; // Toggle visibility
+                              });
+                            },
+                          ),
+                        ),
                       ),
                     ),
+                    SizedBox(height: 8,),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -508,9 +517,12 @@ class _LoginState extends State<Login> {
                         AppLocalizations.of(context)!
                             .login_screen_forgot_password,
                         style: TextStyle(
-                            color: MyTheme.blue_color,
-                            fontStyle: FontStyle.italic,
-                            decoration: TextDecoration.underline),
+                            color: MyTheme.accent_color,
+                            fontFamily: 'NotoSerifJP',
+                            wordSpacing: 0.5,
+                            letterSpacing: 0.5,
+                            //fontStyle: FontStyle.italic,
+                            decoration: TextDecoration.underline,fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
@@ -531,7 +543,7 @@ class _LoginState extends State<Login> {
                     height: 50,
                     shape: RoundedRectangleBorder(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(24.0))),
+                            const BorderRadius.all(Radius.circular(12.0),),),
                     color: MyTheme.accent_color,
                     child: Text(
                       AppLocalizations.of(context)!.login_screen_log_in,
@@ -564,7 +576,7 @@ class _LoginState extends State<Login> {
                   color: MyTheme.soft_accent_color,
                   shape: RoundedRectangleBorder(
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(24.0))),
+                          const BorderRadius.all(Radius.circular(12.0))),
                   child: Text(
                     AppLocalizations.of(context)!.login_screen_sign_up,
                     style: TextStyle(
@@ -589,75 +601,75 @@ class _LoginState extends State<Login> {
                     },
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.login_screen_login_with,
-                    style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Center(
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            onPressedGoogleLogin();
-                          },
-                          child: Container(
-                            width: 28,
-                            child: Image.asset("assets/google_logo.png"),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0),
-                          child: InkWell(
-                            onTap: () {
-                              onPressedFacebookLogin();
-                            },
-                            child: Container(
-                              width: 28,
-                              child: Image.asset("assets/facebook_logo.png"),
-                            ),
-                          ),
-                        ),
-                        if (allow_twitter_login.$)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
-                            child: InkWell(
-                              onTap: () {
-                                onPressedTwitterLogin();
-                              },
-                              child: Container(
-                                width: 28,
-                                child: Image.asset("assets/twitter_logo.png"),
-                              ),
-                            ),
-                          ),
-                        /* if (Platform.isIOS)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
-                            // visible: true,
-                            child: A(
-                              onTap: () async {
-                                signInWithApple();
-                              },
-                              child: Container(
-                                width: 28,
-                                child: Image.asset("assets/apple_logo.png"),
-                              ),
-                            ),
-                          ),*/
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 20.0),
+              //   child: Center(
+              //     child: Text(
+              //       AppLocalizations.of(context)!.login_screen_login_with,
+              //       style: TextStyle(color: MyTheme.font_grey, fontSize: 12),
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 15.0),
+              //   child: Center(
+              //     child: Container(
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           InkWell(
+              //             onTap: () {
+              //               onPressedGoogleLogin();
+              //             },
+              //             child: Container(
+              //               width: 28,
+              //               child: Image.asset("assets/google_logo.png"),
+              //             ),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(left: 15.0),
+              //             child: InkWell(
+              //               onTap: () {
+              //                 onPressedFacebookLogin();
+              //               },
+              //               child: Container(
+              //                 width: 28,
+              //                 child: Image.asset("assets/facebook_logo.png"),
+              //               ),
+              //             ),
+              //           ),
+              //           if (allow_twitter_login.$)
+              //             Padding(
+              //               padding: const EdgeInsets.only(left: 15.0),
+              //               child: InkWell(
+              //                 onTap: () {
+              //                   onPressedTwitterLogin();
+              //                 },
+              //                 child: Container(
+              //                   width: 28,
+              //                   child: Image.asset("assets/twitter_logo.png"),
+              //                 ),
+              //               ),
+              //             ),
+              //           /* if (Platform.isIOS)
+              //             Padding(
+              //               padding: const EdgeInsets.only(left: 15.0),
+              //               // visible: true,
+              //               child: A(
+              //                 onTap: () async {
+              //                   signInWithApple();
+              //                 },
+              //                 child: Container(
+              //                   width: 28,
+              //                   child: Image.asset("assets/apple_logo.png"),
+              //                 ),
+              //               ),
+              //             ),*/
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         )

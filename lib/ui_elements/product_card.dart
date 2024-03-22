@@ -1,20 +1,8 @@
 import 'package:UncleJons/helpers/system_config.dart';
 import 'package:UncleJons/my_theme.dart';
-import 'package:UncleJons/repositories/cart_repository.dart';
 import 'package:UncleJons/screens/product_details.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:provider/provider.dart';
-import 'package:toast/toast.dart';
-import '../custom/toast_component.dart';
-import '../helpers/shared_value_helper.dart';
-import '../presenter/cart_counter.dart';
-import '../repositories/product_repository.dart';
 import '../screens/auction_products_details.dart';
-import '../screens/cart.dart';
-import '../screens/login.dart';
 
 class ProductCard extends StatefulWidget {
   var identifier;

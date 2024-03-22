@@ -8,11 +8,13 @@ class AppConfig {
   //static String purchase_code = ""; //enter your purchase code for the app from codecanyon
 
   //Default language config
+
   static String default_language = "en";
   static String mobile_app_code = "en";
   static bool app_language_rtl = false;
 
   //configure this
+
   static const bool HTTPS = true;
 
   static const DOMAIN_PATH = "192.168.8.17/ecommerce"; //localhost

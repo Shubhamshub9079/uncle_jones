@@ -967,30 +967,33 @@ class _CheckoutState extends State<Checkout> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Btn.minWidthFixHeight(
-              minWidth: MediaQuery.of(context).size.width*0.9,
-              height: 5,
-              color: MyTheme.accent_color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 6,5),
+              child: Btn.minWidthFixHeight(
+                minWidth: MediaQuery.of(context).size.width*0.9,
+                height: 8,
+                color: MyTheme.accent_color,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Text(
+                  widget.paymentFor == PaymentFor.WalletRecharge
+                      ? AppLocalizations.of(context)!.recharge_wallet_ucf
+                      : widget.paymentFor == PaymentFor.ManualPayment
+                          ? AppLocalizations.of(context)!.proceed_all_caps
+                          : widget.paymentFor == PaymentFor.PackagePay
+                              ? AppLocalizations.of(context)!.buy_package_ucf
+                              : AppLocalizations.of(context)!
+                                  .place_my_order_all_capital,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: () {
+                  onPressPlaceOrderOrProceed();
+                },
               ),
-              child: Text(
-                widget.paymentFor == PaymentFor.WalletRecharge
-                    ? AppLocalizations.of(context)!.recharge_wallet_ucf
-                    : widget.paymentFor == PaymentFor.ManualPayment
-                        ? AppLocalizations.of(context)!.proceed_all_caps
-                        : widget.paymentFor == PaymentFor.PackagePay
-                            ? AppLocalizations.of(context)!.buy_package_ucf
-                            : AppLocalizations.of(context)!
-                                .place_my_order_all_capital,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-              ),
-              onPressed: () {
-                onPressPlaceOrderOrProceed();
-              },
             )
           ],
         ),

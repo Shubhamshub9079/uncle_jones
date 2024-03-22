@@ -35,40 +35,40 @@ class _ProductViewBarCodeState extends State<ProductViewBarCode> {
           SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-            onPressed: () async {
-              try {
-                var result = await BarcodeScanner.scan();
-                if (result.rawContent != null && result.rawContent.isNotEmpty) {
-                  int scannedId = int.tryParse(result.rawContent) ?? 0; // Convert to int
-                  print('Scanned ID: $scannedId');
-
-                  // Navigate to the ProductDetails screen with the scanned ID
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return ProductDetails(
-                        id: scannedId, // Convert int to String if necessary
-                      );
-                    }),
-                  );
-                } else {
-                  print('User canceled the scan or no barcode found');
-                }
-              } catch (e) {
-                // Handle any exceptions
-                print('Error: $e');
-              }
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(MyTheme.accent_color),
-              minimumSize: MaterialStateProperty.all<Size>(Size(150, 50),),
-            ),
-            child: Text(
-              'View Product',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          )
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     try {
+          //       var result = await BarcodeScanner.scan();
+          //       if (result.rawContent != null && result.rawContent.isNotEmpty) {
+          //         int scannedId = int.tryParse(result.rawContent) ?? 0; // Convert to int
+          //         print('Scanned ID: $scannedId');
+          //
+          //         // Navigate to the ProductDetails screen with the scanned ID
+          //         Navigator.push(
+          //           context,
+          //           MaterialPageRoute(builder: (context) {
+          //             return ProductDetails(
+          //               id: scannedId, // Convert int to String if necessary
+          //             );
+          //           }),
+          //         );
+          //       } else {
+          //         print('User canceled the scan or no barcode found');
+          //       }
+          //     } catch (e) {
+          //       // Handle any exceptions
+          //       print('Error: $e');
+          //     }
+          //   },
+          //   style: ButtonStyle(
+          //     backgroundColor: MaterialStateProperty.all<Color>(MyTheme.accent_color),
+          //     minimumSize: MaterialStateProperty.all<Size>(Size(150, 50),),
+          //   ),
+          //   child: Text(
+          //     'View Product',
+          //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          //   ),
+          // )
 
 
 

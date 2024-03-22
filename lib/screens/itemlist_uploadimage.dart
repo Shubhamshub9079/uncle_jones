@@ -60,7 +60,7 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w900,
-                  color: Colors.white),
+                  color: Colors.white,fontFamily: 'NotoSerifJP',letterSpacing: 0.5,wordSpacing: 1.0),
             ),
           ),
           Positioned(
@@ -243,7 +243,7 @@ class _ItemImageUploadState extends State<ItemImageUpload> {
                                                           .pop(); // Close the dialog
                                                     },
                                                   ),
-                                                  Divider(),
+                                                  Divider(height: 2,),
                                                   Padding(
                                                       padding:
                                                           EdgeInsets.all(4.0)),

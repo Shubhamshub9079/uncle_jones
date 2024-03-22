@@ -511,7 +511,7 @@ class _RegistrationState extends State<Registration> {
                     color: MyTheme.accent_color,
                     shape: RoundedRectangleBorder(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(24.0))),
+                            const BorderRadius.all(Radius.circular(12.0))),
                     child: Text(
                       AppLocalizations.of(context)!.sign_up_ucf,
                       style: TextStyle(

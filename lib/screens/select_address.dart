@@ -240,7 +240,7 @@ class _SelectAddressState extends State<SelectAddress> {
             });
           },
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(10,5, 5, 10),
             child: Container(
               height: 95,
               width: 250,
@@ -254,14 +254,14 @@ class _SelectAddressState extends State<SelectAddress> {
                     Text(
                       'To Add Or Edit Address',
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 13,
                           //  decoration: TextDecoration.underline,height: 1,
                           color: MyTheme.white,
                           fontWeight: FontWeight.w900),
                     ),
                     Icon(
                       Icons.arrow_forward,
-                      color: MyTheme.white,
+                      color: MyTheme.white,size: 20,
                     )
                   ],
                 ),
@@ -572,23 +572,26 @@ class _SelectAddressState extends State<SelectAddress> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Btn.minWidthFixHeight(
-              minWidth: MediaQuery.of(context).size.width * 0.9,
-              height: 40,
-              color: MyTheme.accent_color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 0, 5, 5),
+              child: Btn.minWidthFixHeight(
+                minWidth: MediaQuery.of(context).size.width * 0.9,
+                height: 40,
+                color: MyTheme.accent_color,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Text(
+                  LangText(context).local!.continue_to_delivery_info_ucf,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: () {
+                  onPressProceed(context);
+                },
               ),
-              child: Text(
-                LangText(context).local!.continue_to_delivery_info_ucf,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-              ),
-              onPressed: () {
-                onPressProceed(context);
-              },
             )
           ],
         ),

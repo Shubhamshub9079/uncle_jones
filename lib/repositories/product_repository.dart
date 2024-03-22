@@ -45,7 +45,7 @@ class ProductRepository {
       "Currency-Exchange-Rate":
           SystemConfig.systemCurrency!.exchangeRate.toString(),
     });
-
+    print('Today deal response: ${response.body}');
     return productMiniResponseFromJson(response.body);
   }
 

@@ -44,11 +44,11 @@ class AuthScreen {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20.0, top: 10),
                         child: Text(
-                          headerText,
+                          'EXPECT MORE PAY LESS',
                           style: TextStyle(
                               color: MyTheme.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,  fontFamily: 'NotoSerifJP',letterSpacing: 0.8,wordSpacing: 1.5),
                           textAlign: TextAlign.center,
                         ),
                       ),

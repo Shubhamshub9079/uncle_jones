@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:UncleJons/screens/profile_edit.dart';
 import 'package:UncleJons/screens/wallet.dart';
 import 'package:UncleJons/screens/whole_sale_products.dart';
@@ -337,9 +336,12 @@ class _ProfileState extends State<Profile> {
               children: [
                 buildBottomVerticalCardListItem("assets/classified_product.png",
                     LangText(context).local!.classified_ads_ucf, onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ClassifiedAds();
-                  }),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return ClassifiedAds();
+                    }),
+                  );
                 }),
                 Divider(
                   thickness: 1,
@@ -579,7 +581,7 @@ class _ProfileState extends State<Profile> {
                       // );
                     }
                   : () => showLoginWarning()),
-           ],
+        ],
       ),
     );
   }
@@ -797,252 +799,250 @@ class _ProfileState extends State<Profile> {
       width: DeviceInfo(context).width,
       decoration: BoxDecorations.buildBoxDecoration_1(),
       child: Column(
-        // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        //   crossAxisCount: 3,
-        // physics: NeverScrollableScrollPhysics(),
-        // shrinkWrap: true,
-        // cacheExtent: 5.0,
-        children: [
-          if (wallet_system_status.$)
-            Container(
-              // color: Colors.red,
+          // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //   crossAxisCount: 3,
+          // physics: NeverScrollableScrollPhysics(),
+          // shrinkWrap: true,
+          // cacheExtent: 5.0,
+          children: [
+            if (wallet_system_status.$)
+              Container(
+                // color: Colors.red,
 
-              child: buildSettingAndAddonsHorizontalMenuItem(
-                  "assets/wallet.png",
-                  AppLocalizations.of(context)!.my_wallet_ucf, () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Wallet();
-                }));
-              }),
-            ),
-          buildSettingAndAddonsHorizontalMenuItem(
-              "assets/orders.png",
-              AppLocalizations.of(context)!.my_orders_ucf,
-             // is_logged_in.$ ?
-                  () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return OrderList();
-                      }),);
-                    }),
-               //   : () => null),
-          Divider(
-            thickness: 1,
-            color: MyTheme.light_grey,
-          ),
-
-
-          buildSettingAndAddonsHorizontalMenuItem(
-            "assets/Clo.png",
-            'Manual Order',
-                () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ItemImageUpload(
-                  // page_name: "Privacy Policy",
-                  // url: "${AppConfig.RAW_BASE_URL}/privacy-policy",
-                ),
+                child: buildSettingAndAddonsHorizontalMenuItem(
+                    "assets/wallet.png",
+                    AppLocalizations.of(context)!.my_wallet_ucf, () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Wallet();
+                  }));
+                }),
               ),
-            ),
-          ),
-          Divider(
-            thickness: 1,
-            color: MyTheme.light_grey,
-          ),
-          buildSettingAndAddonsHorizontalMenuItem(
-              "assets/heart.png",
-              AppLocalizations.of(context)!.my_wishlist_ucf,
-           //  is_logged_in.$?
-                   () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Wishlist();
-                      }),);
-                    }),
-                //  : () => null),
-          Divider(
-            thickness: 1,
-            color: MyTheme.light_grey,
-          ),
-          if (club_point_addon_installed.$)
-            buildSettingAndAddonsHorizontalMenuItem(
-                "assets/points.png",
-                AppLocalizations.of(context)!.earned_points_ucf,
-                is_logged_in.$
-                    ? () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return Clubpoint();
-                        }),);
-                      }
-                    : () => null),
-          if (club_point_addon_installed.$)
-            Divider(
-              thickness: 1,
-              color: MyTheme.light_grey,
-            ),
-          if (refund_addon_installed.$)
-            buildSettingAndAddonsHorizontalMenuItem(
-                "assets/refund.png",
-                AppLocalizations.of(context)!.refund_requests_ucf,
-                is_logged_in.$
-                    ? () {}
-                // {
-                //         Navigator.push(context,
-                //             MaterialPageRoute(builder: (context) {
-                //           return RefundRequest();
-                //         }));
-                //       }
-                    : () => null),
-          if (refund_addon_installed.$)
-            Divider(
-              thickness: 1,
-              color: MyTheme.light_grey,
-            ),
-          // if (conversation_system_status.$)
-          //   buildSettingAndAddonsHorizontalMenuItem(
-          //       "assets/messages.png",
-          //       AppLocalizations.of(context)!.messages_ucf,
-          //       is_logged_in.$
-          //           ? () {
-          //               Navigator.push(context,
-          //                   MaterialPageRoute(builder: (context) {
-          //                 return MessengerList();
-          //               }));
-          //             }
-          //           : () => null),
-          // if (conversation_system_status.$)
-          //   Divider(
-          //     thickness: 1,
-          //     color: MyTheme.light_grey,
-          //   ),
-          // if (auction_addon_installed.$)
-          if (false)
-            buildSettingAndAddonsHorizontalMenuItem(
-                "assets/auction.png",
-                AppLocalizations.of(context)!.auction_ucf,
-                is_logged_in.$
-                    ? () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return MessengerList();
-                        // }));
-                      }
-                    : () => null),
-          if (classified_product_status.$)
-            buildSettingAndAddonsHorizontalMenuItem(
-                "assets/classified_product.png",
-                AppLocalizations.of(context)!.classified_products,
-                is_logged_in.$
-                    ? () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return MyClassifiedAds();
-                        }));
-                      }
-                    : () => null),
-          if (classified_product_status.$)
-            Divider(
-              thickness: 1,
-              color: MyTheme.light_grey,
-            ),
-          // buildSettingAndAddonsHorizontalMenuItem(
-          //     "assets/download.png",
-          //     AppLocalizations.of(context)!.downloads_ucf,
-          //     is_logged_in.$
-          //         ? () {
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (context) {
-          //               return PurchasedDigitalProducts();
-          //             }));
-          //           }
-          //         : () => null),
-          // Divider(
-          //   thickness: 1,
-          //   color: MyTheme.light_grey,
-          // ),
-
-          buildSettingAndAddonsHorizontalMenuItem(
-            "assets/terms_condition.png",
-            'Terms & Condition',
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CommonWebviewScreen(
-                  page_name: "Terms Conditions",
-                  url: "https://unclejons.in/terms",
-                ),
-              ),
-            ),
-          ),
-          Divider(
-            thickness: 1,
-            color: MyTheme.light_grey,
-          ),
-          buildSettingAndAddonsHorizontalMenuItem(
-            "assets/lock.png",
-            'Privacy Policy',
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CommonWebviewScreen(
-                  page_name: "Privacy Policy",
-                  url: "https://unclejons.in/privacy-policy",
-                ),
-              ),
-            ),
-          ),
-          Divider(
-            thickness: 1,
-            color: MyTheme.light_grey,
-          ),
-          buildSettingAndAddonsHorizontalMenuItem(
-            "assets/ship.png",
-            'Shipping Policy',
-                () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CommonWebviewScreen(
-                  page_name: "Shipping Policy",
-                  url: "https://unclejons.in/support-policy",
-                ),
-              ),
-            ),
-          ),
-          Divider(
-            thickness: 1,
-            color: MyTheme.light_grey,
-          ),
-          buildSettingAndAddonsHorizontalMenuItem(
-            "assets/return.png",
-            'Return Policy',
-                () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CommonWebviewScreen(
-                  page_name: "Return Policy",
-                  url: "https://unclejons.in/return-policy",
-                ),
-              ),
-            ),
-          ),
-        // if (is_logged_in.$)
-            Divider(
-              thickness: 1,
-              color: MyTheme.light_grey,
-            ),
-        //  if (is_logged_in.$)
-            buildSettingAndAddonsHorizontalMenuItem(
-                "assets/delete.png", LangText(context).local!.delete_my_account,
+            buildSettingAndAddonsHorizontalMenuItem("assets/orders.png",
+                AppLocalizations.of(context)!.my_orders_ucf,
+                // is_logged_in.$ ?
                 () {
-              deleteWarningDialog();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return OrderList();
+                }),
+              );
             }),
+            //   : () => null),
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
 
+            buildSettingAndAddonsHorizontalMenuItem(
+              "assets/Clo.png",
+              'Manual Order',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ItemImageUpload(
+                      // page_name: "Privacy Policy",
+                      // url: "${AppConfig.RAW_BASE_URL}/privacy-policy",
+                      ),
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
+            buildSettingAndAddonsHorizontalMenuItem("assets/heart.png",
+                AppLocalizations.of(context)!.my_wishlist_ucf,
+                //  is_logged_in.$?
+                () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return Wishlist();
+                }),
+              );
+            }),
+            //  : () => null),
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
+            if (club_point_addon_installed.$)
+              buildSettingAndAddonsHorizontalMenuItem(
+                  "assets/points.png",
+                  AppLocalizations.of(context)!.earned_points_ucf,
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return Clubpoint();
+                            }),
+                          );
+                        }
+                      : () => null),
+            if (club_point_addon_installed.$)
+              Divider(
+                thickness: 1,
+                color: MyTheme.light_grey,
+              ),
+            if (refund_addon_installed.$)
+              buildSettingAndAddonsHorizontalMenuItem(
+                  "assets/refund.png",
+                  AppLocalizations.of(context)!.refund_requests_ucf,
+                  is_logged_in.$
+                      ? () {}
+                      // {
+                      //         Navigator.push(context,
+                      //             MaterialPageRoute(builder: (context) {
+                      //           return RefundRequest();
+                      //         }));
+                      //       }
+                      : () => null),
+            if (refund_addon_installed.$)
+              Divider(
+                thickness: 1,
+                color: MyTheme.light_grey,
+              ),
+            // if (conversation_system_status.$)
+            //   buildSettingAndAddonsHorizontalMenuItem(
+            //       "assets/messages.png",
+            //       AppLocalizations.of(context)!.messages_ucf,
+            //       is_logged_in.$
+            //           ? () {
+            //               Navigator.push(context,
+            //                   MaterialPageRoute(builder: (context) {
+            //                 return MessengerList();
+            //               }));
+            //             }
+            //           : () => null),
+            // if (conversation_system_status.$)
+            //   Divider(
+            //     thickness: 1,
+            //     color: MyTheme.light_grey,
+            //   ),
+            // if (auction_addon_installed.$)
+            if (false)
+              buildSettingAndAddonsHorizontalMenuItem(
+                  "assets/auction.png",
+                  AppLocalizations.of(context)!.auction_ucf,
+                  is_logged_in.$
+                      ? () {
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) {
+                          //   return MessengerList();
+                          // }));
+                        }
+                      : () => null),
+            if (classified_product_status.$)
+              buildSettingAndAddonsHorizontalMenuItem(
+                  "assets/classified_product.png",
+                  AppLocalizations.of(context)!.classified_products,
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return MyClassifiedAds();
+                          }));
+                        }
+                      : () => null),
+            if (classified_product_status.$)
+              Divider(
+                thickness: 1,
+                color: MyTheme.light_grey,
+              ),
+            // buildSettingAndAddonsHorizontalMenuItem(
+            //     "assets/download.png",
+            //     AppLocalizations.of(context)!.downloads_ucf,
+            //     is_logged_in.$
+            //         ? () {
+            //             Navigator.push(context,
+            //                 MaterialPageRoute(builder: (context) {
+            //               return PurchasedDigitalProducts();
+            //             }));
+            //           }
+            //         : () => null),
+            // Divider(
+            //   thickness: 1,
+            //   color: MyTheme.light_grey,
+            // ),
 
-
-
-     ]
-      ),
+            buildSettingAndAddonsHorizontalMenuItem(
+              "assets/terms_condition.png",
+              'Terms & Condition',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CommonWebviewScreen(
+                    page_name: "Terms Conditions",
+                    url: "https://unclejons.in/terms",
+                  ),
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
+            buildSettingAndAddonsHorizontalMenuItem(
+              "assets/lock.png",
+              'Privacy Policy',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CommonWebviewScreen(
+                    page_name: "Privacy Policy",
+                    url: "https://unclejons.in/privacy-policy",
+                  ),
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
+            buildSettingAndAddonsHorizontalMenuItem(
+              "assets/ship.png",
+              'Shipping Policy',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CommonWebviewScreen(
+                    page_name: "Shipping Policy",
+                    url: "https://unclejons.in/support-policy",
+                  ),
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              color: MyTheme.light_grey,
+            ),
+            buildSettingAndAddonsHorizontalMenuItem(
+              "assets/return.png",
+              'Return Policy',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CommonWebviewScreen(
+                    page_name: "Return Policy",
+                    url: "https://unclejons.in/return-policy",
+                  ),
+                ),
+              ),
+            ),
+            // if (is_logged_in.$)
+            //     Divider(
+            //       thickness: 1,
+            //       color: MyTheme.light_grey,
+            //     ),
+            // //  if (is_logged_in.$)
+            //     buildSettingAndAddonsHorizontalMenuItem(
+            //         "assets/delete.png", LangText(context).local!.delete_my_account,
+            //         () {
+            //       deleteWarningDialog();
+            //     }),
+          ]),
     );
   }
 
@@ -1053,9 +1053,7 @@ class _ProfileState extends State<Profile> {
       // color: Colors.red,
       // width: DeviceInfo(context).width / 4,
       child: InkWell(
-        onTap:
-             onTap,
-
+        onTap: onTap,
         child: Row(
           children: [
             Image.asset(
@@ -1576,15 +1574,16 @@ class _ProfileState extends State<Profile> {
         builder: (context) {
           loadingcontext = context;
           return AlertDialog(
-              content: Row(
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(
-                width: 10,
-              ),
-              Text("${AppLocalizations.of(context)!.please_wait_ucf}"),
-            ],
-          ),);
+            content: Row(
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  width: 10,
+                ),
+                Text("${AppLocalizations.of(context)!.please_wait_ucf}"),
+              ],
+            ),
+          );
         });
   }
 }

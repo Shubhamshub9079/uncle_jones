@@ -39,8 +39,8 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
 
   Future<ProductMiniResponse>? _future;
 
- // late List<data> _searchList;
- // late List<data> _fullList;
+  // late List<data> _searchList;
+  // late List<data> _fullList;
   ScrollController? _scrollController;
 
   String timeText(String txt, {default_length = 3}) {
@@ -77,12 +77,12 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
     _future =
         ProductRepository().getFlashDealProducts(id: widget.flash_deal_id);
     //_searchList = [];
-  //  _fullList = [];
+    //  _fullList = [];
     super.initState();
   }
 
   _buildSearchList(search_key) async {
-   // _searchList.clear();
+    // _searchList.clear();
     //print(_fullList.length);
 
     if (search_key.isEmpty) {
@@ -266,8 +266,7 @@ class _FlashDealProductsState extends State<FlashDealProducts> {
                         child: Center(
                             child: time == null
                                 ? Text(
-                                    AppLocalizations.of(context)!
-                                        .ended_ucf,
+                                    AppLocalizations.of(context)!.ended_ucf,
                                     style: TextStyle(
                                         color: MyTheme.accent_color,
                                         fontSize: 16.0,

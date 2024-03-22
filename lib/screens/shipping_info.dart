@@ -917,23 +917,26 @@ class _ShippingInfoState extends State<ShippingInfo> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Btn.minWidthFixHeight(
-              minWidth: MediaQuery.of(context).size.width * 0.9,
-              height: 10,
-              color: MyTheme.accent_color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18, 0, 0, 5),
+              child: Btn.minWidthFixHeight(
+                minWidth: MediaQuery.of(context).size.width * 0.9,
+                height: 10,
+                color: MyTheme.accent_color,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Text(
+                  AppLocalizations.of(context)!.proceed_to_checkout,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: () {
+                  onPressProceed(context);
+                },
               ),
-              child: Text(
-                AppLocalizations.of(context)!.proceed_to_checkout,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-              ),
-              onPressed: () {
-                onPressProceed(context);
-              },
             )
           ],
         ),

@@ -6,20 +6,27 @@ import 'package:UncleJons/helpers/shimmer_helper.dart';
 import 'package:UncleJons/my_theme.dart';
 import 'package:UncleJons/presenter/home_presenter.dart';
 import 'package:UncleJons/screens/category_products.dart';
+import 'package:UncleJons/screens/categoryview_all_category/stationary.dart';
 import 'package:UncleJons/screens/filter.dart';
-import 'package:UncleJons/screens/top_selling_products.dart';
+import 'package:UncleJons/screens/product_details.dart';
+import 'package:UncleJons/screens/todays_deal_products.dart';
 import 'package:UncleJons/ui_elements/mini_product_card.dart';
 import 'package:UncleJons/ui_elements/product_card.dart';
 import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '../custom/device_info.dart';
-import 'barcodeProductview.dart';
+import 'categoryview_all_category/Bakery.dart';
+import 'categoryview_all_category/Dairy_beverages.dart';
+import 'categoryview_all_category/grocery.dart';
+import 'categoryview_all_category/home_kitchen.dart';
+import 'categoryview_all_category/package_food.dart';
+import 'categoryview_all_category/patanjali.dart';
+import 'categoryview_all_category/personal_care.dart';
+import 'flash_deal_list.dart';
 import 'itemlist_uploadimage.dart';
 
 class Home extends StatefulWidget {
@@ -44,24 +51,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   EdgeInsets getDynamicPadding(double top, double right) {
     return EdgeInsets.fromLTRB(0, top, right, 0);
   }
+
   Future<void> scanBarcode(BuildContext context) async {
     try {
       var result = await BarcodeScanner.scan();
       if (result.rawContent != null && result.rawContent.isNotEmpty) {
-        setState(() {
-          scannedBarcode =
-              result.rawContent; // Store the scanned barcode number
-        });
-        print('Scanned barcode: ${scannedBarcode}');
+        int scannedId = int.tryParse(result.rawContent) ?? 0; // Convert to int
+        print('Scanned ID: $scannedId');
 
-        // Navigate to another screen with the scanned barcode number
+        // Navigate to the ProductDetails screen with the scanned ID
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => ProductViewBarCode(
-                    scannedBarcode: scannedBarcode,
-                    key: null,
-                  )),
+          MaterialPageRoute(builder: (context) {
+            return ProductDetails(
+              id: scannedId, // Convert int to String if necessary
+            );
+          }),
         );
       } else {
         print('User canceled the scan or no barcode found');
@@ -120,12 +125,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           },
           child: buildAppBar(context),
         ),
-        preferredSize: Size.fromHeight(kToolbarHeight + 14),
-        ),
+        preferredSize: Size.fromHeight(kToolbarHeight + 35),
+      ),
 
       //drawer: MainDrawer(),
-      body:
-      ListenableBuilder(
+      body: ListenableBuilder(
           listenable: homeData,
           builder: (context, child) {
             return Stack(
@@ -143,95 +147,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     slivers: <Widget>[
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 5,
+                          height: 3,
                         ),
                       ),
-                      SliverList(
-                        delegate: SliverChildListDelegate(
-                          [
-                            buildHomeCarouselSlider(context, homeData),
-                            // Padding(
-                            //   padding: const EdgeInsets.fromLTRB(
-                            //     18.0,
-                            //     0.0,
-                            //     18.0,
-                            //     0.0,
-                            //   ),
-                            //   child: buildHomeMenuRow1(context, homeData),
-                            // ),
-                            //
-                            // Padding(
-                            //   padding: const EdgeInsets.fromLTRB(
-                            //     18.0,
-                            //     0.0,
-                            //     18.0,
-                            //     0.0,
-                            //   ),
-                            //   child: buildHomeMenuRow2(context),
-                            // ),
-                          ],
-                        ),
-                      ),
-                      // SliverList(
-                      //   delegate: SliverChildListDelegate(
-                      //     [
-                      //       Padding(
-                      //         padding: const EdgeInsets.fromLTRB(
-                      //           18.0,
-                      //           0.0,
-                      //           22.0,
-                      //           0.0,
-                      //         ),
-                      //         child: InkWell(
-                      //           onTap: () {
-                      //             Navigator.push(
-                      //               context,
-                      //               MaterialPageRoute(
-                      //                   builder: (context) =>
-                      //                       ItemImageUpload()),
-                      //             );
-                      //           },
-                      //           child: Container(
-                      //             height: 48,
-                      //             width: 45,
-                      //             margin: const EdgeInsets.all(15.0),
-                      //             padding: const EdgeInsets.all(3.0),
-                      //             decoration: BoxDecoration(
-                      //               color:  MyTheme.accent_color,
-                      //               borderRadius: BorderRadius.circular(
-                      //                   50), // Half of width and height to make it circular
-                      //             ),
-                      //             child: Row(
-                      //               crossAxisAlignment:
-                      //                   CrossAxisAlignment.center,
-                      //               mainAxisAlignment: MainAxisAlignment.center,
-                      //               children: [
-                      //                 SizedBox(
-                      //                   width: 26,
-                      //                 ),
-                      //                 Text(
-                      //                   'Manual Order',
-                      //                   style: TextStyle(
-                      //                       color: MyTheme.white,
-                      //                       fontSize: 23,
-                      //                       fontWeight: FontWeight.w500),
-                      //                 ),
-                      //                 SizedBox(width: 18),
-                      //                 // Adjust spacing between text and image
-                      //                 Image.asset(
-                      //                   'assets/manualcart.png',
-                      //                   // Replace with your image asset path
-                      //                   height: 75,
-                      //                   width: 90,
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
+
+
 
                       SliverList(
                         delegate: SliverChildListDelegate(
@@ -244,51 +164,40 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 0.0,
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text.rich(
-                                        TextSpan(
-                                          text: 'Shop By',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w300),
-                                          children: <InlineSpan>[
-                                            TextSpan(
-                                              text: ' Categories',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w900),
-                                            ),
-                                          ],
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text.rich(
+                                          TextSpan(
+                                            text: 'Shop By',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w300),
+                                            children: <InlineSpan>[
+                                              TextSpan(
+                                                text: ' Categories',
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      // SizedBox(
-                                      //   width: 110,
-                                      // ),
-                                      // Text(
-                                      //   "View all ",
-                                      //   style: TextStyle(
-                                      //       color: Colors.red,
-                                      //       fontSize: 12,
-                                      //       fontWeight: FontWeight.w600),
-                                      // ),
-                                      // Icon(
-                                      //   Icons.arrow_forward,
-                                      //   color: Colors.pink,
-                                      //   size: 18,
-                                      // )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                        SizedBox(
+                                          width: 110,
+                                        ),
+
+                                      ],
+                                    ),
+                                  ]),
                             ),
                           ],
                         ),
@@ -299,13 +208,62 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           child: buildHomeFeaturedCategories(context, homeData),
                         ),
                       ),
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            buildHomeCarouselSlider(context, homeData),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                18.0,
+                                10.0,
+                                18.0,
+                                0.0,
+                              ),
+                              child:GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => FlashDealList()));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: Container(
+                                    height: 40,
+                                    width: 20,
+                                    color: MyTheme.accent_color,
+                                    child: Center(
+                                      child: Text(
+                                        'Flash Deal',style: TextStyle(
+                                        fontFamily: 'NotoSerifJP',fontSize: 18,
+                                          color: MyTheme.white,fontWeight: FontWeight.bold
+                                      ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                             // buildHomeMenuRow1(context, homeData),
+                            ),
+
+                            // Padding(
+                            //   padding: const EdgeInsets.fromLTRB(
+                            //     18.0,
+                            //     0.0,
+                            //     18.0,
+                            //     0.0,
+                            //   ),
+                            //   child: buildHomeMenuRow2(context),
+                            // ),
+                          ],
+                        ),
+                      ),
                       //Top selling product//
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 10.0, right: 18.0, left: 18.0),
+                                  top: 15.0, right: 18.0, left: 18.0),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -330,24 +288,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 105,
-                                  // ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // SizedBox(
-                                  //   width: 3,
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // ),
+
                                 ],
                               ),
                             ),
@@ -395,21 +336,43 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   SizedBox(
                                     width: 125,
                                   ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // SizedBox(
-                                  //   width: 3,
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Beverages & Dairy',style: TextStyle(),),
+                                            ),
+                                            body: CategoryViewHelperOne
+                                                .buildOneCategoryData(
+                                                context, homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -451,21 +414,44 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   SizedBox(
                                     width: 195,
                                   ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // SizedBox(
-                                  //   width: 3,
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Grocery'),
+                                            ),
+                                            body: CategoryViewHelpertwo
+                                                .buildTwoCategoryData(
+                                                context,
+                                                homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -501,21 +487,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     ],
                                   ),
                                 ),
-                                // SizedBox(
-                                //   width: 140,
-                                // ),
-                                // Text(
-                                //   'View all',
-                                //   style: TextStyle(
-                                //       color: Colors.pink,
-                                //       fontSize: 12,
-                                //       fontWeight: FontWeight.w600),
-                                // ),
-                                // Icon(
-                                //   Icons.arrow_forward,
-                                //   color: Colors.pink,
-                                //   size: 18,
-                                // )
+                                SizedBox(
+                                  width: 140,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Scaffold(
+                                          // Scaffold is used as a placeholder here, replace it with your actual widget
+                                          appBar: AppBar(
+                                            backgroundColor: MyTheme.accent_color,
+                                            centerTitle: true,
+                                            title: Text('Personal & Care'),
+                                          ),
+                                          body: CategoryViewHelperThree
+                                              .buildThreeCategoryData(
+                                              context,
+                                              homeData), // Call the static method from CategoryViewHelper
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "View all ",
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.pink,
+                                        size: 18,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -532,7 +544,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      top: 10.0, right: 18.0, left: 18.0),
+                                      top: 5.0, right: 18.0, left: 18.0),
                                   child: Row(
                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -597,21 +609,44 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 190,
-                                  // ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w900),
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Bakery'),
+                                            ),
+                                            body: CategoryViewHelperFour
+                                                .buildFourCategoryData(
+                                                context,
+                                                homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -649,21 +684,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 150,
-                                  // ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  SizedBox(
+                                    width: 150,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Package & Food'),
+                                            ),
+                                            body: CategoryViewHelperFive
+                                                .buildFiveCategoryData(
+                                                context,
+                                                homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -701,21 +762,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 170,
-                                  // ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  SizedBox(
+                                    width: 170,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Stationary'),
+                                            ),
+                                            body: CategoryViewHelperSix
+                                                .buildSixCategoryData(
+                                                context,
+                                                homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -753,21 +840,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 170,
-                                  // ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  SizedBox(
+                                    width: 170
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Patanjali'),
+                                            ),
+                                            body: CategoryViewHelperSeven
+                                                .buildSevenCategoryData(
+                                                context,
+                                                homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -781,7 +894,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           [
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 10.0, right: 18.0, left: 18.0),
+                                  top: 0.0, right: 18.0, left: 18.0),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -805,21 +918,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 135,
-                                  // ),
-                                  // Text(
-                                  //   'View all',
-                                  //   style: TextStyle(
-                                  //       color: Colors.pink,
-                                  //       fontSize: 12,
-                                  //       fontWeight: FontWeight.w600),
-                                  // ),
-                                  // Icon(
-                                  //   Icons.arrow_forward,
-                                  //   color: Colors.pink,
-                                  //   size: 18,
-                                  // )
+                                  SizedBox(
+                                    width: 135,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Scaffold(
+                                            // Scaffold is used as a placeholder here, replace it with your actual widget
+                                            appBar: AppBar(
+                                              backgroundColor: MyTheme.accent_color,
+                                              centerTitle: true,
+                                              title: Text('Home & Kitchen'),
+                                            ),
+                                            body: CategoryViewHelperEight
+                                                .buildEightCategoryData(
+                                                context,
+                                                homeData), // Call the static method from CategoryViewHelper
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "View all ",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.pink,
+                                          size: 18,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -1080,8 +1219,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             child: ListView.separated(
               padding: const EdgeInsets.all(18.0),
               separatorBuilder: (context, index) => SizedBox(
-                width: 14,
-              ),
+                width: 14),
               itemCount: homeData.totalFeaturedProductData! >
                       homeData.featuredProductList.length
                   ? homeData.featuredProductList.length + 1
@@ -1232,7 +1370,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else if (homeData.homeOneCategoryList.length > 0) {
       return SingleChildScrollView(
         child: SizedBox(
-          height: 200,
+          height: 205,
           child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
@@ -1829,165 +1967,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
-  // Widget buildHomeMenuRow1(BuildContext context, HomePresenter homeData) {
-  //   return Row(
-  //     children: [
-  //       if (homeData.isTodayDeal)
-  //         Flexible(
-  //           flex: 1,
-  //           fit: FlexFit.tight,
-  //           child: GestureDetector(
-  //             onTap: () {
-  //               Navigator.push(
-  //                 context,
-  //                 MaterialPageRoute(builder: (context) {
-  //                   return TodaysDealProducts();
-  //                 }),
-  //               );
-  //             },
-  //             child: Container(
-  //               height: 90,
-  //               decoration: BoxDecorations.buildBoxDecoration_1(),
-  //               child: Column(
-  //                 children: [
-  //                   Padding(
-  //                     padding: const EdgeInsets.all(16.0),
-  //                     child: Container(
-  //                         height: 20,
-  //                         width: 20,
-  //                         child: Image.asset("assets/todays_deal.png")),
-  //                   ),
-  //                   Text(AppLocalizations.of(context)!.todays_deal_ucf,
-  //                       textAlign: TextAlign.center,
-  //                       style: TextStyle(
-  //                           color: Color.fromRGBO(132, 132, 132, 1),
-  //                           fontWeight: FontWeight.w300)),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       if (homeData.isTodayDeal && homeData.isFlashDeal) SizedBox(width: 14.0),
-  //       if (homeData.isFlashDeal)
-  //         // Flexible(
-  //         //   flex: 1,
-  //         //   fit: FlexFit.tight,
-  //         //   child: GestureDetector(
-  //         //     onTap: () {
-  //         //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //         //         return FlashDealList();
-  //         //       }));
-  //         //     },
-  //         //     child: Container(
-  //         //       height: 90,
-  //         //       decoration: BoxDecorations.buildBoxDecoration_1(),
-  //         //       child: Column(
-  //         //         children: [
-  //         //           Padding(
-  //         //             padding: const EdgeInsets.all(16.0),
-  //         //             child: Container(
-  //         //                 height: 20,
-  //         //                 width: 20,
-  //         //                 child: Image.asset("assets/flash_deal.png")),
-  //         //           ),
-  //         //           Text(
-  //         //             AppLocalizations.of(context)!.flash_deal_ucf,
-  //         //             textAlign: TextAlign.center,
-  //         //             style: TextStyle(
-  //         //                 color: Color.fromRGBO(132, 132, 132, 1),
-  //         //                 fontWeight: FontWeight.w300),
-  //         //           ),
-  //         //         ],
-  //         //       ),
-  //         //     ),
-  //         //   ),
-  //         // )
-  //     ],
-  //   );
-  // }
-
-  Widget buildHomeMenuRow2(BuildContext context) {
+  Widget buildHomeMenuRow1(BuildContext context, HomePresenter homeData) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        /* Flexible(
-          flex: 1,
-          fit: FlexFit.tight,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return CategoryList(
-                  is_top_category: true,
-                );
-              }));
-            },
-            child: Container(
-              height: 90,
-              width: MediaQuery.of(context).size.width / 3 - 4,
-              decoration: BoxDecorations.buildBoxDecoration_1(),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset("assets/top_categories.png")),
-                  ),
-                  Text(
-                    AppLocalizations.of(context).home_screen_top_categories,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color.fromRGBO(132, 132, 132, 1),
-                        fontWeight: FontWeight.w300),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),*/
-        Flexible(
-          flex: 1,
-          fit: FlexFit.tight,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Filter(
-                  selected_filter: "brands",
-                );
-              }));
-            },
-            child: Container(
-              height: 90,
-              width: MediaQuery.of(context).size.width / 3 - 4,
-              decoration: BoxDecorations.buildBoxDecoration_1(),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      child: Image.asset("assets/brands.png"),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.brands_ucf,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color.fromRGBO(132, 132, 132, 1),
-                        fontWeight: FontWeight.w300),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        if (vendor_system.$)
-          SizedBox(
-            width: 10,
-          ),
-        if (vendor_system.$)
+        if (homeData.isTodayDeal)
           Flexible(
             flex: 1,
             fit: FlexFit.tight,
@@ -1996,26 +1979,57 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return TopSellingProducts();
+                    return TodaysDealProducts();
                   }),
                 );
               },
               child: Container(
                 height: 90,
-                width: MediaQuery.of(context).size.width / 3 - 4,
                 decoration: BoxDecorations.buildBoxDecoration_1(),
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Container(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset("assets/top_sellers.png"),
-                      ),
+                          height: 20,
+                          width: 20,
+                          child: Image.asset("assets/todays_deal.png")),
+                    ),
+                    Text(AppLocalizations.of(context)!.todays_deal_ucf,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 132, 132, 1),
+                            fontWeight: FontWeight.w300)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        if (homeData.isTodayDeal && homeData.isFlashDeal) SizedBox(width: 14.0),
+        if (homeData.isFlashDeal)
+          Flexible(
+            flex: 1,
+            fit: FlexFit.tight,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return FlashDealList();
+                }));
+              },
+              child: Container(
+                height: 90,
+                decoration: BoxDecorations.buildBoxDecoration_1(),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                          height: 20,
+                          width: 20,
+                          child: Image.asset("assets/flash_deal.png")),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.top_sellers_ucf,
+                      AppLocalizations.of(context)!.flash_deal_ucf,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Color.fromRGBO(132, 132, 132, 1),
@@ -2025,10 +2039,142 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
               ),
             ),
-          ),
+          )
       ],
     );
   }
+
+  // Widget buildHomeMenuRow2(BuildContext context) {
+  //   return Column(
+  //
+  //     children: [
+  //       SizedBox(height: 10,),
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         children: [
+  //           SizedBox(height: 5,),
+  //            Flexible(
+  //             flex: 1,
+  //            // fit: FlexFit.tight,
+  //             child: GestureDetector(
+  //               onTap: () {
+  //                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //                   return CategoryList(
+  //                     is_top_category: true,
+  //                   );
+  //                 }));
+  //               },
+  //               child: Container(
+  //                 height: 80,
+  //                 width: MediaQuery.of(context).size.width*0.4,
+  //                 //width: MediaQuery.of(context).size.width / 3 - 4,
+  //                 decoration: BoxDecorations.buildBoxDecoration_1(),
+  //                 child: Column(
+  //                   children: [
+  //                     Padding(
+  //                       padding: const EdgeInsets.all(16.0),
+  //                       child: Container(
+  //                           height: 20,
+  //                           width: 20,
+  //                           child: Image.asset("assets/top_categories.png")),
+  //                     ),
+  //                     Text('Top Categories',
+  //                      // AppLocalizations.of(context)?.home_screen_top_categories,
+  //                       textAlign: TextAlign.center,
+  //                       style: TextStyle(
+  //                           color: Color.fromRGBO(132, 132, 132, 1),
+  //                           fontWeight: FontWeight.w600),
+  //                     )
+  //                   ],
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           Flexible(
+  //             flex: 1,
+  //             //fit: FlexFit.tight,
+  //             child: GestureDetector(
+  //               onTap: () {
+  //                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //                   return Filter(
+  //                     selected_filter: "brands",
+  //                   );
+  //                 }));
+  //               },
+  //               child: Container(
+  //                 height: 80,
+  //                 width: MediaQuery.of(context).size.width*0.4,
+  //                 decoration: BoxDecorations.buildBoxDecoration_1(),
+  //                 child: Column(
+  //                   children: [
+  //                     Padding(
+  //                       padding: const EdgeInsets.all(16.0),
+  //                       child: Container(
+  //                         height: 20,
+  //                         width: 20,
+  //                         child: Image.asset("assets/brands.png"),
+  //                       ),
+  //                     ),
+  //                     Text(
+  //                       AppLocalizations.of(context)!.brands_ucf,
+  //                       textAlign: TextAlign.center,
+  //                       style: TextStyle(
+  //                           color: Color.fromRGBO(132, 132, 132, 1),
+  //                           fontWeight: FontWeight.w600),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           if (vendor_system.$)
+  //             SizedBox(
+  //               width: 10,
+  //             ),
+  //           if (vendor_system.$)
+  //             Flexible(
+  //               flex: 1,
+  //               fit: FlexFit.tight,
+  //               child: GestureDetector(
+  //                 onTap: () {
+  //                   Navigator.push(
+  //                     context,
+  //                     MaterialPageRoute(builder: (context) {
+  //                       return TopSellingProducts();
+  //                     }),
+  //                   );
+  //                 },
+  //                 child: Container(
+  //                   height: 90,
+  //                   width: MediaQuery.of(context).size.width / 3 - 4,
+  //                   decoration: BoxDecorations.buildBoxDecoration_1(),
+  //                   child: Column(
+  //                     children: [
+  //                       Padding(
+  //                         padding: const EdgeInsets.all(16.0),
+  //                         child: Container(
+  //                           height: 20,
+  //                           width: 20,
+  //                           child: Image.asset("assets/top_sellers.png"),
+  //                         ),
+  //                       ),
+  //                       Text(
+  //                         AppLocalizations.of(context)!.top_sellers_ucf,
+  //                         textAlign: TextAlign.center,
+  //                         style: TextStyle(
+  //                             color: Color.fromRGBO(132, 132, 132, 1),
+  //                             fontWeight: FontWeight.w300),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget buildHomeCarouselSlider(context, HomePresenter homeData) {
     if (homeData.isCarouselInitial && homeData.carouselImageList.length == 0) {
@@ -2064,11 +2210,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           return Builder(
             builder: (BuildContext context) {
               return Padding(
-                padding: const EdgeInsets.only(
-                    left: 6, right: 6, top: 0, bottom: 20),
+                padding:
+                    const EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 7),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.94,
-                  height: 20,
+                  height: 22,
                   child: AIZImage.radiusImage(i, 6),
                 ),
               );
@@ -2219,8 +2365,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       backgroundColor: MyTheme.accent_color,
       centerTitle: false,
       elevation: 0,
+      toolbarHeight: 100,
       flexibleSpace: Padding(
-        padding: getDynamicPadding(20, 200),
+        padding: getDynamicPadding(40, 200),
         child: Container(
           height: MediaQuery.of(context).size.height * 0.03,
           width: 20,
@@ -2232,7 +2379,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 22,),
+          SizedBox(
+            height: 30,
+          ),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -2346,9 +2495,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       color: Colors.white,
       child: Center(
         child: Text(
-            homeData.totalAllProductData == homeData.allProductList.length
-                ? AppLocalizations.of(context)!.no_more_products_ucf
-                : AppLocalizations.of(context)!.loading_more_products_ucf,style: TextStyle(color: MyTheme.green_light),),
+          homeData.totalAllProductData == homeData.allProductList.length
+              ? AppLocalizations.of(context)!.no_more_products_ucf
+              : AppLocalizations.of(context)!.loading_more_products_ucf,
+          style: TextStyle(color: MyTheme.green_light),
+        ),
       ),
     );
   }

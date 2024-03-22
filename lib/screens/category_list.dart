@@ -17,12 +17,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategoryList extends StatefulWidget {
   CategoryList(
-      {Key? key,
+      {
+        Key? key,
       this.parent_category_id = 0,
       this.parent_category_name = "",
       this.is_base_category = false,
       this.is_top_category = false,
-      this.bottomAppbarIndex})
+      this.bottomAppbarIndex
+      })
       : super(key: key);
 
   final int parent_category_id;
@@ -66,8 +68,8 @@ class _CategoryListState extends State<CategoryList>
                         blurRadius: 8.0, // soften the shadow
                         spreadRadius: 1.0, //extend the shadow
                         offset: Offset(
-                          1.0, // Move to right 5  horizontally
-                          1.0, // Move to bottom 5 Vertically
+                          1.0,
+                          1.0,
                         ),
                       )
                     ],
@@ -137,8 +139,8 @@ class _CategoryListState extends State<CategoryList>
             print("category list error");
             print(snapshot.error.toString());
             return Container(
-              height: 10,
-            );
+              height: 10);
+
           } else if (snapshot.hasData) {
             return Container(
               margin: EdgeInsets.only(bottom: 60),
@@ -188,7 +190,8 @@ class _CategoryListState extends State<CategoryList>
                     crossAxisCount: 2, // Number of columns in the grid
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
+                    return
+                      GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,

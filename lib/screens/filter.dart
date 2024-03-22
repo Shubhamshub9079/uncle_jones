@@ -2,7 +2,6 @@ import 'package:UncleJons/custom/btn.dart';
 import 'package:UncleJons/custom/useful_elements.dart';
 import 'package:UncleJons/my_theme.dart';
 import 'package:UncleJons/screens/seller_details.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:UncleJons/ui_elements/product_card.dart';
 import 'package:UncleJons/ui_elements/shop_square_card.dart';
@@ -20,7 +19,6 @@ import 'package:UncleJons/repositories/search_repository.dart';
 import 'package:UncleJons/helpers/shared_value_helper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:one_context/one_context.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class WhichFilter {
   String option_key;
@@ -722,11 +720,11 @@ class _FilterState extends State<Filter> {
             child: Container(
               child: Padding(
                   padding: MediaQuery.of(context).viewPadding.top >
-                          30 //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
+                          20 //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
                       ? const EdgeInsets.symmetric(
-                          vertical: 36.0, horizontal: 0.0)
+                          vertical: 15.0, horizontal: 0.0)
                       : const EdgeInsets.symmetric(
-                          vertical: 14.0, horizontal: 0.0),
+                          vertical: 10.0, horizontal: 0.0),
                   child: TypeAheadField(
                     suggestionsCallback: (pattern) async {
                       //return await BackendService.getSuggestions(pattern);
@@ -744,7 +742,7 @@ class _FilterState extends State<Filter> {
                             child: Text(
                                 AppLocalizations.of(context)!
                                     .loading_suggestions,
-                                style: TextStyle(color: MyTheme.medium_grey))),
+                                style: TextStyle(color: MyTheme.medium_grey),),),
                       );
                     },
                     itemBuilder: (context, dynamic suggestion) {
@@ -1040,50 +1038,54 @@ class _FilterState extends State<Filter> {
     );
   }
 
-  buildProductScrollableList() {
+  Widget buildProductScrollableList() {
     if (_isProductInitial && _productList.length == 0) {
       return SingleChildScrollView(
-          child: ShimmerHelper()
-              .buildProductGridShimmer(scontroller: _scrollController));
+        child: ShimmerHelper().buildProductGridShimmer(scontroller: _scrollController),
+      );
     } else if (_productList.length > 0) {
       return SingleChildScrollView(
         controller: _productScrollController,
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         child: Column(
           children: [
             SizedBox(
-                height: MediaQuery.of(context).viewPadding.top > 40 ? 160 : 135
-                //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
-                ),
+              height: MediaQuery.of(context).viewPadding.top > 45 ? 160 : 100,
+              //MediaQuery.of(context).viewPadding.top is the statusbar height, with a notch phone it results almost 50, without a notch it shows 24.0.For safety we have checked if its greater than thirty
+            ),
             ListView.builder(
-              scrollDirection: Axis.vertical,
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: _productList.length,
-              controller: _scrollController,
+              padding: EdgeInsets.only(top: 18.0, bottom: 18, left: 18, right: 18),
               itemBuilder: (context, index) {
-                return ProductCard(
-                  id: _productList[index].id,
-                  image: _productList[index].thumbnail_image,
-                  name: _productList[index].name,
-                  main_price: _productList[index].main_price,
-                  stroked_price: _productList[index].stroked_price,
-                  has_discount: _productList[index].has_discount,
-                  discount: _productList[index].discount,
-                  is_wholesale: _productList[index].isWholesale,
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 10.0), // Add spacing between items
+                  child: ProductCard(
+                    id: _productList[index].id,
+                    image: _productList[index].thumbnail_image,
+                    name: _productList[index].name,
+                    main_price: _productList[index].main_price,
+                    stroked_price: _productList[index].stroked_price,
+                    has_discount: _productList[index].has_discount,
+                    discount: _productList[index].discount,
+                    is_wholesale: _productList[index].isWholesale,
+                  ),
                 );
               },
-            )
+            ),
           ],
         ),
       );
     } else if (_totalProductData == 0) {
       return Center(
-          child: Text(AppLocalizations.of(context)!.no_product_is_available));
+        child: Text(AppLocalizations.of(context)!.no_product_is_available),
+      );
     } else {
       return Container(); // should never be happening
     }
   }
+
 
   Container buildBrandList() {
     return Container(
